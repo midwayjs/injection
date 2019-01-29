@@ -27,7 +27,7 @@ export class Container extends XmlApplicationContext implements IContainer {
     // definition.autowire = true;
     if (is.class(identifier) || is.function(identifier)) {
       options = target;
-      target = <any>identifier;
+      target = <any> identifier;
       identifier = this.getIdentifier(target);
       options = null;
     }
@@ -44,15 +44,15 @@ export class Container extends XmlApplicationContext implements IContainer {
     debug(`=> bind and build definition, id = [${definition.id}]`);
 
     // inject constructArgs
-    let constructorMetaData = Reflect.getMetadata(TAGGED, target);
+    const constructorMetaData = Reflect.getMetadata(TAGGED, target);
     if (constructorMetaData) {
-      debug(`   register inject constructor length = ${target['length']}`);
+      debug(`   register inject constructor length = ${target[ 'length' ]}`);
       const maxLength = Math.max.apply(null, Object.keys(constructorMetaData));
       for (let i = 0; i < maxLength + 1; i++) {
-        const propertyMeta = constructorMetaData[i];
+        const propertyMeta = constructorMetaData[ i ];
         if (propertyMeta) {
           const refManagedIns = new ManagedReference();
-          refManagedIns.name = propertyMeta[0].value;
+          refManagedIns.name = propertyMeta[ 0 ].value;
           definition.constructorArgs.push(refManagedIns);
         } else {
           // inject empty value
@@ -64,11 +64,11 @@ export class Container extends XmlApplicationContext implements IContainer {
     }
 
     // inject properties
-    let metaDatas = recursiveGetMetadata(TAGGED_PROP, target);
+    const metaDatas = recursiveGetMetadata(TAGGED_PROP, target);
     for (const metaData of metaDatas) {
       debug(`   register inject properties = [${Object.keys(metaData)}]`);
-      for (let metaKey in metaData) {
-        for (let propertyMeta of metaData[metaKey]) {
+      for (const metaKey in metaData) {
+        for (const propertyMeta of metaData[ metaKey ]) {
           const refManaged = new ManagedReference();
           refManaged.name = propertyMeta.value;
           definition.properties.set(metaKey, refManaged);
@@ -86,7 +86,7 @@ export class Container extends XmlApplicationContext implements IContainer {
 
   registerCustomBinding(objectDefinition: ObjectDefinition, target: any) {
     // @async, @init, @destroy @scope
-    let objDefOptions: ObjectDefinitionOptions = Reflect.getMetadata(OBJ_DEF_CLS, target);
+    const objDefOptions: ObjectDefinitionOptions = Reflect.getMetadata(OBJ_DEF_CLS, target);
 
     this.convertOptionsToDefinition(objDefOptions, objectDefinition);
   }
@@ -160,7 +160,7 @@ export class Container extends XmlApplicationContext implements IContainer {
     if (typeof identifier !== 'string') {
       identifier = this.getIdentifier(identifier);
     }
-    return await super.getAsync<T>(identifier, args);
+    return super.getAsync<T>(identifier, args);
   }
 
   protected getIdentifier(target: any) {
