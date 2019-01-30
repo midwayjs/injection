@@ -7,13 +7,8 @@ install:
   - npm i
   - npm i codecov
 before_script:
-  - npm run bootstrap
   - npm run build
 script:
   - npm run cov
 after_script:
   - codecov
-  - test $TRAVIS_NODE_VERSION = 8 && travis_wait scripts/deploy.sh
-env:
-  global:
-  - ENCRYPTION_LABEL: 99ac90ea56e6

@@ -1,9 +1,8 @@
-import {Container, RequestContainer} from '../src';
-import {UserService} from './singleton-scope/userService';
-import {UserController} from './singleton-scope/userController';
+import { Container, RequestContainer } from '../src';
+import { UserService } from './singleton-scope/userService';
+import { UserController } from './singleton-scope/userController';
 
 const Benchmark = require('benchmark');
-
 const suite = new Benchmark.Suite;
 
 const applicationContext = new Container();
@@ -20,11 +19,11 @@ suite
     await applicationContext.getAsync(UserController);
   })
   // add listeners
-  .on('cycle', function(event) {
+  .on('cycle', function (event) {
     console.log(String(event.target));
   })
-  .on('complete', function() {
-    console.log('Fastest is ' + this.filter('fastest').map('name'));
+  .on('complete', function () {
+    console.log('Fastest is ' + (<any>this).filter('fastest').map('name'));
   })
   // run async
-  .run({'async': true});
+  .run({ 'async': true });

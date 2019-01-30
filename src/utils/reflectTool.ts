@@ -1,4 +1,4 @@
-import {ReflectResult} from '../interfaces';
+import { ReflectResult } from '../interfaces';
 import 'reflect-metadata';
 
 const functionPrototype = Object.getPrototypeOf(Function);
@@ -7,7 +7,9 @@ const functionPrototype = Object.getPrototypeOf(Function);
 // https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof
 function ordinaryGetPrototypeOf(O: any): any {
   const proto = Object.getPrototypeOf(O);
-  if (typeof O !== 'function' || O === functionPrototype) return proto;
+  if (typeof O !== 'function' || O === functionPrototype) {
+    return proto;
+  }
 
   // TypeScript doesn't set __proto__ in ES5, as it's non-standard.
   // Try to determine the superclass constructor. Compatible implementations
@@ -17,19 +19,27 @@ function ordinaryGetPrototypeOf(O: any): any {
 
   // If this is not the same as Function.[[Prototype]], then this is definately inherited.
   // This is the case when in ES6 or when using __proto__ in a compatible browser.
-  if (proto !== functionPrototype) return proto;
+  if (proto !== functionPrototype) {
+    return proto;
+  }
 
   // If the super prototype is Object.prototype, null, or undefined, then we cannot determine the heritage.
   const prototype = O.prototype;
   const prototypeProto = prototype && Object.getPrototypeOf(prototype);
-  if (prototypeProto == null || prototypeProto === Object.prototype) return proto;
+  if (prototypeProto == null || prototypeProto === Object.prototype) {
+    return proto;
+  }
 
   // If the constructor was not a function, then we cannot determine the heritage.
   const constructor = prototypeProto.constructor;
-  if (typeof constructor !== 'function') return proto;
+  if (typeof constructor !== 'function') {
+    return proto;
+  }
 
   // If we have some kind of self-reference, then we cannot determine the heritage.
-  if (constructor === O) return proto;
+  if (constructor === O) {
+    return proto;
+  }
 
   // we have a pretty good guess at the heritage.
   return constructor;
@@ -58,14 +68,18 @@ export function recursiveGetMetadata(metadataKey: any, target: any, propertyKey?
   const metadatas: ReflectResult[] = [];
 
   // get metadata value of a metadata key on the prototype
-  let metadata =  Reflect.getOwnMetadata(metadataKey, target, propertyKey);
-  metadata !== undefined && metadatas.push(metadata);
+  let metadata = Reflect.getOwnMetadata(metadataKey, target, propertyKey);
+  if (metadata) {
+    metadatas.push(metadata);
+  }
 
   // get metadata value of a metadata key on the prototype chain
   let parent = ordinaryGetPrototypeOf(target);
   while (parent !== null) {
     metadata = Reflect.getOwnMetadata(metadataKey, parent, propertyKey);
-    metadata !== undefined && metadatas.push(metadata);
+    if (metadata) {
+      metadatas.push(metadata);
+    }
     parent = ordinaryGetPrototypeOf(parent);
   }
   return metadatas;

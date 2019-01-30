@@ -30,7 +30,7 @@ const PREFIX = '_id_default_';
 export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRegistry {
   get identifiers() {
     const ids = [];
-    for (let key of this.keys()) {
+    for (const key of this.keys()) {
       if (key.indexOf(PREFIX) === -1) {
         ids.push(key);
       }
@@ -44,8 +44,8 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
 
   getDefinitionByName(name: string): IObjectDefinition[] {
     const definitions = [];
-    for (let v of this.values()) {
-      const definition = <IObjectDefinition>v;
+    for (const v of this.values()) {
+      const definition = <IObjectDefinition> v;
       if (definition.name === name) {
         definitions.push(definition);
       }
@@ -62,8 +62,8 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
   }
 
   getDefinitionByPath(path: string): IObjectDefinition {
-    for (let v of this.values()) {
-      const definition = <IObjectDefinition>v;
+    for (const v of this.values()) {
+      const definition = <IObjectDefinition> v;
       if (definition.path === path) {
         return definition;
       }
@@ -97,8 +97,8 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
 }
 
 export class BaseApplicationContext extends EventEmitter implements IApplicationContext, IObjectFactory {
-  protected refreshing: boolean = false;
-  protected readied: boolean = false;
+  protected refreshing = false;
+  protected readied = false;
   protected lifeCycles: ILifeCycle[] = [];
   protected resolverFactory: ManagedResolverFactory;
   baseDir: string;
@@ -138,7 +138,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
   }
 
   async ready(): Promise<void> {
-    return await this.refreshAsync();
+    return this.refreshAsync();
   }
 
   async refreshAsync(): Promise<void> {
@@ -198,13 +198,13 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
 
     const definition = this.registry.getDefinition(identifier);
     if (!definition && this.parent) {
-      return await this.parent.getAsync<T>(identifier, args);
+      return this.parent.getAsync<T>(identifier, args);
     }
 
     if (!definition) {
       throw new NotFoundError(identifier);
     }
-    return await this.resolverFactory.createAsync(definition, args);
+    return this.resolverFactory.createAsync(definition, args);
   }
 
   addLifeCycle(lifeCycle: ILifeCycle): void {
@@ -220,7 +220,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
     let index = this.lifeCycles.indexOf(lifeCycle);
     if (index === -1) {
       for (let i = 0; i < this.lifeCycles.length; i++) {
-        if (this.lifeCycles[i].key = lifeCycle.key) {
+        if (this.lifeCycles[ i ].key === lifeCycle.key) {
           index = i;
           break;
         }
@@ -229,8 +229,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
 
     if (index > -1) {
       const aa = this.lifeCycles.splice(index, 1);
-      for (let i = 0; i < aa.length; i++) {
-        const tmp = aa[i];
+      for (const tmp of aa) {
         this.removeListener(ContextEvent.START, tmp.onStart);
         this.removeListener(ContextEvent.STOP, tmp.onStop);
         this.removeListener(ContextEvent.READY, tmp.onReady);
@@ -274,7 +273,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
    * register handler before instance create
    * @param fn
    */
-  beforeEachCreated(fn: (Clzz: any, constructorArgs: Array<any>, context: IApplicationContext) => void) {
+  beforeEachCreated(fn: (Clzz: any, constructorArgs: any[], context: IApplicationContext) => void) {
     this.resolverFactory.beforeEachCreated(fn);
   }
 
@@ -295,8 +294,8 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
       this.dependencyMap.set(identifier, {
         name: typeof definition.path !== 'string' ? definition.path.name : identifier,
         scope: definition.scope,
-        constructorArgs: constructorArgs,
-        properties: properties,
+        constructorArgs,
+        properties,
       });
     }
   }
@@ -304,16 +303,16 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
   dumpDependency() {
     const g = graphviz.digraph('G');
 
-    for (let [id, module] of this.dependencyMap.entries()) {
+    for (const [ id, module ] of this.dependencyMap.entries()) {
 
-      g.addNode(id, {label: `${id}(${module.name})\nscope:${module.scope}`, fontsize: '10'});
+      g.addNode(id, { label: `${id}(${module.name})\nscope:${module.scope}`, fontsize: '10' });
 
       module.properties.forEach((depId) => {
-        g.addEdge(id, depId, {label: `properties`, fontsize: '8'});
+        g.addEdge(id, depId, { label: `properties`, fontsize: '8' });
       });
 
       module.constructorArgs.forEach((depId) => {
-        g.addEdge(id, depId, {label: 'constructor', fontsize: '8'});
+        g.addEdge(id, depId, { label: 'constructor', fontsize: '8' });
       });
     }
 
@@ -325,4 +324,3 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
   }
 
 }
-
