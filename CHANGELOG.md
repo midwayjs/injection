@@ -1,3 +1,16 @@
+
+1.1.1 / 2019-01-30
+==================
+
+  * Merge pull request #1 from midwayjs/fix_lint
+  * fix: clean travis
+  * fix: test case extend module
+  * fix: remove bootstrap step
+  * fix: fix lint for src code
+  * fix: fix lint command
+  * feat: transform code from midway
+
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

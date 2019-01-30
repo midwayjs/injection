@@ -1,17 +1,17 @@
 {
   "name": "injection",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A New IoC Container For All Node.js Application",
   "main": "dist/index",
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "npm run lint && midway-bin build -c",
-    "start": "npm run build && node dist/index",
     "lint": "tslint --format prose -c ./tslint.json src/**/*.ts test/**/*.ts",
     "test": "midway-bin test --ts",
     "cov": "midway-bin cov --ts",
     "ci": "npm run test",
-    "autod": "midway-bin autod"
+    "autod": "midway-bin autod",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "midway",
