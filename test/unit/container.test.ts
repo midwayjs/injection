@@ -10,7 +10,9 @@ import {
   Katana,
   Ninja,
   Samurai,
-  Warrior
+  Warrior,
+  SubParent,
+  SubChild
 } from '../fixtures/class_sample';
 import { recursiveGetMetadata } from '../../src/utils/reflectTool';
 import { TAGGED_PROP } from '../../src/index';
@@ -158,8 +160,10 @@ describe('/test/unit/container.test.ts', () => {
       container.get(Katana);
     }).to.throw(/is not valid in current context/);
 
+    container.bind<SubChild>('subChild', <any>SubChild);
+    container.bind<SubParent>('subParent', <any>SubParent);
     try {
-      await container.getAsync(Katana);
+      await container.getAsync('subParent');
     } catch (error) {
       expect(function () { throw error; }).to.throw(/is not valid in current context/);
     }

@@ -11,7 +11,7 @@ export class NotFoundError extends Error {
   }
   updateErrorMsg(className: string): void {
     const identifier = this.message.split(' is not valid in current context')[0];
-    const msg = `${identifier} in class ${className} is not valid in context`;
+    const msg = `${identifier} in class ${className} is not valid in current context`;
     this.message = msg;
   }
 }
