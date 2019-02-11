@@ -11,7 +11,7 @@ import {
 import * as assert from 'assert';
 import { ManagerTest as module } from '../../fixtures/decorator/customClass';
 
-describe.only('/test/unit/base/decoratorManager.test.ts', () => {
+describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should save data on class and get it', () => {
     assert(getClassMetaData('custom', module) === 'test');
