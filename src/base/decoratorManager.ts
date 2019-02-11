@@ -63,6 +63,9 @@ export class DecoratorManager extends Map {
       }
       return Reflect.getMetadata(metaKey, target, method);
     } else {
+      if (typeof target === 'object') {
+        target = target.constructor;
+      }
       // for class
       if (!Reflect.hasMetadata(metaKey, target)) {
         Reflect.defineMetadata(metaKey, new Map(), target);
@@ -147,6 +150,14 @@ export function saveMethodMetaData(decoratorNameKey: decoratorKey, data, target,
 
 export function getMethodMetaData(decoratorNameKey: decoratorKey, target, method) {
   return manager.getMethodMetaData(decoratorNameKey, target, method);
+}
+
+export function savePreloadModule(target) {
+  return saveModule(PRELOAD_MODULE_KEY, target);
+}
+
+export function listPreloadModule() {
+  return manager.listModule(PRELOAD_MODULE_KEY);
 }
 
 export function saveModule(decoratorNameKey: decoratorKey, target) {
