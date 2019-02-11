@@ -8,8 +8,8 @@ import {
   ObjectIdentifier,
   Scope,
 } from '../interfaces';
-import { ObjectCreator } from './ObjectCreator';
-import { ScopeEnum } from './Scope';
+import { ObjectCreator } from './objectCreator';
+import { ScopeEnum } from './scope';
 
 class FunctionWrapperCreator extends ObjectCreator {
 

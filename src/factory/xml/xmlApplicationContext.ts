@@ -1,7 +1,7 @@
 import { IResource } from '../../interfaces';
 import { BaseApplicationContext } from '../applicationContext';
-import { XmlObjectDefinitionParser } from './XmlObjectDefinitionParser';
-import { Resource } from '../../base/Resource';
+import { XmlObjectDefinitionParser } from './xmlObjectDefinitionParser';
+import { Resource } from '../../base/resource';
 
 export class XmlApplicationContext extends BaseApplicationContext {
   parser: XmlObjectDefinitionParser;

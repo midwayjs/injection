@@ -1,6 +1,6 @@
 import { ObjectIdentifier } from '../../interfaces';
-import { ScopeEnum } from '../../base/Scope';
-import { ObjectDefinition } from '../../base/ObjectDefinition';
+import { ScopeEnum } from '../../base/scope';
+import { ObjectDefinition } from '../../base/objectDefinition';
 import * as utils from './utils';
 
 export class XmlObjectDefinition extends ObjectDefinition {

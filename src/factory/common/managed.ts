@@ -3,7 +3,7 @@
  */
 
 import { IManagedInstance, IObjectDefinition } from '../../interfaces';
-import { ObjectConfiguration } from '../../base/Configuration';
+import { ObjectConfiguration } from '../../base/configuration';
 import { KEYS, VALUE_TYPE } from './constants';
 
 export class ManagedValue implements IManagedInstance {

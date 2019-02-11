@@ -1,7 +1,7 @@
 import { INJECT_TAG } from '..';
 import { ObjectIdentifier } from '../interfaces';
 import { tagParameter, tagProperty } from '../utils/decorator';
-import { Metadata } from '../utils/Metadata';
+import { Metadata } from '../utils/metadata';
 
 const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 const ARGUMENT_NAMES = /([^\s,]+)/g;

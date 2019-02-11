@@ -1,5 +1,5 @@
 
-import { Resource } from '../../../src/base/Resource';
+import { Resource } from '../../../src/base/resource';
 import { expect } from 'chai';
 import * as sinon from 'sinon';
 

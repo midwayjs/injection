@@ -5,13 +5,13 @@ import {
   IResource,
   IObjectDefinitionRegistry
 } from '../../interfaces';
-import { XmlObjectDefinition } from './XmlObjectDefinition';
-import { Resource } from '../../base/Resource';
+import { XmlObjectDefinition } from './xmlObjectDefinition';
+import { Resource } from '../../base/resource';
 import { KEYS } from '../common/constants';
 import * as utils from './utils';
-import { ObjectConfiguration } from '../../base/Configuration';
+import { ObjectConfiguration } from '../../base/configuration';
 import { IXmlParser, IParserContext, IObjectDefinitionParser } from './interface';
-import { XmlObjectElementParser } from './XmlObjectElementParser';
+import { XmlObjectElementParser } from './xmlObjectElementParser';
 
 export class ParserContext extends Map implements IParserContext {
   defaults: IObjectDefinition;
