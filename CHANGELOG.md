@@ -1,4 +1,14 @@
 
+1.2.0 / 2019-02-12
+==================
+
+  * Merge pull request #2 from midwayjs/add_manager
+  * chore: remove only
+  * test: add test for decoratorManager
+  * fix: fix test
+  * feat: add decoratorManager
+  * refactor: to camel case
+
 1.1.1 / 2019-01-30
 ==================
 
