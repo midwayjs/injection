@@ -1,7 +1,7 @@
 
 import * as path from 'path';
-import { MessageSource } from '../../../src/base/MessageSource';
-import { Resource } from '../../../src/base/Resource';
+import { MessageSource } from '../../../src/base/messageSource';
+import { Resource } from '../../../src/base/resource';
 
 import { expect } from 'chai';
 

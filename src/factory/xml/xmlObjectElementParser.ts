@@ -10,12 +10,12 @@ import { ManagedValue,
   ManagedList,
   ManagedProperty,
   ManagedProperties} from '../common/managed';
-import { ScopeEnum } from '../../base/Scope';
+import { ScopeEnum } from '../../base/scope';
 import {
   IObjectDefinition,
   IManagedInstance
 } from '../../interfaces';
-import { XmlObjectDefinition } from './XmlObjectDefinition';
+import { XmlObjectDefinition } from './xmlObjectDefinition';
 import { IParserContext, IManagedParser } from './interface';
 
 export class ManagedParser implements IManagedParser {

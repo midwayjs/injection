@@ -1,6 +1,6 @@
 import { KEYS, VALUE_TYPE } from '../../../../src/factory/common/constants';
-import { XmlObjectElementParser } from '../../../../src/factory/xml/XmlObjectElementParser';
-import { ParserContext, XmlObjectDefinitionParser } from '../../../../src/factory/xml/XmlObjectDefinitionParser';
+import { XmlObjectElementParser } from '../../../../src/factory/xml/xmlObjectElementParser';
+import { ParserContext, XmlObjectDefinitionParser } from '../../../../src/factory/xml/xmlObjectDefinitionParser';
 import * as utils from '../../../../src/factory/xml/utils';
 import { DOMParser } from 'xmldom';
 import { expect } from 'chai';

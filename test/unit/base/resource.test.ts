@@ -1,19 +1,19 @@
 
-import { Resource } from '../../../src/base/Resource';
+import { Resource } from '../../../src/base/resource';
 import { expect } from 'chai';
 import * as sinon from 'sinon';
 
 describe('/test/unit/base/Resource', () => {
   it('resource test ok', async () => {
-    const res = new Resource(__dirname, 'Configuration.test.ts');
+    const res = new Resource(__dirname, 'configuration.test.ts');
     expect(res.isFile()).true;
-    expect(res.name).eq('Configuration.test');
+    expect(res.name).eq('configuration.test');
 
     const c = await res.getContent();
     expect(c).not.null;
-    const relres = res.createRelative('Resource.test.ts');
+    const relres = res.createRelative('resource.test.ts');
     expect(relres.isFile()).true;
-    expect(relres.name).eq('Resource.test');
+    expect(relres.name).eq('resource.test');
 
 
     const res1 = new Resource(__dirname, '../base');

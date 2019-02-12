@@ -2,10 +2,10 @@ import 'reflect-metadata';
 import { IContainer, ObjectDefinitionOptions, ObjectIdentifier } from '../interfaces';
 import { OBJ_DEF_CLS, ObjectDefinition, TAGGED, TAGGED_CLS, TAGGED_PROP } from '..';
 import { ManagedReference, ManagedValue } from './common/managed';
-import { FunctionDefinition } from '../base/FunctionDefinition';
-import { XmlApplicationContext } from './xml/XmlApplicationContext';
+import { FunctionDefinition } from '../base/functionDefinition';
+import { XmlApplicationContext } from './xml/xmlApplicationContext';
 import { recursiveGetMetadata } from '../utils/reflectTool';
-import { Autowire } from './common/Autowire';
+import { Autowire } from './common/autowire';
 
 const uuidv1 = require('uuid/v1');
 const is = require('is-type-of');

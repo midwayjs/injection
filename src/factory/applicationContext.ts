@@ -12,8 +12,8 @@ import {
   ObjectDependencyTree,
   ObjectIdentifier
 } from '../interfaces';
-import { ObjectConfiguration } from '../base/Configuration';
-import { ManagedResolverFactory } from './common/ManagedResolverFactory';
+import { ObjectConfiguration } from '../base/configuration';
+import { ManagedResolverFactory } from './common/managedResolverFactory';
 import { NotFoundError } from '../utils/errorFactory';
 
 const graphviz = require('graphviz');
