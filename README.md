@@ -60,7 +60,7 @@ const userService = await container.getAsync('userService');
 const data = await userService.getUser(123);
 ```
 
-Document: [https://midwayjs.org/midway/ioc.html](https://midwayjs.org/midway/ioc.html#)
+Document: [https://midwayjs.org/injection/guide.html](https://midwayjs.org/injection/guide.html)
 
 ## License
 
