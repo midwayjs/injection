@@ -12,7 +12,7 @@
     "ci": "npm run test",
     "autod": "midway-bin autod",
     "prepublish": "npm run build",
-    "doc": "midway-bin doc -o docs/.vuepress/dist/api-reference",
+    "gen-api-ref": "midway-bin doc -o docs/.vuepress/dist/api-reference",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "docs:deploy": "node ./scripts/deploy_doc.js"
