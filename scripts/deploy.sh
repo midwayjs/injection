@@ -2,6 +2,7 @@
 #! /usr/bin/env bash
 
 # https://gist.github.com/domenic/ec8b0fc8ab45f39403dd#sign-up-for-travis-and-add-your-project
+# https://github.com/alrra/travis-scripts/blob/master/docs/github-deploy-keys.md
 
 # Only deply on master branch
 SOURCE_BRANCH="master"
@@ -17,7 +18,7 @@ ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
 ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
 ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
 ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-echo "key: $ENCRYPTED_KEY, iv: $ENCRYPTED_IV"
+# echo "key: $ENCRYPTED_KEY, iv: $ENCRYPTED_IV"
 openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in scripts/deploy_key.enc -out deploy_key -d
 chmod 600 deploy_key
 eval `ssh-agent -s`
