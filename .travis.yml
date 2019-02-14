@@ -15,9 +15,3 @@ after_script:
 env:
   global:
   - ENCRYPTION_LABEL: 5d851690765e
-
-  - test $TRAVIS_NODE_VERSION = 8 && travis_wait scripts/deploy.sh
-env:
-  global:
-  - ENCRYPTION_LABEL: 5d851690765e
-
