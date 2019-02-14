@@ -1,0 +1,726 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>XmlObjectDefinitionParser | injection</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">injection</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="xmlobjectdefinitionparser.html">XmlObjectDefinitionParser</a>
+				</li>
+			</ul>
+			<h1>Class XmlObjectDefinitionParser</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">XmlObjectDefinitionParser</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/ixmlparser.html" class="tsd-signature-type">IXmlParser</a></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#basedir" class="tsd-kind-icon">base<wbr>Dir</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#configuration" class="tsd-kind-icon">configuration</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#objectelementparser" class="tsd-kind-icon">object<wbr>Element<wbr>Parser</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="xmlobjectdefinitionparser.html#parsers" class="tsd-kind-icon">parsers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#registry" class="tsd-kind-icon">registry</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#_createresource" class="tsd-kind-icon">_create<wbr>Resource</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#getparser" class="tsd-kind-icon">get<wbr>Parser</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#hasparser" class="tsd-kind-icon">has<wbr>Parser</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#load" class="tsd-kind-icon">load</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parse" class="tsd-kind-icon">parse</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parseconfigurationelement" class="tsd-kind-icon">parse<wbr>Configuration<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parsecustomelement" class="tsd-kind-icon">parse<wbr>Custom<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parseelementnodes" class="tsd-kind-icon">parse<wbr>Element<wbr>Nodes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parseimportelement" class="tsd-kind-icon">parse<wbr>Import<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parseobjectelement" class="tsd-kind-icon">parse<wbr>Object<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#parseobjectselement" class="tsd-kind-icon">parse<wbr>Objects<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#registerdefinition" class="tsd-kind-icon">register<wbr>Definition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#registerparser" class="tsd-kind-icon">register<wbr>Parser</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="xmlobjectdefinitionparser.html#removeparser" class="tsd-kind-icon">remove<wbr>Parser</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Xml<wbr>Object<wbr>Definition<wbr>Parser<span class="tsd-signature-symbol">(</span>baseDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, registry<span class="tsd-signature-symbol">: </span><a href="../interfaces/iobjectdefinitionregistry.html" class="tsd-signature-type">IObjectDefinitionRegistry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="xmlobjectdefinitionparser.html" class="tsd-signature-type">XmlObjectDefinitionParser</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L35">factory/xml/xmlObjectDefinitionParser.ts:35</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>baseDir: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>registry: <a href="../interfaces/iobjectdefinitionregistry.html" class="tsd-signature-type">IObjectDefinitionRegistry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="xmlobjectdefinitionparser.html" class="tsd-signature-type">XmlObjectDefinitionParser</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="basedir" class="tsd-anchor"></a>
+					<h3>base<wbr>Dir</h3>
+					<div class="tsd-signature tsd-kind-icon">base<wbr>Dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/ixmlparser.html">IXmlParser</a>.<a href="../interfaces/ixmlparser.html#basedir">baseDir</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L33">factory/xml/xmlObjectDefinitionParser.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="configuration" class="tsd-anchor"></a>
+					<h3>configuration</h3>
+					<div class="tsd-signature tsd-kind-icon">configuration<span class="tsd-signature-symbol">:</span> <a href="objectconfiguration.html" class="tsd-signature-type">ObjectConfiguration</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L35">factory/xml/xmlObjectDefinitionParser.ts:35</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="objectelementparser" class="tsd-anchor"></a>
+					<h3>object<wbr>Element<wbr>Parser</h3>
+					<div class="tsd-signature tsd-kind-icon">object<wbr>Element<wbr>Parser<span class="tsd-signature-symbol">:</span> <a href="xmlobjectelementparser.html" class="tsd-signature-type">XmlObjectElementParser</a><span class="tsd-signature-symbol"> =&nbsp;new XmlObjectElementParser()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L32">factory/xml/xmlObjectDefinitionParser.ts:32</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="parsers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> parsers</h3>
+					<div class="tsd-signature tsd-kind-icon">parsers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map&lt;string, IObjectDefinitionParser&gt;()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L31">factory/xml/xmlObjectDefinitionParser.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="registry" class="tsd-anchor"></a>
+					<h3>registry</h3>
+					<div class="tsd-signature tsd-kind-icon">registry<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iobjectdefinitionregistry.html" class="tsd-signature-type">IObjectDefinitionRegistry</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L34">factory/xml/xmlObjectDefinitionParser.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_createresource" class="tsd-anchor"></a>
+					<h3>_create<wbr>Resource</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_create<wbr>Resource<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, external<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/iresource.html" class="tsd-signature-type">IResource</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L154">factory/xml/xmlObjectDefinitionParser.ts:154</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>external: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/iresource.html" class="tsd-signature-type">IResource</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getparser" class="tsd-anchor"></a>
+					<h3>get<wbr>Parser</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Parser<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L56">factory/xml/xmlObjectDefinitionParser.ts:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="hasparser" class="tsd-anchor"></a>
+					<h3>has<wbr>Parser</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Parser<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L52">factory/xml/xmlObjectDefinitionParser.ts:52</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="load" class="tsd-anchor"></a>
+					<h3>load</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">(</span>res<span class="tsd-signature-symbol">: </span><a href="../interfaces/iresource.html" class="tsd-signature-type">IResource</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L146">factory/xml/xmlObjectDefinitionParser.ts:146</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>res: <a href="../interfaces/iresource.html" class="tsd-signature-type">IResource</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parse" class="tsd-anchor"></a>
+					<h3>parse</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ixmlparser.html">IXmlParser</a>.<a href="../interfaces/ixmlparser.html#parse">parse</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L64">factory/xml/xmlObjectDefinitionParser.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>root: <span class="tsd-signature-type">Element</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parseconfigurationelement" class="tsd-anchor"></a>
+					<h3>parse<wbr>Configuration<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Configuration<wbr>Element<span class="tsd-signature-symbol">(</span>ele<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L125">factory/xml/xmlObjectDefinitionParser.ts:125</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ele: <span class="tsd-signature-type">Element</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parsecustomelement" class="tsd-anchor"></a>
+					<h3>parse<wbr>Custom<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Custom<wbr>Element<span class="tsd-signature-symbol">(</span>ele<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L137">factory/xml/xmlObjectDefinitionParser.ts:137</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ele: <span class="tsd-signature-type">Element</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parseelementnodes" class="tsd-anchor"></a>
+					<h3>parse<wbr>Element<wbr>Nodes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Element<wbr>Nodes<span class="tsd-signature-symbol">(</span>definition<span class="tsd-signature-symbol">: </span><a href="../interfaces/iobjectdefinition.html" class="tsd-signature-type">IObjectDefinition</a>, ele<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ixmlparser.html">IXmlParser</a>.<a href="../interfaces/ixmlparser.html#parseelementnodes">parseElementNodes</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L84">factory/xml/xmlObjectDefinitionParser.ts:84</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>用于外部继承实现parse custom element内部使用</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>definition: <a href="../interfaces/iobjectdefinition.html" class="tsd-signature-type">IObjectDefinition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>当前definition</p>
+									</div>
+								</li>
+								<li>
+									<h5>ele: <span class="tsd-signature-type">Element</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>xml elemnt</p>
+									</div>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>see ParserContext</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parseimportelement" class="tsd-anchor"></a>
+					<h3>parse<wbr>Import<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Import<wbr>Element<span class="tsd-signature-symbol">(</span>ele<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L118">factory/xml/xmlObjectDefinitionParser.ts:118</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ele: <span class="tsd-signature-type">Element</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parseobjectelement" class="tsd-anchor"></a>
+					<h3>parse<wbr>Object<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Object<wbr>Element<span class="tsd-signature-symbol">(</span>ele<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L113">factory/xml/xmlObjectDefinitionParser.ts:113</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ele: <span class="tsd-signature-type">Element</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="parseobjectselement" class="tsd-anchor"></a>
+					<h3>parse<wbr>Objects<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Objects<wbr>Element<span class="tsd-signature-symbol">(</span>ele<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span>, context<span class="tsd-signature-symbol">: </span><a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L99">factory/xml/xmlObjectDefinitionParser.ts:99</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ele: <span class="tsd-signature-type">Element</span></h5>
+								</li>
+								<li>
+									<h5>context: <a href="../interfaces/iparsercontext.html" class="tsd-signature-type">IParserContext</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="registerdefinition" class="tsd-anchor"></a>
+					<h3>register<wbr>Definition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Definition<span class="tsd-signature-symbol">(</span>definition<span class="tsd-signature-symbol">: </span><a href="../interfaces/iobjectdefinition.html" class="tsd-signature-type">IObjectDefinition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ixmlparser.html">IXmlParser</a>.<a href="../interfaces/ixmlparser.html#registerdefinition">registerDefinition</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L60">factory/xml/xmlObjectDefinitionParser.ts:60</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>definition: <a href="../interfaces/iobjectdefinition.html" class="tsd-signature-type">IObjectDefinition</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="registerparser" class="tsd-anchor"></a>
+					<h3>register<wbr>Parser</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Parser<span class="tsd-signature-symbol">(</span>parser<span class="tsd-signature-symbol">: </span><a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L44">factory/xml/xmlObjectDefinitionParser.ts:44</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parser: <a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeparser" class="tsd-anchor"></a>
+					<h3>remove<wbr>Parser</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Parser<span class="tsd-signature-symbol">(</span>parser<span class="tsd-signature-symbol">: </span><a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/fe9ec89/src/factory/xml/xmlObjectDefinitionParser.ts#L48">factory/xml/xmlObjectDefinitionParser.ts:48</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parser: <a href="../interfaces/iobjectdefinitionparser.html" class="tsd-signature-type">IObjectDefinitionParser</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="xmlobjectdefinitionparser.html" class="tsd-kind-icon">Xml<wbr>Object<wbr>Definition<wbr>Parser</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#basedir" class="tsd-kind-icon">base<wbr>Dir</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#configuration" class="tsd-kind-icon">configuration</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#objectelementparser" class="tsd-kind-icon">object<wbr>Element<wbr>Parser</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="xmlobjectdefinitionparser.html#parsers" class="tsd-kind-icon">parsers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#registry" class="tsd-kind-icon">registry</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#_createresource" class="tsd-kind-icon">_create<wbr>Resource</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#getparser" class="tsd-kind-icon">get<wbr>Parser</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#hasparser" class="tsd-kind-icon">has<wbr>Parser</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#load" class="tsd-kind-icon">load</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parse" class="tsd-kind-icon">parse</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parseconfigurationelement" class="tsd-kind-icon">parse<wbr>Configuration<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parsecustomelement" class="tsd-kind-icon">parse<wbr>Custom<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parseelementnodes" class="tsd-kind-icon">parse<wbr>Element<wbr>Nodes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parseimportelement" class="tsd-kind-icon">parse<wbr>Import<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parseobjectelement" class="tsd-kind-icon">parse<wbr>Object<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#parseobjectselement" class="tsd-kind-icon">parse<wbr>Objects<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#registerdefinition" class="tsd-kind-icon">register<wbr>Definition</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#registerparser" class="tsd-kind-icon">register<wbr>Parser</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="xmlobjectdefinitionparser.html#removeparser" class="tsd-kind-icon">remove<wbr>Parser</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
