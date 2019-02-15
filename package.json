@@ -11,7 +11,7 @@
     "cov": "midway-bin cov --ts",
     "ci": "npm run test",
     "autod": "midway-bin autod",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "gen-api-ref": "midway-bin doc -o docs/.vuepress/dist/api-reference",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
@@ -42,7 +42,8 @@
     "tslint": "^5.12.0",
     "tslint-midway-contrib": "^1.2.0",
     "typescript": "^3.2.0",
-    "vuepress": "^0.14.8"
+    "vuepress": "^0.14.8",
+    "webpack": "4.28.4"
   },
   "dependencies": {
     "camelcase": "^5.0.0",
