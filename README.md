@@ -1,5 +1,9 @@
 # Injection
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/midwayjs/injection/blob/master/LICENSE)
+[![GitHub tag](https://img.shields.io/github/tag/midwayjs/injection.svg)]()
+[![Build Status](https://travis-ci.org/midwayjs/injection.svg?branch=master)](https://travis-ci.org/midwayjs/injection)
+[![Test Coverage](https://img.shields.io/codecov/c/github/midwayjs/injection/master.svg)](https://codecov.io/gh/midwayjs/injection/branch/master)
 [![Package Quality](http://npm.packagequality.com/shield/injection.svg)](http://packagequality.com/#?package=injection)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/midwayjs/midway/pulls)
 
