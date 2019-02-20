@@ -1,4 +1,5 @@
 export * from './interfaces';
+export { ScopeEnum } from './base/scope';
 export { MessageSource } from './base/messageSource';
 export { BaseApplicationContext as ApplicationContext } from './factory/applicationContext';
 export { ObjectDefinition } from './base/objectDefinition';
