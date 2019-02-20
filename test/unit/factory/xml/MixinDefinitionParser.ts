@@ -1,9 +1,9 @@
 
 import { IObjectDefinitionParser, IParserContext } from '../../../../src/factory/xml/interface';
 import { IObjectDefinition } from '../../../../src/interfaces';
-import { XmlObjectDefinition } from '../../../../src/factory/xml/XmlObjectDefinition';
+import { XmlObjectDefinition } from '../../../../src/factory/xml/xmlObjectDefinition';
 import * as utils from '../../../../src/factory/xml/utils';
-import { XmlObjectElementParser } from '../../../../src/factory/xml/XmlObjectElementParser';
+import { XmlObjectElementParser } from '../../../../src/factory/xml/xmlObjectElementParser';
 import { KEYS } from '../../../../src/factory/common/constants';
 
 export class MixinDefinitionParser implements IObjectDefinitionParser {

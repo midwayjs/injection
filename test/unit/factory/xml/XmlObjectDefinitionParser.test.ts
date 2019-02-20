@@ -1,8 +1,8 @@
 import * as path from 'path';
 import { expect } from 'chai';
-import { XmlObjectDefinitionParser } from '../../../../src/factory/xml/XmlObjectDefinitionParser';
+import { XmlObjectDefinitionParser } from '../../../../src/factory/xml/xmlObjectDefinitionParser';
 import { ObjectDefinitionRegistry } from '../../../../src/factory/applicationContext';
-import { Resource } from '../../../../src/base/Resource';
+import { Resource } from '../../../../src/base/resource';
 import { MixinDefinitionParser } from './MixinDefinitionParser';
 
 const baseDir = path.resolve(__dirname, '../../../fixtures/app');

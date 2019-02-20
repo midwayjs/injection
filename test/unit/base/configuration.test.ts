@@ -1,4 +1,4 @@
-import {BasicConfiguration, ObjectConfiguration} from '../../../src/base/Configuration';
+import {BasicConfiguration, ObjectConfiguration} from '../../../src/base/configuration';
 import {expect} from 'chai';
 
 describe('/test/unit/base/Configuration', () => {

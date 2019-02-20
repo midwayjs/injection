@@ -1,9 +1,9 @@
-import { BaseManagedResolver, ManagedResolverFactory } from '../../../../src/factory/common/ManagedResolverFactory';
+import { BaseManagedResolver, ManagedResolverFactory } from '../../../../src/factory/common/managedResolverFactory';
 import { BaseApplicationContext } from '../../../../src/factory/applicationContext';
 import {expect} from 'chai';
 import { ManagedProperties, ManagedValue, ManagedJSON } from '../../../../src/factory/common/managed';
 import { VALUE_TYPE } from '../../../../src/factory/common/constants';
-import { ObjectConfiguration } from '../../../../src/base/Configuration';
+import { ObjectConfiguration } from '../../../../src/base/configuration';
 
 describe('/test/unit/factory/common/ManagedResolverFactory', () => {
   it('base resolver should be ok', async () => {

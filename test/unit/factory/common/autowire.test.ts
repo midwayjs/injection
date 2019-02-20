@@ -1,4 +1,4 @@
-import { Autowire, InjectionPoint } from '../../../../src/factory/common/Autowire';
+import { Autowire, InjectionPoint } from '../../../../src/factory/common/autowire';
 import { expect } from 'chai';
 
 describe('/test/unit/factory/common/Autowire', () => {

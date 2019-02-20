@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as path from 'path';
 import * as sinon from 'sinon';
-import { XmlApplicationContext } from '../../../../src/factory/xml/XmlApplicationContext';
+import { XmlApplicationContext } from '../../../../src/factory/xml/xmlApplicationContext';
 
 let baseDir = path.resolve(__dirname, '../../../fixtures/app');
 let context: XmlApplicationContext;

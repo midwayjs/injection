@@ -17,9 +17,7 @@
   "exclude": [
     "dist",
     "node_modules",
-    "test"
-  ],
-  "files": [
-    "src/index"
+    "test",
+    "benchmark"
   ]
 }

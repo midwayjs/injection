@@ -1,5 +1,9 @@
 # Injection
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/midwayjs/injection/blob/master/LICENSE)
+[![GitHub tag](https://img.shields.io/github/tag/midwayjs/injection.svg)]()
+[![Build Status](https://travis-ci.org/midwayjs/injection.svg?branch=master)](https://travis-ci.org/midwayjs/injection)
+[![Test Coverage](https://img.shields.io/codecov/c/github/midwayjs/injection/master.svg)](https://codecov.io/gh/midwayjs/injection/branch/master)
 [![Package Quality](http://npm.packagequality.com/shield/injection.svg)](http://packagequality.com/#?package=injection)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/midwayjs/midway/pulls)
 
@@ -17,15 +21,15 @@ Node.js >= 8.0.0 required.
 
 ```json
 {
-    "compilerOptions": {
-        "target": "ES2017",
-        "lib": ["es2017", "dom"],
-        "types": ["reflect-metadata"],
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    }
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["es2017", "dom"],
+    "types": ["reflect-metadata"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
 }
 ```
 
@@ -60,7 +64,7 @@ const userService = await container.getAsync('userService');
 const data = await userService.getUser(123);
 ```
 
-Document: [https://midwayjs.org/midway/ioc.html](https://midwayjs.org/midway/ioc.html#)
+Document: [https://midwayjs.org/injection/guide.html](https://midwayjs.org/injection/guide.html)
 
 ## License
 

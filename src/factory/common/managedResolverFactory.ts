@@ -22,8 +22,8 @@ import {
   IObjectDefinition,
   ObjectIdentifier
 } from '../../interfaces';
-import { ObjectConfiguration } from '../../base/Configuration';
-import { Autowire } from './Autowire';
+import { ObjectConfiguration } from '../../base/configuration';
+import { Autowire } from './autowire';
 import { NotFoundError } from '../../utils/errorFactory';
 
 /**
