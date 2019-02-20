@@ -1,5 +1,5 @@
 import { IObjectCreator, IObjectDefinition, ObjectIdentifier, Scope } from '../interfaces';
-import { ScopeEnum } from '../base/scope';
+import { ScopeEnum } from './scope';
 import { ObjectConfiguration } from './configuration';
 import { ObjectCreator } from './objectCreator';
 
