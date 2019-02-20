@@ -12,9 +12,9 @@ import { ManagedValue,
   ManagedProperties} from '../common/managed';
 import {
   IObjectDefinition,
-  IManagedInstance,
-  ScopeEnum
+  IManagedInstance
 } from '../../interfaces';
+import { ScopeEnum } from '../../base/scope';
 import { XmlObjectDefinition } from './xmlObjectDefinition';
 import { IParserContext, IManagedParser } from './interface';
 

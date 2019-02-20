@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {ObjectDefinition} from '../../../src/base/objectDefinition';
-import { ScopeEnum } from '../../../src/interfaces';
+import { ScopeEnum } from '../../../src/base/scope';
 
 describe('/test/unit/base/ObjectDefinition', () => {
   it('definition should be ok', () => {
