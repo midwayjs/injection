@@ -1,7 +1,5 @@
-import { IScopeEnum } from '../interfaces';
-
-export const ScopeEnum: IScopeEnum = {
-  Singleton: 'Singleton',
-  Request: 'Request',
-  Prototype: 'Prototype',
-};
+export enum ScopeEnum {
+  Singleton = 'Singleton',
+  Request = 'Request',
+  Prototype = 'Prototype',
+}

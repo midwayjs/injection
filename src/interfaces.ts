@@ -1,11 +1,6 @@
 export type ObjectIdentifier = string;
 export type Scope = 'Singleton' | 'Request' | 'Prototype';
 
-export interface IScopeEnum {
-  Singleton: Scope;
-  Request: Scope;
-  Prototype: Scope;
-}
 /**
  * 生命周期定义
  */
@@ -198,7 +193,7 @@ export interface ReflectResult {
 }
 
 export interface ObjectDependencyTree {
-  scope: IScopeEnum;
+  scope: Scope;
   name: string;
   constructorArgs: string[];
   properties: string[];
