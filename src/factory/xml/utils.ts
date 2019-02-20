@@ -46,7 +46,7 @@ export async function eachSubElement(ele: Element, callback): Promise<void> {
     const node = childNodes.item(i);
     // element
     if (node.nodeType === NODE_TYPE.ELEMENT) {
-      await callback(<Element>node);
+      await callback(node as Element);
     }
   }
 }
@@ -62,7 +62,7 @@ export function eachSubElementSync(ele: Element, callbackSync): void {
     const node = childNodes.item(i);
     // element
     if (node.nodeType === NODE_TYPE.ELEMENT) {
-      callbackSync(<Element>node);
+      callbackSync(node as Element);
     }
   }
 }
@@ -77,7 +77,7 @@ export function firstSubElement(ele: Element): Element {
     const node = childNodes.item(i);
     // element
     if (node.nodeType === NODE_TYPE.ELEMENT) {
-      return <Element>node;
+      return node as Element;
     }
   }
 

@@ -54,14 +54,14 @@ export class XmlObjectDefinition extends ObjectDefinition {
   }
 
   getAttr(key: ObjectIdentifier): any {
-    return this._ele.getAttribute(<string>key);
+    return this._ele.getAttribute(key as string);
   }
 
   hasAttr(key: ObjectIdentifier): boolean {
-    return this._ele.hasAttribute(<string>key);
+    return this._ele.hasAttribute(key as string);
   }
 
   setAttr(key: ObjectIdentifier, value: any): void {
-    this._ele.setAttribute(<string>key, value);
+    this._ele.setAttribute(key as string, value);
   }
 }

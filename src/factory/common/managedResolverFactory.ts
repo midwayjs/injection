@@ -58,7 +58,7 @@ class JSONResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const mjson = <ManagedJSON>managed;
+    const mjson = managed as ManagedJSON;
     return JSON.parse(this._factory.tpl(mjson.value));
   }
 
@@ -81,7 +81,7 @@ class ValueResolver extends BaseManagedResolver {
    * @param props 注入的属性值
    */
   _resolveCommon(managed: IManagedInstance): any {
-    const mv = <ManagedValue>managed;
+    const mv = managed as ManagedValue;
     switch (mv.valueType) {
       case VALUE_TYPE.STRING:
       case VALUE_TYPE.TEMPLATE:
@@ -100,7 +100,7 @@ class ValueResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const mv = <ManagedValue>managed;
+    const mv = managed as ManagedValue;
     if (mv.valueType === VALUE_TYPE.MANAGED) {
       return this._factory.resolveManaged(mv.value);
     } else {
@@ -109,9 +109,9 @@ class ValueResolver extends BaseManagedResolver {
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const mv = <ManagedValue>managed;
+    const mv = managed as ManagedValue;
     if (mv.valueType === VALUE_TYPE.MANAGED) {
-      return await this._factory.resolveManagedAsync(mv.value);
+      return this._factory.resolveManagedAsync(mv.value);
     } else {
       return this._resolveCommon(managed);
     }
@@ -127,13 +127,13 @@ class RefResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const mr = <ManagedReference>managed;
+    const mr = managed as ManagedReference;
     return this._factory.context.get(mr.name);
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const mr = <ManagedReference>managed;
-    return await this._factory.context.getAsync(mr.name);
+    const mr = managed as ManagedReference;
+    return this._factory.context.getAsync(mr.name);
   }
 }
 
@@ -146,19 +146,19 @@ class ListResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const ml = <ManagedList>managed;
+    const ml = managed as ManagedList;
     const arr = [];
-    for (let i = 0; i < ml.length; i++) {
-      arr.push(this._factory.resolveManaged(ml[i]));
+    for (const item of ml) {
+      arr.push(this._factory.resolveManaged(item));
     }
     return arr;
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const ml = <ManagedList>managed;
+    const ml = managed as ManagedList;
     const arr = [];
-    for (let i = 0; i < ml.length; i++) {
-      arr.push(await this._factory.resolveManagedAsync(ml[i]));
+    for (const item of ml) {
+      arr.push(await this._factory.resolveManagedAsync(item));
     }
     return arr;
   }
@@ -173,18 +173,18 @@ class SetResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const ms = <ManagedSet>managed;
+    const ms = managed as ManagedSet;
     const s = new Set();
-    for (let item of ms) {
+    for (const item of ms) {
       s.add(this._factory.resolveManaged(item));
     }
     return s;
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const ms = <ManagedSet>managed;
+    const ms = managed as ManagedSet;
     const s = new Set();
-    for (let item of ms) {
+    for (const item of ms) {
       s.add(await this._factory.resolveManagedAsync(item));
     }
     return s;
@@ -200,18 +200,18 @@ class MapResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const mm = <ManagedMap>managed;
+    const mm = managed as ManagedMap;
     const m = new Map();
-    for (let key of mm.keys()) {
+    for (const key of mm.keys()) {
       m.set(key, this._factory.resolveManaged(mm.get(key)));
     }
     return m;
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const mm = <ManagedMap>managed;
+    const mm = managed as ManagedMap;
     const m = new Map();
-    for (let key of mm.keys()) {
+    for (const key of mm.keys()) {
       m.set(key, await this._factory.resolveManagedAsync(mm.get(key)));
     }
     return m;
@@ -227,22 +227,20 @@ class PropertiesResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const m = <ManagedProperties>managed;
+    const m = managed as ManagedProperties;
     const cfg = new ObjectConfiguration();
     const keys = m.keys();
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
+    for (const key of keys) {
       cfg.setProperty(key, this._factory.resolveManaged(m.getProperty(key)));
     }
     return cfg;
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const m = <ManagedProperties>managed;
+    const m = managed as ManagedProperties;
     const cfg = new ObjectConfiguration();
     const keys = m.keys();
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
+    for (const key of keys) {
       cfg.setProperty(key, await this._factory.resolveManagedAsync(m.getProperty(key)));
     }
     return cfg;
@@ -258,13 +256,13 @@ class PropertyResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const mp = <ManagedProperty>managed;
+    const mp = managed as ManagedProperty;
     return this._factory.resolveManaged(mp.value);
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const mp = <ManagedProperty>managed;
-    return await this._factory.resolveManagedAsync(mp.value);
+    const mp = managed as ManagedProperty;
+    return this._factory.resolveManagedAsync(mp.value);
   }
 }
 
@@ -277,13 +275,13 @@ class ObjectResolver extends BaseManagedResolver {
   }
 
   resolve(managed: IManagedInstance): any {
-    const mo = <ManagedObject>managed;
+    const mo = managed as ManagedObject;
     return this._factory.create(mo.definition, null);
   }
 
   async resolveAsync(managed: IManagedInstance): Promise<any> {
-    const mo = <ManagedObject>managed;
-    return await this._factory.createAsync(mo.definition, null);
+    const mo = managed as ManagedObject;
+    return this._factory.createAsync(mo.definition, null);
   }
 }
 
@@ -349,7 +347,7 @@ export class ManagedResolverFactory {
     if (!this.resolvers.has(managed.type)) {
       throw new Error(`${managed.type} resolver is not exists!`);
     }
-    return await this.resolvers.get(managed.type).resolveAsync(managed);
+    return this.resolvers.get(managed.type).resolveAsync(managed);
   }
 
   /**
@@ -365,8 +363,8 @@ export class ManagedResolverFactory {
 
     // 预先初始化依赖
     if (definition.hasDependsOn()) {
-      for (let i = 0; i < definition.dependsOn.length; i++) {
-        this.context.get(definition.dependsOn[i], args);
+      for (const dep of definition.dependsOn) {
+        this.context.get(dep, args);
       }
     }
 
@@ -377,13 +375,13 @@ export class ManagedResolverFactory {
       constructorArgs = args;
     } else {
       if (definition.constructorArgs) {
-        for (let i = 0; i < definition.constructorArgs.length; i++) {
-          constructorArgs.push(this.resolveManaged(definition.constructorArgs[i]));
+        for (const arg of definition.constructorArgs) {
+          constructorArgs.push(this.resolveManaged(arg));
         }
       }
     }
 
-    for (let handler of this.beforeCreateHandler) {
+    for (const handler of this.beforeCreateHandler) {
       handler.call(this, Clzz, constructorArgs, this.context);
     }
 
@@ -391,13 +389,12 @@ export class ManagedResolverFactory {
 
     if (definition.properties) {
       const keys = definition.properties.keys();
-      for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
+      for (const key of keys) {
         const identifier = definition.properties.getProperty(key);
         try {
           inst[key] = this.resolveManaged(identifier);
         } catch (error) {
-          if(NotFoundError.isClosePrototypeOf(error)) {
+          if (NotFoundError.isClosePrototypeOf(error)) {
             const className = definition.path.name;
             error.updateErrorMsg(className);
           }
@@ -411,7 +408,7 @@ export class ManagedResolverFactory {
       Autowire.patchNoDollar(inst, this.context);
     }
 
-    for (let handler of this.afterCreateHandler) {
+    for (const handler of this.afterCreateHandler) {
       handler.call(this, inst, this.context, definition);
     }
 
@@ -438,8 +435,8 @@ export class ManagedResolverFactory {
 
     // 预先初始化依赖
     if (definition.hasDependsOn()) {
-      for (let i = 0; i < definition.dependsOn.length; i++) {
-        await this.context.getAsync(definition.dependsOn[i], args);
+      for (const dep of definition.dependsOn) {
+        await this.context.getAsync(dep, args);
       }
     }
 
@@ -450,13 +447,13 @@ export class ManagedResolverFactory {
     } else {
       constructorArgs = [];
       if (definition.constructorArgs) {
-        for (let i = 0; i < definition.constructorArgs.length; i++) {
-          constructorArgs.push(await this.resolveManagedAsync(definition.constructorArgs[i]));
+        for (const arg of definition.constructorArgs) {
+          constructorArgs.push(await this.resolveManagedAsync(arg));
         }
       }
     }
 
-    for (let handler of this.beforeCreateHandler) {
+    for (const handler of this.beforeCreateHandler) {
       handler.call(this, Clzz, constructorArgs, this.context);
     }
 
@@ -467,13 +464,12 @@ export class ManagedResolverFactory {
 
     if (definition.properties) {
       const keys = definition.properties.keys();
-      for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
+      for (const key of keys) {
         const identifier = definition.properties.getProperty(key);
         try {
           inst[key] = await this.resolveManagedAsync(identifier);
         } catch (error) {
-          if(NotFoundError.isClosePrototypeOf(error)) {
+          if (NotFoundError.isClosePrototypeOf(error)) {
             const className = definition.path.name;
             error.updateErrorMsg(className);
           }
@@ -487,7 +483,7 @@ export class ManagedResolverFactory {
       Autowire.patchNoDollar(inst, this.context);
     }
 
-    for (let handler of this.afterCreateHandler) {
+    for (const handler of this.afterCreateHandler) {
       handler.call(this, inst, this.context, definition);
     }
 
@@ -502,7 +498,7 @@ export class ManagedResolverFactory {
   }
 
   async destroyCache(): Promise<void> {
-    for (let key of this.singletonCache.keys()) {
+    for (const key of this.singletonCache.keys()) {
       const definition = this.context.registry.getDefinition(key);
       if (definition.creator) {
         await definition.creator.doDestroyAsync(this.singletonCache.get(key));
@@ -511,7 +507,7 @@ export class ManagedResolverFactory {
     this.singletonCache.clear();
   }
 
-  beforeEachCreated(fn: (Clzz: any, constructorArgs: Array<any>, context: IApplicationContext) => void) {
+  beforeEachCreated(fn: (Clzz: any, constructorArgs: [], context: IApplicationContext) => void) {
     this.beforeCreateHandler.push(fn);
   }
 
