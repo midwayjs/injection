@@ -117,7 +117,7 @@ export interface IResource {
   getURL(): any;
   getPath(): string;
   getContent(): Buffer;
-  getContentAsJSON(): any;
+  getContentAsJSON(): object;
   getSubResources(): IResource[];
   createRelative(path: string): IResource;
 }
