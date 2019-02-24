@@ -94,7 +94,7 @@ export interface IConfiguration {
   has(key: ObjectIdentifier): boolean;
   set(key: ObjectIdentifier, value: any): any;
   putAll(props: IConfiguration): void;
-  toJSON(): any;
+  toJSON(): object;
   stringPropertyNames(): ObjectIdentifier[];
   getProperty(key: ObjectIdentifier, defaultValue?: any): any;
   addProperty(key: ObjectIdentifier, value: any): void;
