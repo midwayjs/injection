@@ -17,3 +17,4 @@ export { XmlObjectElementParser } from './factory/xml/xmlObjectElementParser';
 export { Autowire } from './factory/common/autowire';
 export { RequestContainer } from './factory/requestContainer';
 export { NODE_TYPE, KEYS, VALUE_TYPE } from './factory/common/constants';
+export * from './base/decoratorManager';
