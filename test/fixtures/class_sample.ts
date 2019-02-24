@@ -77,3 +77,12 @@ export class Grandson extends Child {
   katana3: Katana;
 }
 
+export class SubChild {
+  @inject()
+  subAny: any;
+}
+export class SubParent {
+  @inject()
+  subChild: SubChild;
+}
+

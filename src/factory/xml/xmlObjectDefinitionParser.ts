@@ -18,8 +18,7 @@ export class ParserContext extends Map implements IParserContext {
   parser: XmlObjectDefinitionParser;
   currentResource: IResource;
 
-  constructor(defaults: IObjectDefinition,
-    parser: XmlObjectDefinitionParser) {
+  constructor(defaults: IObjectDefinition, parser: XmlObjectDefinitionParser) {
     super();
 
     this.defaults = defaults;
@@ -118,7 +117,7 @@ export class XmlObjectDefinitionParser implements IXmlParser {
   parseImportElement(ele: Element, context: IParserContext): void {
     const rpath = utils.nodeAttr(ele, KEYS.RESOURCE_ATTRIBUTE);
     const external = utils.nodeAttr(ele, KEYS.EXTERNAL_ATTRIBUTE) === 'true';
-    let res = this._createResource(rpath, external, context);
+    const res = this._createResource(rpath, external, context);
     this.load(res);
   }
 
@@ -126,10 +125,10 @@ export class XmlObjectDefinitionParser implements IXmlParser {
     const str = utils.nodeAttr(ele, KEYS.PATH_ATTRIBUTE);
     const paths = str.split(',');
     const external = utils.nodeAttr(ele, KEYS.EXTERNAL_ATTRIBUTE) === 'true';
-    let res = this._createResource('.', external, context);
+    const res = this._createResource('.', external, context);
 
-    for (let i = 0; i < paths.length; i++) {
-      const cfg = res.createRelative(paths[i]).getContentAsJSON();
+    for (const p of paths) {
+      const cfg = res.createRelative(p).getContentAsJSON();
       this.configuration.putObject(cfg);
     }
   }

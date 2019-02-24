@@ -1,6 +1,6 @@
 import { ObjectIdentifier } from '../../interfaces';
-import { ScopeEnum } from '../../base/scope';
 import { ObjectDefinition } from '../../base/objectDefinition';
+import { ScopeEnum } from '../../base/scope';
 import * as utils from './utils';
 
 export class XmlObjectDefinition extends ObjectDefinition {
@@ -55,14 +55,14 @@ export class XmlObjectDefinition extends ObjectDefinition {
   }
 
   getAttr(key: ObjectIdentifier): any {
-    return this._ele.getAttribute(<string>key);
+    return this._ele.getAttribute(key as string);
   }
 
   hasAttr(key: ObjectIdentifier): boolean {
-    return this._ele.hasAttribute(<string>key);
+    return this._ele.hasAttribute(key as string);
   }
 
   setAttr(key: ObjectIdentifier, value: any): void {
-    this._ele.setAttribute(<string>key, value);
+    this._ele.setAttribute(key as string, value);
   }
 }

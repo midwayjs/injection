@@ -18,10 +18,7 @@ export type Locale = string;
  * 多语言支持接口
  */
 export interface IMessageSource {
-  get(code: string,
-    args?: any[],
-    defaultMessage?: string,
-    locale?: Locale): string;
+  get(code: string, args?: any[], defaultMessage?: string, locale?: Locale): string;
 }
 /**
  * 对象容器抽象
@@ -97,7 +94,7 @@ export interface IConfiguration {
   has(key: ObjectIdentifier): boolean;
   set(key: ObjectIdentifier, value: any): any;
   putAll(props: IConfiguration): void;
-  toJSON(): Object;
+  toJSON(): object;
   stringPropertyNames(): ObjectIdentifier[];
   getProperty(key: ObjectIdentifier, defaultValue?: any): any;
   addProperty(key: ObjectIdentifier, value: any): void;
@@ -120,7 +117,7 @@ export interface IResource {
   getURL(): any;
   getPath(): string;
   getContent(): Buffer;
-  getContentAsJSON(): Object;
+  getContentAsJSON(): object;
   getSubResources(): IResource[];
   createRelative(path: string): IResource;
 }
@@ -162,7 +159,7 @@ export interface ObjectDefinitionOptions {
   initMethod?: string;
   destroyMethod?: string;
   scope?: Scope;
-  constructorArgs?: Array<IManagedInstance>;
+  constructorArgs?: IManagedInstance[];
   // 是否自动装配
   isAutowire?: boolean;
 }

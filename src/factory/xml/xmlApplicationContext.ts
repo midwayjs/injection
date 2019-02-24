@@ -16,8 +16,8 @@ export class XmlApplicationContext extends BaseApplicationContext {
     }
 
     if (configLocations.length > 0) {
-      for (let i = 0; i < configLocations.length; i++) {
-        this.loadResource(new Resource(this.baseDir, configLocations[i]));
+      for (const loc of configLocations) {
+        this.loadResource(new Resource(this.baseDir, loc));
       }
 
       this.props.putAll(this.parser.configuration);
@@ -27,8 +27,8 @@ export class XmlApplicationContext extends BaseApplicationContext {
   loadResource(res: IResource): void {
     if (res.isDir()) {
       const resources = res.getSubResources();
-      for (let i = 0; i < resources.length; i++) {
-        this.loadResource(resources[i]);
+      for (const r of resources) {
+        this.loadResource(r);
       }
     }
     if (res.isFile()) {

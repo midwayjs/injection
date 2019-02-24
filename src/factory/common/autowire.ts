@@ -114,7 +114,7 @@ export class Autowire {
         patched = true;
         Object.defineProperty(instance, k, {
           get: () => {
-            let kk = k.slice(1);
+            const kk = k.slice(1);
             if (fn && typeof fn === 'function') {
               return fn(kk);
             }

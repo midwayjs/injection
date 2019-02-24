@@ -36,6 +36,6 @@ describe('/test/unit/utils/errorFactory.test.ts', () => {
     error.updateErrorMsg('TestClass');
     expect(() => {
       throw error;
-    }).to.throw('testKey in class TestClass is not valid in context');
+    }).to.throw('testKey in class TestClass is not valid in current context');
   }
 });

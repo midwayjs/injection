@@ -1,7 +1,7 @@
 import { IObjectCreator, IObjectDefinition, ObjectIdentifier, Scope } from '../interfaces';
+import { ScopeEnum } from './scope';
 import { ObjectConfiguration } from './configuration';
 import { ObjectCreator } from './objectCreator';
-import { ScopeEnum } from './scope';
 
 /* tslint:disable:variable-name */
 export class ObjectDefinition implements IObjectDefinition {

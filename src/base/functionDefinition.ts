@@ -6,10 +6,10 @@ import {
   IObjectCreator,
   IObjectDefinition,
   ObjectIdentifier,
-  Scope,
+  Scope
 } from '../interfaces';
-import { ObjectCreator } from './objectCreator';
 import { ScopeEnum } from './scope';
+import { ObjectCreator } from './objectCreator';
 
 class FunctionWrapperCreator extends ObjectCreator {
 
