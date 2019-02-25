@@ -7,7 +7,7 @@ import {
   listMethodDataFromClass,
   listModule,
   listPreloadModule
-} from '../../../src/base/decoratorManager';
+} from '../../../src';
 import * as assert from 'assert';
 import { ManagerTest as module } from '../../fixtures/decorator/customClass';
 
@@ -15,6 +15,7 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should save data on class and get it', () => {
     assert(getClassMetaData('custom', module) === 'test');
+    assert(getClassMetaData('custom_method', module) === 'testSomething');
   });
 
   it('should save data to class and list it', () => {
@@ -56,5 +57,15 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
     const args = getParamNames((a, b, c) => {
     });
     assert(args.length === 3)
+  });
+
+  it('should get attach data from method', () => {
+    const m = new module();
+    assert(getMethodMetaData('custom_attach', m, 'index').length === 3);
+    assert(getMethodDataFromClass('custom_attach_to_class', module, 'index').length === 3);
+  });
+
+  it('should get attach data from class', () => {
+    assert(getClassMetaData('custom_class_attach', module).length === 4);
   });
 });

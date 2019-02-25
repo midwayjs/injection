@@ -4,8 +4,9 @@ node_js:
   - "9"
   - "10"
 install:
-  - npm i
-  - npm i codecov
+  - npm i cnpm -g
+  - cnpm i
+  - cnpm i codecov
 before_script:
   - npm run build
 script:
