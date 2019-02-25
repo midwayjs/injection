@@ -4,7 +4,7 @@ import {
   saveMethodMetaData,
   saveModule,
   savePreloadModule
-} from '../../../src/base/decoratorManager';
+} from '../../../src';
 
 export function customCls(): ClassDecorator {
   return (target) => {
@@ -27,5 +27,6 @@ export function customMethod(): MethodDecorator {
     }, target, propertykey);
 
     saveMethodMetaData('custom', 'methodData', target, propertykey);
+    saveClassMetaData('custom_method' ,propertykey, target);
   };
 }
