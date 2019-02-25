@@ -1,4 +1,13 @@
 
+1.3.1 / 2019-02-25
+==================
+
+  * Merge pull request #9 from midwayjs/remove_format
+  * chore: try cnpm
+  * refactor: add attach method
+  * test: add test case
+  * chore: remove data format in save metadata to class
+
 1.3.0 / 2019-02-25
 ==================
 
