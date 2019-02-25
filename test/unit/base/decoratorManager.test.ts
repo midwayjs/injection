@@ -58,4 +58,14 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
     });
     assert(args.length === 3)
   });
+
+  it('should get attach data from method', () => {
+    const m = new module();
+    assert(getMethodMetaData('custom_attach', m, 'index').length === 3);
+    assert(getMethodDataFromClass('custom_attach_to_class', module, 'index').length === 3);
+  });
+
+  it('should get attach data from class', () => {
+    assert(getClassMetaData('custom_class_attach', module).length === 4);
+  });
 });

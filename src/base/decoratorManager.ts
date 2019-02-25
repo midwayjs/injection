@@ -75,29 +75,54 @@ export class DecoratorManager extends Map {
    * @param data the data you want to store
    * @param target target class
    */
-  saveClassMetaData(decoratorNameKey: decoratorKey, data, target) {
-    const originMap = this.getOriginMetaData(this.injectClassKeyPrefix, target);
-    originMap.set(manager.getDecoratorClassKey(decoratorNameKey), data);
+  saveMetaData(decoratorNameKey: decoratorKey, data, target, method?) {
+    if (method) {
+      const originMap = this.getOriginMetaData(this.injectMethodKeyPrefix, target, method);
+      originMap.set(manager.getDecoratorMethodKey(decoratorNameKey), data);
+    } else {
+      const originMap = this.getOriginMetaData(this.injectClassKeyPrefix, target);
+      originMap.set(manager.getDecoratorClassKey(decoratorNameKey), data);
+    }
   }
 
-  getClassMetaData(decoratorNameKey: decoratorKey, target) {
-    const originMap = this.getOriginMetaData(this.injectClassKeyPrefix, target);
-    return originMap.get(manager.getDecoratorClassKey(decoratorNameKey));
+  attachMetaData(decoratorNameKey: decoratorKey, data, target, method?) {
+    let originMap;
+    let key;
+    if (method) {
+      originMap = this.getOriginMetaData(this.injectMethodKeyPrefix, target, method);
+      key = manager.getDecoratorMethodKey(decoratorNameKey);
+    } else {
+      originMap = this.getOriginMetaData(this.injectClassKeyPrefix, target);
+      key = manager.getDecoratorClassKey(decoratorNameKey);
+    }
+    if (!originMap.has(key)) {
+      originMap.set(key, []);
+    }
+    originMap.get(key).push(data);
   }
 
-  saveMethodMetaData(decoratorNameKey: decoratorKey, data, target, method) {
-    const originMap = this.getOriginMetaData(this.injectMethodKeyPrefix, target, method);
-    originMap.set(manager.getDecoratorMethodKey(decoratorNameKey), data);
-  }
-
-  getMethodMetaData(decoratorNameKey: decoratorKey, target, method) {
-    const originMap = this.getOriginMetaData(this.injectMethodKeyPrefix, target, method);
-    return originMap.get(manager.getDecoratorMethodKey(decoratorNameKey));
+  getMetaData(decoratorNameKey: decoratorKey, target, method?) {
+    if (method) {
+      const originMap = this.getOriginMetaData(this.injectMethodKeyPrefix, target, method);
+      return originMap.get(manager.getDecoratorMethodKey(decoratorNameKey));
+    } else {
+      const originMap = this.getOriginMetaData(this.injectClassKeyPrefix, target);
+      return originMap.get(manager.getDecoratorClassKey(decoratorNameKey));
+    }
   }
 
   saveMethodDataToClass(decoratorNameKey: decoratorKey, data, target, method) {
     const originMap = this.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
     originMap.set(manager.getDecoratorClsMethodKey(decoratorNameKey, method), data);
+  }
+
+  attachMethodDataToClass(decoratorNameKey: decoratorKey, data, target, method) {
+    const originMap = this.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
+    const key = manager.getDecoratorClsMethodKey(decoratorNameKey, method);
+    if (!originMap.has(key)) {
+      originMap.set(key, []);
+    }
+    originMap.get(key).push(data);
   }
 
   getMethodDataFromClass(decoratorNameKey: decoratorKey, target, method) {
@@ -120,15 +145,23 @@ export class DecoratorManager extends Map {
 const manager = new DecoratorManager();
 
 export function saveClassMetaData(decoratorNameKey: decoratorKey, data, target) {
-  return manager.saveClassMetaData(decoratorNameKey, data, target);
+  return manager.saveMetaData(decoratorNameKey, data, target);
+}
+
+export function attachClassMetaData(decoratorNameKey: decoratorKey, data, target) {
+  return manager.attachMetaData(decoratorNameKey, data, target);
 }
 
 export function getClassMetaData(decoratorNameKey: decoratorKey, target) {
-  return manager.getClassMetaData(decoratorNameKey, target);
+  return manager.getMetaData(decoratorNameKey, target);
 }
 
 export function saveMethodDataToClass(decoratorNameKey: decoratorKey, data, target, method) {
   return manager.saveMethodDataToClass(decoratorNameKey, data, target, method);
+}
+
+export function attachMethodDataToClass(decoratorNameKey: decoratorKey, data, target, method) {
+  return manager.attachMethodDataToClass(decoratorNameKey, data, target, method);
 }
 
 export function getMethodDataFromClass(decoratorNameKey: decoratorKey, target, method) {
@@ -140,11 +173,15 @@ export function listMethodDataFromClass(decoratorNameKey: decoratorKey, target) 
 }
 
 export function saveMethodMetaData(decoratorNameKey: decoratorKey, data, target, method) {
-  return manager.saveMethodMetaData(decoratorNameKey, data, target, method);
+  return manager.saveMetaData(decoratorNameKey, data, target, method);
+}
+
+export function attachMethodMetaData(decoratorNameKey: decoratorKey, data, target, method) {
+  return manager.attachMetaData(decoratorNameKey, data, target, method);
 }
 
 export function getMethodMetaData(decoratorNameKey: decoratorKey, target, method) {
-  return manager.getMethodMetaData(decoratorNameKey, target, method);
+  return manager.getMetaData(decoratorNameKey, target, method);
 }
 
 export function savePreloadModule(target) {
