@@ -1,4 +1,33 @@
 
+1.3.0 / 2019-02-25
+==================
+
+  * Merge pull request #7 from midwayjs/fix_notfound_exception
+  * Merge branch 'master' into fix_notfound_exception
+  * Merge pull request #8 from midwayjs/export_manager
+  * modified: toJSON any to object
+  * modified: any to object
+  * chore: export decorator manager
+  * modified: change path
+  * merge
+  * merge
+  * Merge pull request #6 from siqiwith/fix/refine-type
+  * fix: remove extra semicolon
+  * fix: tslint error
+  * modified: change scope implement
+  * fix: refine type declaration
+  * Merge pull request #4 from midwayjs/fix_doc
+  * fix: fix doc link
+  * fix: https://github.com/webpack/webpack/issues/8656,https://github.com/vuejs/vue-cli/issues/3341
+  * chore: revert cov
+  * chore: add key
+  * chore: add echo
+  * chore: test ghpages
+  * Merge pull request #3 from midwayjs/add_page
+  * refactor: add deploy key
+  * refactor: add injection main page
+  * modified: error factory message change
+
 1.2.0 / 2019-02-12
 ==================
 
