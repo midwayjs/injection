@@ -3,11 +3,6 @@ import 'reflect-metadata';
 const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 const ARGUMENT_NAMES = /([^\s,]+)/g;
 
-export interface MethodDataFormat {
-  method: string;
-  data: any;
-}
-
 export type decoratorKey = string | symbol;
 
 export const PRELOAD_MODULE_KEY = 'INJECTION_PRELOAD_MODULE_KEY';
@@ -100,7 +95,7 @@ export class DecoratorManager extends Map {
     return originMap.get(manager.getDecoratorMethodKey(decoratorNameKey));
   }
 
-  saveMethodDataToClass(decoratorNameKey: decoratorKey, data: MethodDataFormat, target, method) {
+  saveMethodDataToClass(decoratorNameKey: decoratorKey, data, target, method) {
     const originMap = this.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
     originMap.set(manager.getDecoratorClsMethodKey(decoratorNameKey, method), data);
   }
@@ -132,7 +127,7 @@ export function getClassMetaData(decoratorNameKey: decoratorKey, target) {
   return manager.getClassMetaData(decoratorNameKey, target);
 }
 
-export function saveMethodDataToClass(decoratorNameKey: decoratorKey, data: MethodDataFormat, target, method) {
+export function saveMethodDataToClass(decoratorNameKey: decoratorKey, data, target, method) {
   return manager.saveMethodDataToClass(decoratorNameKey, data, target, method);
 }
 
