@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { TagClsMetadata, TAGGED_CLS } from '..';
 
 const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 const ARGUMENT_NAMES = /([^\s,]+)/g;
@@ -211,4 +212,11 @@ export function getParamNames(func) {
     result = [];
   }
   return result;
+}
+
+export function getProvideId(module) {
+  const metaData = Reflect.getMetadata(TAGGED_CLS, module) as TagClsMetadata;
+  if (metaData) {
+    return metaData.id;
+  }
 }
