@@ -1,5 +1,7 @@
 import { attachClass, attachMethod, customCls, customMethod, preload } from './custom';
+import { provide } from '../../../src/annotation';
 
+@provide()
 @preload()
 @customCls()
 @attachClass('/')
