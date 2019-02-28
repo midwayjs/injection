@@ -3,7 +3,8 @@ import {
   getClassMetaData,
   getMethodDataFromClass,
   getMethodMetaData,
-  getParamNames, getProvideId,
+  getParamNames,
+  getProviderId,
   listMethodDataFromClass,
   listModule,
   listPreloadModule
@@ -71,6 +72,6 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should get id from class', () => {
     assert(module.name === 'ManagerTest');
-    assert(getProvideId(module) === 'managerTest');
+    assert(getProviderId(module) === 'managerTest');
   });
 });

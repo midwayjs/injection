@@ -214,7 +214,7 @@ export function getParamNames(func) {
   return result;
 }
 
-export function getProvideId(module) {
+export function getProviderId(module) {
   const metaData = Reflect.getMetadata(TAGGED_CLS, module) as TagClsMetadata;
   if (metaData) {
     return metaData.id;
