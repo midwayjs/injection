@@ -1,4 +1,12 @@
 
+1.3.2 / 2019-03-01
+==================
+
+  * Merge pull request #10 from midwayjs/add_get_id
+  * refactor: change method name to getProviderId
+  * test: add test case
+  * refactor: add get provide id method
+
 1.3.1 / 2019-02-25
 ==================
 
