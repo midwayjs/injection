@@ -4,6 +4,7 @@ import {
   getMethodDataFromClass,
   getMethodMetaData,
   getParamNames,
+  getProviderId,
   listMethodDataFromClass,
   listModule,
   listPreloadModule
@@ -67,5 +68,10 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should get attach data from class', () => {
     assert(getClassMetaData('custom_class_attach', module).length === 4);
+  });
+
+  it('should get id from class', () => {
+    assert(module.name === 'ManagerTest');
+    assert(getProviderId(module) === 'managerTest');
   });
 });
