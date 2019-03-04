@@ -1,7 +1,8 @@
-import { attachClass, attachMethod, customCls, customMethod, preload } from './custom';
-import { provide } from '../../../src/annotation';
+import { attachClass, attachMethod, customCls, customMethod, preload, propertyKeyA, propertyKeyB } from './custom';
+import { provide, scope, ScopeEnum } from '../../../src';
 
 @provide()
+@scope(ScopeEnum.Singleton)
 @preload()
 @customCls()
 @attachClass('/')
@@ -10,11 +11,16 @@ import { provide } from '../../../src/annotation';
 @attachClass('/test')
 export class ManagerTest {
 
+  @propertyKeyA('property_a')
+  @propertyKeyB('test_a')
+  @propertyKeyB('test_b')
+  @propertyKeyB('test_c')
+  testProperty;
+
   @customMethod()
   testSomething() {
     console.log('hello world');
   }
-
 
   @attachMethod('/aaa')
   @attachMethod('/bbb')
