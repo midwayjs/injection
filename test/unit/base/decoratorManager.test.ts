@@ -1,10 +1,10 @@
 import {
   clearAllModule,
-  getClassMetaData,
+  getClassMetadata,
   getMethodDataFromClass,
-  getMethodMetaData,
+  getMethodMetadata,
   getParamNames,
-  getPropertyMetaData,
+  getPropertyMetadata,
   getPropertyDataFromClass,
   getProviderId,
   listMethodDataFromClass,
@@ -17,8 +17,8 @@ import { ManagerTest as module } from '../../fixtures/decorator/customClass';
 describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should save data on class and get it', () => {
-    assert(getClassMetaData('custom', module) === 'test');
-    assert(getClassMetaData('custom_method', module) === 'testSomething');
+    assert(getClassMetadata('custom', module) === 'test');
+    assert(getClassMetadata('custom_method', module) === 'testSomething');
   });
 
   it('should save data to class and list it', () => {
@@ -34,7 +34,7 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
   it('should get method meta data from method', () => {
     const m = new module();
     // 挂载到方法上的元信息必须有实例
-    assert(getMethodMetaData('custom', m, 'testSomething') === 'methodData');
+    assert(getMethodMetadata('custom', m, 'testSomething') === 'methodData');
   });
 
   it('should list preload module', () => {
@@ -64,12 +64,12 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should get attach data from method', () => {
     const m = new module();
-    assert(getMethodMetaData('custom_attach', m, 'index').length === 3);
+    assert(getMethodMetadata('custom_attach', m, 'index').length === 3);
     assert(getMethodDataFromClass('custom_attach_to_class', module, 'index').length === 3);
   });
 
   it('should get attach data from class', () => {
-    assert(getClassMetaData('custom_class_attach', module).length === 4);
+    assert(getClassMetadata('custom_class_attach', module).length === 4);
   });
 
   it('should get id from class', () => {
@@ -79,7 +79,7 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
 
   it('should get property data', () => {
     const m = new module();
-    assert(getPropertyMetaData('custom_property', m, 'testProperty') === 'property_a');
+    assert(getPropertyMetadata('custom_property', m, 'testProperty') === 'property_a');
     assert(getPropertyDataFromClass('custom_property_class', module, 'testProperty').length === 3);
   });
 });

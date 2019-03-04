@@ -1,16 +1,19 @@
 import {
-  attachClassMetaData, attachMethodDataToClass,
-  attachMethodMetaData, attachPropertyDataToClass,
-  saveClassMetaData,
+  attachClassMetadata,
+  attachMethodDataToClass,
+  attachMethodMetadata,
+  attachPropertyDataToClass,
+  saveClassMetadata,
   saveMethodDataToClass,
-  saveMethodMetaData,
+  saveMethodMetadata,
   saveModule,
-  savePreloadModule, savePropertyMetaData
+  savePreloadModule,
+  savePropertyMetadata
 } from '../../../src';
 
 export function customCls(): ClassDecorator {
   return (target) => {
-    saveClassMetaData('custom', 'test', target);
+    saveClassMetadata('custom', 'test', target);
     saveModule('custom', target);
   }
 }
@@ -28,27 +31,27 @@ export function customMethod(): MethodDecorator {
       data: 'customData',
     }, target, propertykey);
 
-    saveMethodMetaData('custom', 'methodData', target, propertykey);
-    saveClassMetaData('custom_method' ,propertykey, target);
+    saveMethodMetadata('custom', 'methodData', target, propertykey);
+    saveClassMetadata('custom_method', propertykey, target);
   };
 }
 
 export function attachMethod(data): MethodDecorator {
   return (target: object, propertykey: string, descriptor: PropertyDescriptor) => {
-    attachMethodMetaData('custom_attach', data, target, propertykey);
+    attachMethodMetadata('custom_attach', data, target, propertykey);
     attachMethodDataToClass('custom_attach_to_class', data, target, propertykey);
   };
 }
 
 export function attachClass(data): ClassDecorator {
   return (target: object) => {
-    attachClassMetaData('custom_class_attach', data, target);
+    attachClassMetadata('custom_class_attach', data, target);
   };
 }
 
 export function propertyKeyA(data): PropertyDecorator {
   return (target: object, propertyKey) => {
-    savePropertyMetaData('custom_property', data, target, propertyKey);
+    savePropertyMetadata('custom_property', data, target, propertyKey);
   }
 }
 
