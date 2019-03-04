@@ -31,19 +31,19 @@ export class DecoratorManager extends Map {
     this.get(key).add(module);
   }
 
-  protected static getDecoratorClassKey(decoratorNameKey: decoratorKey) {
+  static getDecoratorClassKey(decoratorNameKey: decoratorKey) {
     return decoratorNameKey.toString() + '_CLS';
   }
 
-  protected static getDecoratorMethodKey(decoratorNameKey: decoratorKey) {
+  static getDecoratorMethodKey(decoratorNameKey: decoratorKey) {
     return decoratorNameKey.toString() + '_METHOD';
   }
 
-  protected static getDecoratorClsMethodPrefix(decoratorNameKey: decoratorKey) {
+  static getDecoratorClsMethodPrefix(decoratorNameKey: decoratorKey) {
     return decoratorNameKey.toString() + '_CLS_METHOD';
   }
 
-  protected static getDecoratorClsMethodKey(decoratorNameKey: decoratorKey, methodKey: decoratorKey) {
+  static getDecoratorClsMethodKey(decoratorNameKey: decoratorKey, methodKey: decoratorKey) {
     return DecoratorManager.getDecoratorClsMethodPrefix(decoratorNameKey) + ':' + methodKey.toString();
   }
 
