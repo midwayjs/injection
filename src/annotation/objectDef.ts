@@ -3,7 +3,7 @@ import { OBJ_DEF_CLS } from '../utils/metaKeys';
 import { Scope } from '../interfaces';
 import { ObjectDefinitionOptions, ScopeEnum } from '..';
 
-const debug = require('debug')('midway:context:obj_def');
+const debug = require('debug')('injection:context:obj_def');
 
 function attachObjectDefProps(target, options) {
   const data = initOrGetObjectDefProps(target);

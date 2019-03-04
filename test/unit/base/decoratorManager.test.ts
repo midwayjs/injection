@@ -9,7 +9,7 @@ import {
   getProviderId,
   listMethodDataFromClass,
   listModule,
-  listPreloadModule
+  listPreloadModule, getObjectDefinition
 } from '../../../src';
 import * as assert from 'assert';
 import { ManagerTest as module } from '../../fixtures/decorator/customClass';
@@ -81,5 +81,9 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
     const m = new module();
     assert(getPropertyMetadata('custom_property', m, 'testProperty') === 'property_a');
     assert(getPropertyDataFromClass('custom_property_class', module, 'testProperty').length === 3);
+  });
+
+  it('should get object definition metadata', () => {
+    assert(getObjectDefinition(module).scope === 'Singleton');
   });
 });

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { TagClsMetadata, TAGGED_CLS } from '..';
+import { OBJ_DEF_CLS, ObjectDefinitionOptions, TagClsMetadata, TAGGED_CLS } from '..';
 
 const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
 const ARGUMENT_NAMES = /([^\s,]+)/g;
@@ -427,4 +427,12 @@ export function getProviderId(module) {
   if (metaData) {
     return metaData.id;
   }
+}
+
+/**
+ * get object definition metadata
+ * @param module
+ */
+export function getObjectDefinition(module): ObjectDefinitionOptions {
+  return Reflect.getMetadata(OBJ_DEF_CLS, module) as ObjectDefinitionOptions;
 }

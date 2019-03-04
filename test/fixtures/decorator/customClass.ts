@@ -1,7 +1,8 @@
 import { attachClass, attachMethod, customCls, customMethod, preload, propertyKeyA, propertyKeyB } from './custom';
-import { provide } from '../../../src/annotation';
+import { provide, scope, ScopeEnum } from '../../../src';
 
 @provide()
+@scope(ScopeEnum.Singleton)
 @preload()
 @customCls()
 @attachClass('/')
