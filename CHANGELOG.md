@@ -1,4 +1,14 @@
 
+1.4.0 / 2019-03-04
+==================
+
+  * Merge pull request #11 from midwayjs/support_property
+  * chore: remove protected
+  * refactor: clean midway dep and add get definition method
+  * refactor: change metaData to metadata
+  * refactor: change metaData to metadata
+  * refactor: support property get/set method
+
 1.3.2 / 2019-03-01
 ==================
 
