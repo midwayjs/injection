@@ -51,7 +51,7 @@ export class DecoratorManager extends Map {
     return Array.from(this.get(key) || {});
   }
 
-  static getOriginMetaData(metaKey, target, method?) {
+  static getOriginMetadata(metaKey, target, method?) {
     if (method) {
       // for property
       if (!Reflect.hasMetadata(metaKey, target, method)) {
@@ -77,12 +77,12 @@ export class DecoratorManager extends Map {
    * @param target target class
    * @param propertyName
    */
-  saveMetaData(decoratorNameKey: decoratorKey, data, target, propertyName?) {
+  saveMetadata(decoratorNameKey: decoratorKey, data, target, propertyName?) {
     if (propertyName) {
-      const originMap = DecoratorManager.getOriginMetaData(this.injectMethodKeyPrefix, target, propertyName);
+      const originMap = DecoratorManager.getOriginMetadata(this.injectMethodKeyPrefix, target, propertyName);
       originMap.set(DecoratorManager.getDecoratorMethodKey(decoratorNameKey), data);
     } else {
-      const originMap = DecoratorManager.getOriginMetaData(this.injectClassKeyPrefix, target);
+      const originMap = DecoratorManager.getOriginMetadata(this.injectClassKeyPrefix, target);
       originMap.set(DecoratorManager.getDecoratorClassKey(decoratorNameKey), data);
     }
   }
@@ -94,14 +94,14 @@ export class DecoratorManager extends Map {
    * @param target
    * @param propertyName
    */
-  attachMetaData(decoratorNameKey: decoratorKey, data, target, propertyName?) {
+  attachMetadata(decoratorNameKey: decoratorKey, data, target, propertyName?) {
     let originMap;
     let key;
     if (propertyName) {
-      originMap = DecoratorManager.getOriginMetaData(this.injectMethodKeyPrefix, target, propertyName);
+      originMap = DecoratorManager.getOriginMetadata(this.injectMethodKeyPrefix, target, propertyName);
       key = DecoratorManager.getDecoratorMethodKey(decoratorNameKey);
     } else {
-      originMap = DecoratorManager.getOriginMetaData(this.injectClassKeyPrefix, target);
+      originMap = DecoratorManager.getOriginMetadata(this.injectClassKeyPrefix, target);
       key = DecoratorManager.getDecoratorClassKey(decoratorNameKey);
     }
     if (!originMap.has(key)) {
@@ -116,12 +116,12 @@ export class DecoratorManager extends Map {
    * @param target
    * @param propertyName
    */
-  getMetaData(decoratorNameKey: decoratorKey, target, propertyName?) {
+  getMetadata(decoratorNameKey: decoratorKey, target, propertyName?) {
     if (propertyName) {
-      const originMap = DecoratorManager.getOriginMetaData(this.injectMethodKeyPrefix, target, propertyName);
+      const originMap = DecoratorManager.getOriginMetadata(this.injectMethodKeyPrefix, target, propertyName);
       return originMap.get(DecoratorManager.getDecoratorMethodKey(decoratorNameKey));
     } else {
-      const originMap = DecoratorManager.getOriginMetaData(this.injectClassKeyPrefix, target);
+      const originMap = DecoratorManager.getOriginMetadata(this.injectClassKeyPrefix, target);
       return originMap.get(DecoratorManager.getDecoratorClassKey(decoratorNameKey));
     }
   }
@@ -134,7 +134,7 @@ export class DecoratorManager extends Map {
    * @param propertyName
    */
   savePropertyDataToClass(decoratorNameKey: decoratorKey, data, target, propertyName) {
-    const originMap = DecoratorManager.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
+    const originMap = DecoratorManager.getOriginMetadata(this.injectClassMethodKeyPrefix, target);
     originMap.set(DecoratorManager.getDecoratorClsMethodKey(decoratorNameKey, propertyName), data);
   }
 
@@ -146,7 +146,7 @@ export class DecoratorManager extends Map {
    * @param propertyName
    */
   attachPropertyDataToClass(decoratorNameKey: decoratorKey, data, target, propertyName) {
-    const originMap = DecoratorManager.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
+    const originMap = DecoratorManager.getOriginMetadata(this.injectClassMethodKeyPrefix, target);
     const key = DecoratorManager.getDecoratorClsMethodKey(decoratorNameKey, propertyName);
     if (!originMap.has(key)) {
       originMap.set(key, []);
@@ -161,7 +161,7 @@ export class DecoratorManager extends Map {
    * @param propertyName
    */
   getPropertyDataFromClass(decoratorNameKey: decoratorKey, target, propertyName) {
-    const originMap = DecoratorManager.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
+    const originMap = DecoratorManager.getOriginMetadata(this.injectClassMethodKeyPrefix, target);
     return originMap.get(DecoratorManager.getDecoratorClsMethodKey(decoratorNameKey, propertyName));
   }
 
@@ -171,7 +171,7 @@ export class DecoratorManager extends Map {
    * @param target
    */
   listPropertyDataFromClass(decoratorNameKey: decoratorKey, target) {
-    const originMap = DecoratorManager.getOriginMetaData(this.injectClassMethodKeyPrefix, target);
+    const originMap = DecoratorManager.getOriginMetadata(this.injectClassMethodKeyPrefix, target);
     const res = [];
     for (const [ key, value ] of originMap) {
       if (key.indexOf(DecoratorManager.getDecoratorClsMethodPrefix(decoratorNameKey)) !== -1) {
@@ -190,8 +190,8 @@ const manager = new DecoratorManager();
  * @param data
  * @param target
  */
-export function saveClassMetaData(decoratorNameKey: decoratorKey, data, target) {
-  return manager.saveMetaData(decoratorNameKey, data, target);
+export function saveClassMetadata(decoratorNameKey: decoratorKey, data, target) {
+  return manager.saveMetadata(decoratorNameKey, data, target);
 }
 
 /**
@@ -200,8 +200,8 @@ export function saveClassMetaData(decoratorNameKey: decoratorKey, data, target) 
  * @param data
  * @param target
  */
-export function attachClassMetaData(decoratorNameKey: decoratorKey, data, target) {
-  return manager.attachMetaData(decoratorNameKey, data, target);
+export function attachClassMetadata(decoratorNameKey: decoratorKey, data, target) {
+  return manager.attachMetadata(decoratorNameKey, data, target);
 }
 
 /**
@@ -209,8 +209,8 @@ export function attachClassMetaData(decoratorNameKey: decoratorKey, data, target
  * @param decoratorNameKey
  * @param target
  */
-export function getClassMetaData(decoratorNameKey: decoratorKey, target) {
-  return manager.getMetaData(decoratorNameKey, target);
+export function getClassMetadata(decoratorNameKey: decoratorKey, target) {
+  return manager.getMetadata(decoratorNameKey, target);
 }
 
 /**
@@ -266,8 +266,8 @@ export function listMethodDataFromClass(decoratorNameKey: decoratorKey, target) 
  * @param target
  * @param method
  */
-export function saveMethodMetaData(decoratorNameKey: decoratorKey, data, target, method) {
-  return manager.saveMetaData(decoratorNameKey, data, target, method);
+export function saveMethodMetadata(decoratorNameKey: decoratorKey, data, target, method) {
+  return manager.saveMetadata(decoratorNameKey, data, target, method);
 }
 
 /**
@@ -278,8 +278,8 @@ export function saveMethodMetaData(decoratorNameKey: decoratorKey, data, target,
  * @param target
  * @param method
  */
-export function attachMethodMetaData(decoratorNameKey: decoratorKey, data, target, method) {
-  return manager.attachMetaData(decoratorNameKey, data, target, method);
+export function attachMethodMetadata(decoratorNameKey: decoratorKey, data, target, method) {
+  return manager.attachMetadata(decoratorNameKey, data, target, method);
 }
 
 /**
@@ -289,8 +289,8 @@ export function attachMethodMetaData(decoratorNameKey: decoratorKey, data, targe
  * @param target
  * @param method
  */
-export function getMethodMetaData(decoratorNameKey: decoratorKey, target, method) {
-  return manager.getMetaData(decoratorNameKey, target, method);
+export function getMethodMetadata(decoratorNameKey: decoratorKey, target, method) {
+  return manager.getMetadata(decoratorNameKey, target, method);
 }
 
 /**
@@ -341,8 +341,8 @@ export function listPropertyDataFromClass(decoratorNameKey: decoratorKey, target
  * @param target
  * @param propertyName
  */
-export function savePropertyMetaData(decoratorNameKey: decoratorKey, data, target, propertyName) {
-  return manager.saveMetaData(decoratorNameKey, data, target, propertyName);
+export function savePropertyMetadata(decoratorNameKey: decoratorKey, data, target, propertyName) {
+  return manager.saveMetadata(decoratorNameKey, data, target, propertyName);
 }
 
 /**
@@ -352,8 +352,8 @@ export function savePropertyMetaData(decoratorNameKey: decoratorKey, data, targe
  * @param target
  * @param propertyName
  */
-export function attachPropertyMetaData(decoratorNameKey: decoratorKey, data, target, propertyName) {
-  return manager.attachMetaData(decoratorNameKey, data, target, propertyName);
+export function attachPropertyMetadata(decoratorNameKey: decoratorKey, data, target, propertyName) {
+  return manager.attachMetadata(decoratorNameKey, data, target, propertyName);
 }
 
 /**
@@ -362,8 +362,8 @@ export function attachPropertyMetaData(decoratorNameKey: decoratorKey, data, tar
  * @param target
  * @param propertyName
  */
-export function getPropertyMetaData(decoratorNameKey: decoratorKey, target, propertyName) {
-  return manager.getMetaData(decoratorNameKey, target, propertyName);
+export function getPropertyMetadata(decoratorNameKey: decoratorKey, target, propertyName) {
+  return manager.getMetadata(decoratorNameKey, target, propertyName);
 }
 
 /**
