@@ -4,6 +4,8 @@ import {
   getMethodDataFromClass,
   getMethodMetaData,
   getParamNames,
+  getPropertyMetaData,
+  getPropertyDataFromClass,
   getProviderId,
   listMethodDataFromClass,
   listModule,
@@ -73,5 +75,11 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
   it('should get id from class', () => {
     assert(module.name === 'ManagerTest');
     assert(getProviderId(module) === 'managerTest');
+  });
+
+  it('should get property data', () => {
+    const m = new module();
+    assert(getPropertyMetaData('custom_property', m, 'testProperty') === 'property_a');
+    assert(getPropertyDataFromClass('custom_property_class', module, 'testProperty').length === 3);
   });
 });

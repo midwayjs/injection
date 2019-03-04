@@ -1,4 +1,4 @@
-import { attachClass, attachMethod, customCls, customMethod, preload } from './custom';
+import { attachClass, attachMethod, customCls, customMethod, preload, propertyKeyA, propertyKeyB } from './custom';
 import { provide } from '../../../src/annotation';
 
 @provide()
@@ -10,11 +10,16 @@ import { provide } from '../../../src/annotation';
 @attachClass('/test')
 export class ManagerTest {
 
+  @propertyKeyA('property_a')
+  @propertyKeyB('test_a')
+  @propertyKeyB('test_b')
+  @propertyKeyB('test_c')
+  testProperty;
+
   @customMethod()
   testSomething() {
     console.log('hello world');
   }
-
 
   @attachMethod('/aaa')
   @attachMethod('/bbb')

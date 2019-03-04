@@ -1,11 +1,11 @@
 import {
   attachClassMetaData, attachMethodDataToClass,
-  attachMethodMetaData,
+  attachMethodMetaData, attachPropertyDataToClass,
   saveClassMetaData,
   saveMethodDataToClass,
   saveMethodMetaData,
   saveModule,
-  savePreloadModule
+  savePreloadModule, savePropertyMetaData
 } from '../../../src';
 
 export function customCls(): ClassDecorator {
@@ -44,4 +44,16 @@ export function attachClass(data): ClassDecorator {
   return (target: object) => {
     attachClassMetaData('custom_class_attach', data, target);
   };
+}
+
+export function propertyKeyA(data): PropertyDecorator {
+  return (target: object, propertyKey) => {
+    savePropertyMetaData('custom_property', data, target, propertyKey);
+  }
+}
+
+export function propertyKeyB(data): PropertyDecorator {
+  return (target: object, propertyKey) => {
+    attachPropertyDataToClass('custom_property_class', data, target, propertyKey);
+  }
 }
