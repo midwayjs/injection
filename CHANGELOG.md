@@ -1,4 +1,11 @@
 
+1.4.1 / 2019-03-05
+==================
+
+  * Merge pull request #12 from midwayjs/fix_request_scope
+  * fix: add code for get object
+  * fix: fix get same object from same request scope container
+
 1.4.0 / 2019-03-04
 ==================
 
