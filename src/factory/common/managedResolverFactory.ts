@@ -317,6 +317,7 @@ export class ManagedResolverFactory {
     }
     return this._props;
   }
+
   /**
    * 用于解析模版化的值
    * example: {{aaa.bbb.ccc}}
@@ -392,7 +393,7 @@ export class ManagedResolverFactory {
       for (const key of keys) {
         const identifier = definition.properties.getProperty(key);
         try {
-          inst[key] = this.resolveManaged(identifier);
+          inst[ key ] = this.resolveManaged(identifier);
         } catch (error) {
           if (NotFoundError.isClosePrototypeOf(error)) {
             const className = definition.path.name;
@@ -417,6 +418,11 @@ export class ManagedResolverFactory {
 
     if (definition.isSingletonScope() && definition.id) {
       this.singletonCache.set(definition.id, inst);
+    }
+
+    // for request scope
+    if (definition.isRequestScope() && definition.id) {
+      this.context.registry.registerObject(definition.id, inst);
     }
 
     return inst;
@@ -467,7 +473,7 @@ export class ManagedResolverFactory {
       for (const key of keys) {
         const identifier = definition.properties.getProperty(key);
         try {
-          inst[key] = await this.resolveManagedAsync(identifier);
+          inst[ key ] = await this.resolveManagedAsync(identifier);
         } catch (error) {
           if (NotFoundError.isClosePrototypeOf(error)) {
             const className = definition.path.name;
@@ -492,6 +498,11 @@ export class ManagedResolverFactory {
 
     if (definition.isSingletonScope() && definition.id) {
       this.singletonCache.set(definition.id, inst);
+    }
+
+    // for request scope
+    if (definition.isRequestScope() && definition.id) {
+      this.context.registry.registerObject(definition.id, inst);
     }
 
     return inst;

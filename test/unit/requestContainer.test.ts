@@ -54,12 +54,32 @@ describe('/test/unit/requestContainer.test.ts', () => {
 
   it('should create request container more then once and get same value from parent', async () => {
     const appCtx = new Container();
-    appCtx.bind(Tracer);
+    appCtx.bind(DataCollector);
+    appCtx.bind(ChildTracer);
 
     const reqCtx1 = new RequestContainer({}, appCtx);
     const reqCtx2 = new RequestContainer({}, appCtx);
-    expect(<Tracer>reqCtx1.get(Tracer).parentId).to.equal(<Tracer>reqCtx2.get(Tracer).parentId);
-    expect((await reqCtx1.getAsync(Tracer)).parentId).to.equal((await reqCtx2.getAsync(Tracer)).parentId);
+    expect(<Tracer>reqCtx1.get(ChildTracer).parentId).to.equal(<Tracer>reqCtx2.get(ChildTracer).parentId);
+    expect((await reqCtx1.getAsync(ChildTracer)).parentId).to.equal((await reqCtx2.getAsync(ChildTracer)).parentId);
+  });
+
+  it('should get same object in same request context', async () => {
+    const appCtx = new Container();
+    appCtx.bind(DataCollector);
+    appCtx.bind(ChildTracer);
+
+    const reqCtx = new RequestContainer({}, appCtx);
+
+    const tracer1 = await reqCtx.getAsync('tracer');
+    const tracer2 = await reqCtx.getAsync('tracer');
+    expect(tracer1.traceId).to.equal(tracer2.traceId);
+
+    const reqCtx2 = new RequestContainer({}, appCtx);
+    const tracer3 = await reqCtx2.getAsync('tracer');
+    const tracer4 = await reqCtx2.getAsync('tracer');
+    expect(tracer3.traceId).to.equal(tracer4.traceId);
+    expect(tracer1.traceId).to.not.equal(tracer3.traceId);
+    expect(tracer2.traceId).to.not.equal(tracer4.traceId);
   });
 
   it('should get different property value in different request context', async () => {
