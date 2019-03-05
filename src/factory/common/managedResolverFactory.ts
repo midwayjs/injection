@@ -420,6 +420,11 @@ export class ManagedResolverFactory {
       this.singletonCache.set(definition.id, inst);
     }
 
+    // for request scope
+    if (definition.isRequestScope() && definition.id) {
+      this.context.registry.registerObject(definition.id, inst);
+    }
+
     return inst;
   }
 
