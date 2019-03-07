@@ -60,11 +60,9 @@ export class DecoratorManager extends Map {
       return Reflect.getMetadata(metaKey, target, method);
     } else {
       if (typeof target === 'object') {
+        // filter Object.create(null)
         if (target.constructor) {
           target = target.constructor;
-        } else {
-          // filter Object.create(null)
-          return;
         }
       }
       // for class
