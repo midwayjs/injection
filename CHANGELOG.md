@@ -1,4 +1,12 @@
 
+1.4.2 / 2019-03-07
+==================
+
+  * Merge pull request #13 from midwayjs/ignore_constructor_equal_null
+  * fix: ignore object not include constructor
+  * fix: ignore object not include constructor
+  * fix: ignore object not include constructor
+
 1.4.1 / 2019-03-05
 ==================
 
