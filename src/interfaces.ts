@@ -137,6 +137,7 @@ export interface IApplicationContext extends IObjectFactory {
   removeLifeCycle(lifeCycle: ILifeCycle): void;
   stop(): Promise<void>;
   dumpDependency(): void;
+  findCycle(timeout?: number): Promise<string[]>;
 }
 /**
  * 内部管理的属性、json、ref等解析实例存储

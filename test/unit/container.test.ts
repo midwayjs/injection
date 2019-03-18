@@ -24,6 +24,7 @@ import { DieselCar, DieselEngine, engineFactory, PetrolEngine } from '../fixture
 import { UserService } from '../fixtures/complex_injection/userService';
 import { UserController } from '../fixtures/complex_injection/userController';
 import { A, B, DbAPI } from '../fixtures/complex_injection/dbAPI';
+import { AA, BB, CC, DD, EE, FF } from '../fixtures/complex_injection/circularDependency';
 
 const path = require('path');
 
@@ -284,6 +285,44 @@ describe('/test/unit/container.test.ts', () => {
       expect(/newKey\(DbAPI\)/.test(newTree)).to.be.true;
       expect(/"newKey" -> "b"/.test(newTree)).to.be.true;
     });
-
   });
+
+    describe('find cycle', () => {
+
+      it('should find no cycle befor timeout', async () => {
+        const applicationContext = new Container();
+        applicationContext.bind(UserService);
+        applicationContext.bind(UserController);
+        applicationContext.bind(DbAPI);
+        const cycle = await applicationContext.findCycle();
+        expect(cycle).to.be.empty;
+      });
+  
+      it('should find any cycle before timeout', async () => {
+        const applicationContext = new Container();
+        applicationContext.bind(AA);
+        applicationContext.bind(BB);
+        applicationContext.bind(CC);
+        applicationContext.bind(DD);
+        applicationContext.bind(EE);
+        applicationContext.bind(FF);
+        const cycle = await applicationContext.findCycle();
+        expect(cycle).to.deep.eq(['aA', 'bB', 'eE', 'aA']);
+      });
+
+      it('should throw an error when timeout', async () => {
+        const applicationContext = new Container();
+        applicationContext.bind(AA);
+        applicationContext.bind(BB);
+        applicationContext.bind(CC);
+        applicationContext.bind(DD);
+        applicationContext.bind(EE);
+        applicationContext.bind(FF);
+        try {
+          await applicationContext.findCycle(0);
+        } catch (error) {
+          expect(() => { throw error }).to.throw('findCycle timout in 0 ms');
+        }
+      });
+    })
 });
