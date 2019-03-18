@@ -164,7 +164,7 @@ const userService = await container.getAsync('userService');  // 这里根据 ke
 const user = await userService.getUser('123');
 
 // 如果对象以及对象的依赖中没有异步的情况，也可以同步获取
-const userService = container.get('userService'); 
+const userService = container.get('userService');
 const user = userService.getUser('123');
 //...
 ```
@@ -585,8 +585,9 @@ export class BaseService {
 在 midway 中可以在 src/app.ts 中进行添加。
 :::
 
+## 依赖排错
 
-## 通过依赖图排错
+### 通过依赖图排错
 
 在业务代码中，我们可能会碰到依赖注入不生效或者作用域配置错误的问题，这个时候由于容器管理的问题显得不透明，用户也不太清楚容器里有哪些东西，分别依赖了什么。
 
@@ -609,3 +610,48 @@ console.log(newTree);
 ::: tip
 midway 在启动时会将依赖树生成到 /run 目录下，方便排错。
 :::
+
+### 通过`findCycle`排查循环依赖
+
+`Container` 的实例上有`findCycle`方法，`findCyle`是一个异步方法。在所有依赖声明后调用此方法可检查是否存在循环依赖。
+
+函数签名:
+
+`container.findCycle([timeout]): Promise<string[]>`
+
+- `timeout: number` `findCycle`方法最长执行时长，默认是1000，单位毫秒
+- 返回 找到的一个循环依赖数组表示 `[ 'aA', 'bB', 'eE', 'aA' ]` 或者空数组
+
+示例:
+
+``` ts
+import { provide, inject } from 'injection';
+
+@provide('aA')
+class AA {
+  @inject('bB')
+  b;
+  @inject('cC')
+  c;
+}
+
+@provide('bB')
+class BB {
+  @inject('cC')
+  c;
+}
+
+@provide('cC')
+class CC {
+  @inject('aA')
+  a;
+}
+
+const container = new Container();
+container.bind(AA);
+container.bind(BB);
+container.bind(CC);
+
+container.findCycle(500).then(d => console.log) // [ 'aA', 'bB', 'cC', 'aA' ]
+
+```

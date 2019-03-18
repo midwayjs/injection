@@ -15,6 +15,8 @@ import {
 import { ObjectConfiguration } from '../base/configuration';
 import { ManagedResolverFactory } from './common/managedResolverFactory';
 import { NotFoundError } from '../utils/errorFactory';
+import { Digraph } from '../utils/digraph';
+import { pull, pullAll } from 'lodash';
 
 const graphviz = require('graphviz');
 
@@ -323,4 +325,50 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
     }
   }
 
+  async findCycle(time = 1000): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+      let timeout = false;
+      if (time === 0) {
+        time = 0;
+      } else {
+        // findCycle 默认运行1秒
+        time = Number(time) || 1000;
+      }
+      const timercb = () => timeout = true;
+      const timer = time === 0 ? setImmediate(timercb) : setTimeout(timercb, time);
+
+      const digraph = Digraph.fromMap(this.dependencyMap);
+      const remainder = digraph.getVertices();
+      /**
+       * 递归的异步查找循环依赖,使用 setImmediate 是为了不阻塞 EventLoop
+       * 保证 setTimeout 方法可以执行,从而能检测是否超时
+       * @param cycle 默认为 []
+       */
+      const next = (cycle = []) => {
+        if (timeout) {
+           return reject(new Error(`findCycle timout in ${time} ms`));
+        }
+        if (cycle.length !== 0 || remainder.length === 0) {
+          /**
+           * 当 time = 0 时, 第二次运行next时, timeout === true
+           * next 函数已经返回, 所以这里的 timer 类型是 NodeJS.Timeout
+           */
+          clearTimeout(timer as NodeJS.Timeout);
+          return resolve(cycle);
+        }
+        const maxNeighborsVertice = digraph.getMaxNeighborVertice(remainder);
+        pull(remainder, maxNeighborsVertice);
+        if (maxNeighborsVertice) {
+          pullAll(remainder, digraph.getNeighbors(maxNeighborsVertice));
+          try {
+            cycle.push(...digraph.findCycle(maxNeighborsVertice));
+          } catch (error) {
+            reject(error);
+          }
+        }
+        setImmediate(() => { next(cycle); });
+      };
+      next();
+    });
+  }
 }
