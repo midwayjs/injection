@@ -11,7 +11,6 @@ export class AA {
   }
 }
 
-
 @provide('bB')
 export class BB {
   @inject('eE')
