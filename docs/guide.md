@@ -74,8 +74,8 @@ container.bind(B);
 
 class C {
   constructor() {
-    this.a = container.get('A');
-    this.b = container.get('B');
+    this.a = container.get('a');
+    this.b = container.get('b');
   }
 }
 ```
