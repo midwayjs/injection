@@ -37,7 +37,7 @@ import {A} from './A';
 import {B} from './B';
 
 class C {
-  consturctor() {
+  constructor() {
     this.a = new A();
     this.b = new B(this.a);
   }
@@ -73,9 +73,9 @@ container.bind(A);
 container.bind(B);
 
 class C {
-  consturctor() {
-    this.a = container.get('A');
-    this.b = container.get('B');
+  constructor() {
+    this.a = container.get('a');
+    this.b = container.get('b');
   }
 }
 ```
