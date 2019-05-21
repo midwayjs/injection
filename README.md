@@ -36,8 +36,7 @@ Node.js >= 8.0.0 required.
 ## Getting Started
 
 ```ts
-
-import {container, provide, inject} from 'injection';
+import {Container, provide, inject} from 'injection';
 
 @provide('userModel')
 class UserModel {
@@ -52,6 +51,7 @@ class UserService {
   
   async getUser(uid) {
     // TODO
+    return 'Alex';
   }
 }
 
@@ -60,8 +60,14 @@ const container = new Container();
 container.bind(UserService);
 container.bind(UserModel);
 
-const userService = await container.getAsync('userService'); 
-const data = await userService.getUser(123);
+async function getData() {
+  const userService = await container.getAsync<UserService>('userService'); 
+  const data = await userService.getUser(123);
+  return data;
+}
+
+getData().then(console.log);
+// Alex
 ```
 
 Document: [https://midwayjs.org/injection/guide.html](https://midwayjs.org/injection/guide.html)
