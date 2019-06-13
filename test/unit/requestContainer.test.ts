@@ -1,5 +1,5 @@
-import {expect} from 'chai';
-import {Container, inject, provide, RequestContainer, scope, ScopeEnum} from '../../src';
+import { expect } from 'chai';
+import { Container, inject, provide, REQUEST_OBJ_CTX_KEY, RequestContainer, scope, ScopeEnum } from '../../src';
 // const path = require('path');
 
 // function sleep(t) {
@@ -116,6 +116,23 @@ describe('/test/unit/requestContainer.test.ts', () => {
 
     expect(tracer1.traceId).to.not.equal(tracer2.traceId);
     expect(tracer1.getData()).to.equal(tracer2.getData());
+  });
+
+  it.only('should get ctx from object in requestContainer', async () => {
+    const appCtx = new Container();
+    appCtx.bind(DataCollector);
+    appCtx.bind(ChildTracer);
+
+    const ctx1 = { a: 1 };
+    const ctx2 = { b: 2 };
+    const reqCtx1 = new RequestContainer(ctx1, appCtx);
+    const reqCtx2 = new RequestContainer(ctx2, appCtx);
+
+    const tracer1 = await reqCtx1.getAsync('tracer');
+    const tracer2 = await reqCtx2.getAsync('tracer');
+
+    expect(tracer1[ REQUEST_OBJ_CTX_KEY ]).to.equal(ctx1);
+    expect(tracer2[ REQUEST_OBJ_CTX_KEY ]).to.equal(ctx2);
   });
 
 });
