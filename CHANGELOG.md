@@ -1,4 +1,14 @@
 
+1.5.0 / 2019-06-13
+==================
+
+  * Merge pull request #19 from midwayjs/add_ctx_to_obj
+  * refactor: bind ctx to obj
+  * Fix typo in guide.md (#17)
+  * Make code runable in README.md
+  * Fix code in guide.md
+  * Update guide.md
+
 1.4.2 / 2019-03-07
 ==================
 
