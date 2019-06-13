@@ -20,7 +20,9 @@ import {
   IManagedInstance,
   IManagedResolver,
   IObjectDefinition,
-  ObjectIdentifier
+  ObjectIdentifier,
+  REQUEST_CTX_KEY,
+  REQUEST_OBJ_CTX_KEY
 } from '../../interfaces';
 import { ObjectConfiguration } from '../../base/configuration';
 import { Autowire } from './autowire';
@@ -466,6 +468,15 @@ export class ManagedResolverFactory {
     const inst = await definition.creator.doConstructAsync(Clzz, constructorArgs);
     if (!inst) {
       throw new Error(`${definition.id} config no valid path`);
+    }
+
+    // binding ctx object
+    if (definition.isRequestScope()) {
+      Object.defineProperty(inst, REQUEST_OBJ_CTX_KEY, {
+        value: this.context.get(REQUEST_CTX_KEY),
+        writable: false,
+        enumerable: false,
+      });
     }
 
     if (definition.properties) {

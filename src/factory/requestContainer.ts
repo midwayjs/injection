@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { Container } from './container';
-import { IContainer } from '../interfaces';
+import { IContainer, REQUEST_CTX_KEY } from '../interfaces';
 
 export class RequestContainer extends Container {
 
@@ -8,7 +8,7 @@ export class RequestContainer extends Container {
 
   constructor(ctx, applicationContext) {
     super();
-    this.registerObject('ctx', ctx);
+    this.registerObject(REQUEST_CTX_KEY, ctx);
     this.parent = applicationContext;
     this.applicationContext = applicationContext;
   }
