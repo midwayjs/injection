@@ -1,4 +1,10 @@
 
+1.5.1 / 2019-06-14
+==================
+
+  * fix: Cannot redefine property: _req_ctx (#21)
+  * fix: Cannot redefine property: _req_ctx
+
 1.5.0 / 2019-06-13
 ==================
 
