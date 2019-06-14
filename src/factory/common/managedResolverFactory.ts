@@ -390,6 +390,15 @@ export class ManagedResolverFactory {
 
     const inst = definition.creator.doConstruct(Clzz, constructorArgs);
 
+    // binding ctx object
+    if (definition.isRequestScope() && definition.constructor.name === 'ObjectDefinition') {
+      Object.defineProperty(inst, REQUEST_OBJ_CTX_KEY, {
+        value: this.context.get(REQUEST_CTX_KEY),
+        writable: false,
+        enumerable: false,
+      });
+    }
+
     if (definition.properties) {
       const keys = definition.properties.keys();
       for (const key of keys) {
@@ -471,7 +480,7 @@ export class ManagedResolverFactory {
     }
 
     // binding ctx object
-    if (definition.isRequestScope()) {
+    if (definition.isRequestScope() && definition.constructor.name === 'ObjectDefinition') {
       Object.defineProperty(inst, REQUEST_OBJ_CTX_KEY, {
         value: this.context.get(REQUEST_CTX_KEY),
         writable: false,
