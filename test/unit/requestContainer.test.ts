@@ -118,7 +118,7 @@ describe('/test/unit/requestContainer.test.ts', () => {
     expect(tracer1.getData()).to.equal(tracer2.getData());
   });
 
-  it.only('should get ctx from object in requestContainer', async () => {
+  it('should get ctx from object in requestContainer', async () => {
     const appCtx = new Container();
     appCtx.bind(DataCollector);
     appCtx.bind(ChildTracer);
