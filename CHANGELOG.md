@@ -1,4 +1,12 @@
 
+1.5.2 / 2019-07-04
+==================
+
+  * Refactor xml (#24)
+  * refactor lodash dependency (#23)
+  * refactor to xmldom
+  * refactor lodash dependency
+
 1.5.1 / 2019-06-14
 ==================
 
