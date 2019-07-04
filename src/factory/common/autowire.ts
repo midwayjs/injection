@@ -5,7 +5,7 @@
  * 调用时进行自动装配
  */
 
-import * as _ from 'lodash';
+import * as _ from '../../utils/lodashWrap';
 import { IApplicationContext } from '../../interfaces';
 
 export class InjectionPoint {

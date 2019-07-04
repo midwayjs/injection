@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+const _ = require('lodash.join');
 
 exports.beforeSay = (args, next) => {
   return 'before say' + args.length + next();

@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import * as _ from '../utils/lodashWrap';
 import { format } from 'util';
 import { IMessageSource, IResource, Locale } from '../interfaces';
 
