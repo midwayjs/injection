@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { DOMParser } from 'xmldom';
+import { DOMParser } from '../../utils/xmldomWrap';
 import {
   IObjectDefinition,
   IResource,
