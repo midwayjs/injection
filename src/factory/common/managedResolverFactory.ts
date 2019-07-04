@@ -2,7 +2,7 @@
  * 管理对象解析构建
  */
 
-import * as _ from 'lodash';
+import * as _ from '../../utils/lodashWrap';
 import { KEYS, VALUE_TYPE } from './constants';
 import {
   ManagedJSON,
