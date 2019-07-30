@@ -16,7 +16,7 @@ import { ObjectConfiguration } from '../base/configuration';
 import { ManagedResolverFactory } from './common/managedResolverFactory';
 import { NotFoundError } from '../utils/errorFactory';
 
-const graphviz = require('graphviz');
+import * as assert from 'assert';
 
 export const ContextEvent = {
   START: 'start',
@@ -301,26 +301,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
   }
 
   dumpDependency() {
-    const g = graphviz.digraph('G');
-
-    for (const [ id, module ] of this.dependencyMap.entries()) {
-
-      g.addNode(id, { label: `${id}(${module.name})\nscope:${module.scope}`, fontsize: '10' });
-
-      module.properties.forEach((depId) => {
-        g.addEdge(id, depId, { label: `properties`, fontsize: '8' });
-      });
-
-      module.constructorArgs.forEach((depId) => {
-        g.addEdge(id, depId, { label: 'constructor', fontsize: '8' });
-      });
-    }
-
-    try {
-      return g.to_dot();
-    } catch (err) {
-      console.error('generate injection dependency tree fail, err = ', err.message);
-    }
+    assert('this method has move to midway-core，please invoke this from midway');
   }
 
 }

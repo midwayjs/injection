@@ -21,11 +21,7 @@ import 'reflect-metadata';
 import { BMWX1, Car, Electricity, Gas, Tesla, Turbo } from '../fixtures/class_sample_car';
 import { childAsyncFunction, childFunction, testInjectAsyncFunction, testInjectFunction } from '../fixtures/fun_sample';
 import { DieselCar, DieselEngine, engineFactory, PetrolEngine } from '../fixtures/mix_sample';
-import { UserService } from '../fixtures/complex_injection/userService';
-import { UserController } from '../fixtures/complex_injection/userController';
-import { A, B, DbAPI } from '../fixtures/complex_injection/dbAPI';
-
-const path = require('path');
+import * as path from 'path';
 
 describe('/test/unit/container.test.ts', () => {
 
@@ -260,30 +256,4 @@ describe('/test/unit/container.test.ts', () => {
 
   });
 
-  describe('dependency tree', () => {
-
-    it('should generate dependency dot in requestContainer', async () => {
-      const applicationContext = new Container();
-      applicationContext.bind(UserService);
-      applicationContext.bind(UserController);
-      applicationContext.bind(DbAPI);
-      const newTree = await applicationContext.dumpDependency();
-      expect(/userController/.test(newTree)).to.be.true;
-      expect(/newKey\(DbAPI\)/.test(newTree)).to.be.true;
-    });
-
-    it('should skip empty properties', async () => {
-      const applicationContext = new Container();
-      applicationContext.bind(UserService);
-      applicationContext.bind(UserController);
-      applicationContext.bind(DbAPI);
-      applicationContext.bind(A);
-      applicationContext.bind(B);
-      const newTree = await applicationContext.dumpDependency();
-      expect(/userController/.test(newTree)).to.be.true;
-      expect(/newKey\(DbAPI\)/.test(newTree)).to.be.true;
-      expect(/"newKey" -> "b"/.test(newTree)).to.be.true;
-    });
-
-  });
 });
