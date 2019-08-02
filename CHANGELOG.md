@@ -1,4 +1,12 @@
 
+1.6.1 / 2019-08-02
+==================
+
+  * Release 1.6.1
+  * Merge pull request #26 from midwayjs/optimizing
+  * test: fix test
+  * refactor: optimal performance
+
 1.6.0 / 2019-07-30
 ==================
 
