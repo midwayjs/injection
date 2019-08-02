@@ -107,10 +107,10 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#configlocations" class="tsd-kind-icon">config<wbr>Locations</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#dependencymap" class="tsd-kind-icon">dependency<wbr>Map</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="container.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#inner_parser" class="tsd-kind-icon">inner_<wbr>parser</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="container.html#lifecycles" class="tsd-kind-icon">life<wbr>Cycles</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#messagesource" class="tsd-kind-icon">message<wbr>Source</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#parent" class="tsd-kind-icon">parent</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#parser" class="tsd-kind-icon">parser</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="container.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="container.html#readied" class="tsd-kind-icon">readied</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="container.html#refreshing" class="tsd-kind-icon">refreshing</a></li>
@@ -123,6 +123,7 @@
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="container.html#isready" class="tsd-kind-icon">is<wbr>Ready</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="container.html#parser" class="tsd-kind-icon">parser</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -187,13 +188,13 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L110">factory/applicationContext.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L111">factory/applicationContext.ts:111</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> baseDir: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;process.cwd()</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> baseDir: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;CWD</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <a href="../interfaces/iapplicationcontext.html" class="tsd-signature-type">IApplicationContext</a></h5>
@@ -214,7 +215,7 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#basedir">baseDir</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#basedir">baseDir</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L104">factory/applicationContext.ts:104</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L105">factory/applicationContext.ts:105</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -226,7 +227,7 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#configlocations">configLocations</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#configlocations">configLocations</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L108">factory/applicationContext.ts:108</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L109">factory/applicationContext.ts:109</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,17 +239,28 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#dependencymap">dependencyMap</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#dependencymap">dependencyMap</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L110">factory/applicationContext.ts:110</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L111">factory/applicationContext.ts:111</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="id" class="tsd-anchor"></a>
 					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;uuidv1()</span></div>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;Math.random().toString(36).substr(2).slice(0, 10)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L16">factory/container.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L15">factory/container.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="inner_parser" class="tsd-anchor"></a>
+					<h3>inner_<wbr>parser</h3>
+					<div class="tsd-signature tsd-kind-icon">inner_<wbr>parser<span class="tsd-signature-symbol">:</span> <a href="xmlobjectdefinitionparser.html" class="tsd-signature-type">XmlObjectDefinitionParser</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="xmlapplicationcontext.html">XmlApplicationContext</a>.<a href="xmlapplicationcontext.html#inner_parser">inner_parser</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/xml/xmlApplicationContext.ts#L7">factory/xml/xmlApplicationContext.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -259,7 +271,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#lifecycles">lifeCycles</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L102">factory/applicationContext.ts:102</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L103">factory/applicationContext.ts:103</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -271,7 +283,7 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#messagesource">messageSource</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#messagesource">messageSource</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L109">factory/applicationContext.ts:109</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L110">factory/applicationContext.ts:110</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -283,18 +295,7 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#parent">parent</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#parent">parent</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L106">factory/applicationContext.ts:106</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="parser" class="tsd-anchor"></a>
-					<h3>parser</h3>
-					<div class="tsd-signature tsd-kind-icon">parser<span class="tsd-signature-symbol">:</span> <a href="xmlobjectdefinitionparser.html" class="tsd-signature-type">XmlObjectDefinitionParser</a></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="xmlapplicationcontext.html">XmlApplicationContext</a>.<a href="xmlapplicationcontext.html#parser">parser</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/xml/xmlApplicationContext.ts#L7">factory/xml/xmlApplicationContext.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L107">factory/applicationContext.ts:107</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -306,7 +307,7 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#props">props</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#props">props</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L107">factory/applicationContext.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L108">factory/applicationContext.ts:108</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -317,7 +318,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#readied">readied</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L101">factory/applicationContext.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L102">factory/applicationContext.ts:102</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -328,7 +329,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#refreshing">refreshing</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L100">factory/applicationContext.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L101">factory/applicationContext.ts:101</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -340,7 +341,7 @@
 						<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#registry">registry</a></p>
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#registry">registry</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L105">factory/applicationContext.ts:105</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L106">factory/applicationContext.ts:106</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -351,7 +352,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#resolverfactory">resolverFactory</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L103">factory/applicationContext.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L104">factory/applicationContext.ts:104</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -380,10 +381,28 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#isready">isReady</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L241">factory/applicationContext.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L241">factory/applicationContext.ts:241</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<a name="parser" class="tsd-anchor"></a>
+					<h3>parser</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> parser<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="xmlobjectdefinitionparser.html" class="tsd-signature-type">XmlObjectDefinitionParser</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="xmlapplicationcontext.html">XmlApplicationContext</a>.<a href="xmlapplicationcontext.html#parser">parser</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/xml/xmlApplicationContext.ts#L9">factory/xml/xmlApplicationContext.ts:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="xmlobjectdefinitionparser.html" class="tsd-signature-type">XmlObjectDefinitionParser</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -402,7 +421,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#addlifecycle">addLifeCycle</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#addlifecycle">addLifeCycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L210">factory/applicationContext.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L210">factory/applicationContext.ts:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -472,7 +491,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#aftereachcreated">afterEachCreated</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L268">factory/applicationContext.ts:268</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L268">factory/applicationContext.ts:268</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -527,7 +546,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#beforeeachcreated">beforeEachCreated</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L276">factory/applicationContext.ts:276</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L276">factory/applicationContext.ts:276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -583,7 +602,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#bind">bind</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L23">factory/container.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L22">factory/container.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -607,7 +626,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#bind">bind</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L24">factory/container.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L23">factory/container.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -642,7 +661,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L94">factory/container.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L93">factory/container.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -668,7 +687,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L133">factory/container.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L132">factory/container.ts:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -692,7 +711,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#createobjectdependencytree">createObjectDependencyTree</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L280">factory/applicationContext.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L280">factory/applicationContext.ts:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -720,7 +739,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#dumpdependency">dumpDependency</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#dumpdependency">dumpDependency</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L303">factory/applicationContext.ts:303</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L303">factory/applicationContext.ts:303</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -785,7 +804,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L152">factory/container.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L151">factory/container.ts:151</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -818,7 +837,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#getasync">getAsync</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L159">factory/container.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L158">factory/container.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -850,7 +869,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L166">factory/container.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L165">factory/container.ts:165</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -874,7 +893,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#getmanagedresolverfactory">getManagedResolverFactory</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L123">factory/applicationContext.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L123">factory/applicationContext.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="managedresolverfactory.html" class="tsd-signature-type">ManagedResolverFactory</a></h4>
@@ -909,9 +928,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="xmlapplicationcontext.html">XmlApplicationContext</a>.<a href="xmlapplicationcontext.html#init">init</a></p>
+								<p>Overrides <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#init">init</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L18">factory/container.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L17">factory/container.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -930,7 +949,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#isasync">isAsync</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#isasync">isAsync</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L160">factory/applicationContext.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L160">factory/applicationContext.ts:160</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1005,7 +1024,7 @@
 								<p>Inherited from <a href="xmlapplicationcontext.html">XmlApplicationContext</a>.<a href="xmlapplicationcontext.html#loaddefinitions">loadDefinitions</a></p>
 								<p>Overrides <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#loaddefinitions">loadDefinitions</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/xml/xmlApplicationContext.ts#L13">factory/xml/xmlApplicationContext.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/xml/xmlApplicationContext.ts#L16">factory/xml/xmlApplicationContext.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1029,7 +1048,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="xmlapplicationcontext.html">XmlApplicationContext</a>.<a href="xmlapplicationcontext.html#loadresource">loadResource</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/xml/xmlApplicationContext.ts#L27">factory/xml/xmlApplicationContext.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/xml/xmlApplicationContext.ts#L30">factory/xml/xmlApplicationContext.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1309,7 +1328,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#ready">ready</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#ready">ready</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L140">factory/applicationContext.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L140">factory/applicationContext.ts:140</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1328,7 +1347,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#refreshasync">refreshAsync</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#refreshasync">refreshAsync</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L144">factory/applicationContext.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L144">factory/applicationContext.ts:144</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1345,7 +1364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L87">factory/container.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L86">factory/container.ts:86</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1372,7 +1391,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#registerdefinition">registerDefinition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L250">factory/applicationContext.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L250">factory/applicationContext.ts:250</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1406,7 +1425,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#registerobject">registerObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L260">factory/applicationContext.ts:260</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L260">factory/applicationContext.ts:260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1439,7 +1458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L137">factory/container.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L136">factory/container.ts:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1483,7 +1502,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#removelifecycle">removeLifeCycle</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#removelifecycle">removeLifeCycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L219">factory/applicationContext.ts:219</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L219">factory/applicationContext.ts:219</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1553,7 +1572,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#resolve">resolve</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/container.ts#L145">factory/container.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/container.ts#L144">factory/container.ts:144</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1609,7 +1628,7 @@
 								<p>Implementation of <a href="../interfaces/icontainer.html">IContainer</a>.<a href="../interfaces/icontainer.html#stop">stop</a></p>
 								<p>Inherited from <a href="baseapplicationcontext.html">BaseApplicationContext</a>.<a href="baseapplicationcontext.html#stop">stop</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/83ecc20/src/factory/applicationContext.ts#L133">factory/applicationContext.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/midwayjs/injection/blob/f74fa5a/src/factory/applicationContext.ts#L133">factory/applicationContext.ts:133</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1682,6 +1701,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="container.html#id" class="tsd-kind-icon">id</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="container.html#inner_parser" class="tsd-kind-icon">inner_<wbr>parser</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="container.html#lifecycles" class="tsd-kind-icon">life<wbr>Cycles</a>
 							</li>
@@ -1690,9 +1712,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="container.html#parent" class="tsd-kind-icon">parent</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="container.html#parser" class="tsd-kind-icon">parser</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="container.html#props" class="tsd-kind-icon">props</a>
@@ -1714,6 +1733,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 								<a href="container.html#isready" class="tsd-kind-icon">is<wbr>Ready</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+								<a href="container.html#parser" class="tsd-kind-icon">parser</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="container.html#addlifecycle" class="tsd-kind-icon">add<wbr>Life<wbr>Cycle</a>
