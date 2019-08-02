@@ -7,13 +7,12 @@ import { XmlApplicationContext } from './xml/xmlApplicationContext';
 import { recursiveGetMetadata } from '../utils/reflectTool';
 import { Autowire } from './common/autowire';
 
-const uuidv1 = require('uuid/v1');
 const is = require('is-type-of');
 const camelcase = require('camelcase');
 const debug = require('debug')(`injection:Container:${process.pid}`);
 
 export class Container extends XmlApplicationContext implements IContainer {
-  id: string = uuidv1();
+  id: string = Math.random().toString(36).substr(2).slice(0, 10);
 
   init(): void {
     super.init();
