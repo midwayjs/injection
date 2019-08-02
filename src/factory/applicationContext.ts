@@ -26,6 +26,7 @@ export const ContextEvent = {
 };
 
 const PREFIX = '_id_default_';
+const CWD = process.cwd();
 
 export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRegistry {
   get identifiers() {
@@ -109,11 +110,10 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
   messageSource: IMessageSource;
   dependencyMap: Map<string, ObjectDependencyTree> = new Map();
 
-  constructor(baseDir: string = process.cwd(), parent?: IApplicationContext) {
+  constructor(baseDir: string = CWD, parent?: IApplicationContext) {
     super();
     this.parent = parent;
     this.baseDir = baseDir;
-
     this.registry = new ObjectDefinitionRegistry();
     this.resolverFactory = this.getManagedResolverFactory();
 

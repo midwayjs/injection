@@ -4,10 +4,13 @@ import { XmlObjectDefinitionParser } from './xmlObjectDefinitionParser';
 import { Resource } from '../../base/resource';
 
 export class XmlApplicationContext extends BaseApplicationContext {
-  parser: XmlObjectDefinitionParser;
+  inner_parser: XmlObjectDefinitionParser;
 
-  protected init(): void {
-    this.parser = new XmlObjectDefinitionParser(this.baseDir, this.registry);
+  get parser() {
+    if (!this.inner_parser) {
+      this.inner_parser = new XmlObjectDefinitionParser(this.baseDir, this.registry);
+    }
+    return this.inner_parser;
   }
 
   loadDefinitions(configLocations: string[]): void {
