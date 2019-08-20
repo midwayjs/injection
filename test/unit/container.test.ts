@@ -37,7 +37,9 @@ describe('/test/unit/container.test.ts', () => {
 
   it('Should have an unique identifier', () => {
     const container1 = new Container();
+    container1.id = Math.random().toString(36).substr(2).slice(0, 10);
     const container2 = new Container();
+    container2.id = Math.random().toString(36).substr(2).slice(0, 10);
     expect(container1.id.length).eql(10);
     expect(container2.id.length).eql(10);
     expect(container1.id).not.eql(container2.id);
