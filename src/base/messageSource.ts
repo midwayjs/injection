@@ -74,7 +74,8 @@ export class MessageSource extends Map implements IMessageSource {
     }
 
     if (args && args.length > 0) {
-      return format(messages[code], args);
+      args.unshift(messages[code]);
+      return format.apply(null, args);
     }
     return messages[code];
   }
