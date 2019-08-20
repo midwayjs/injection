@@ -1,5 +1,6 @@
 import { Container } from '../../src/index';
 import { expect } from 'chai';
+import * as sinon from 'sinon';
 import {
   Grandson,
   Child,
@@ -21,6 +22,7 @@ import 'reflect-metadata';
 import { BMWX1, Car, Electricity, Gas, Tesla, Turbo } from '../fixtures/class_sample_car';
 import { childAsyncFunction, childFunction, testInjectAsyncFunction, testInjectFunction } from '../fixtures/fun_sample';
 import { DieselCar, DieselEngine, engineFactory, PetrolEngine } from '../fixtures/mix_sample';
+import { HelloSingleton, HelloErrorInitSingleton, HelloErrorSingleton } from '../fixtures/singleton_sample';
 import * as path from 'path';
 
 describe('/test/unit/container.test.ts', () => {
@@ -254,6 +256,44 @@ describe('/test/unit/container.test.ts', () => {
       expect(result.backUpDieselEngine.capacity).to.equal(20);
     });
 
+  });
+
+  describe('singleton case', () => {
+    const container = new Container();
+
+    it('singleton lock should be ok', async () => {
+      const callback = sinon.spy();
+      container.bind(HelloSingleton);
+      container.bind(HelloErrorSingleton);
+      container.bind(HelloErrorInitSingleton);
+
+      const arr = await Promise.all([container.getAsync(HelloSingleton),
+        container.getAsync(HelloSingleton), container.getAsync(HelloSingleton)]);
+      const inst0 = <HelloSingleton>arr[0];
+      const inst1 = <HelloSingleton>arr[1];
+      expect(inst0.ts).eq(inst1.ts);
+      expect(inst0.end).eq(inst1.end);
+
+
+      let inst;
+      try {
+        inst = await container.getAsync(HelloErrorSingleton);
+      } catch (e) {
+        callback(e.message);
+      }
+      expect(inst).is.undefined;
+      expect(callback.callCount).eq(1);
+      expect(callback.withArgs('hello singleton error').calledOnce).true;
+
+      try { 
+        inst = await container.getAsync(HelloErrorInitSingleton);
+      } catch (e) {
+        callback(e);
+      }
+      expect(inst).is.undefined;
+      expect(callback.callCount).eq(2);
+      expect(callback.withArgs('this is error').calledOnce).true;
+    });
   });
 
 });

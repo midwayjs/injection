@@ -1,7 +1,7 @@
 /**
  * 管理对象解析构建
  */
-
+import { EventEmitter } from 'events';
 import * as _ from '../../utils/lodashWrap';
 import { KEYS, VALUE_TYPE } from './constants';
 import {
@@ -28,6 +28,8 @@ import { ObjectConfiguration } from '../../base/configuration';
 import { Autowire } from './autowire';
 import { NotFoundError } from '../../utils/errorFactory';
 
+const awaitFirst = require('await-first');
+const SINGLETON_CREATED = '_single_created';
 /**
  * 所有解析器基类
  */
@@ -290,15 +292,18 @@ class ObjectResolver extends BaseManagedResolver {
 /**
  * 解析工厂
  */
-export class ManagedResolverFactory {
+export class ManagedResolverFactory extends EventEmitter {
   private resolvers = new Map<string, IManagedResolver>();
   private _props = null;
+  private creating = new Map<string, boolean>();
   singletonCache = new Map<ObjectIdentifier, any>();
   context: IApplicationContext;
   afterCreateHandler = [];
   beforeCreateHandler = [];
 
   constructor(context: IApplicationContext) {
+    super();
+
     this.context = context;
 
     // 初始化解析器
@@ -450,6 +455,12 @@ export class ManagedResolverFactory {
       return this.singletonCache.get(definition.id);
     }
 
+    let inst = await this.compareAndSetCreating(definition);
+    // 如果非 null 表示已经创建成功
+    if (inst) {
+      return inst;
+    }
+
     // 预先初始化依赖
     if (definition.hasDependsOn()) {
       for (const dep of definition.dependsOn) {
@@ -474,8 +485,9 @@ export class ManagedResolverFactory {
       handler.call(this, Clzz, constructorArgs, this.context);
     }
 
-    const inst = await definition.creator.doConstructAsync(Clzz, constructorArgs);
+    inst = await definition.creator.doConstructAsync(Clzz, constructorArgs);
     if (!inst) {
+      this.removeCreating(definition, false);
       throw new Error(`${definition.id} config no valid path`);
     }
 
@@ -499,6 +511,7 @@ export class ManagedResolverFactory {
             const className = definition.path.name;
             error.updateErrorMsg(className);
           }
+          this.removeCreating(definition, false);
           throw error;
         }
       }
@@ -518,6 +531,7 @@ export class ManagedResolverFactory {
 
     if (definition.isSingletonScope() && definition.id) {
       this.singletonCache.set(definition.id, inst);
+      this.removeCreating(definition, true);
     }
 
     // for request scope
@@ -536,6 +550,7 @@ export class ManagedResolverFactory {
       }
     }
     this.singletonCache.clear();
+    this.creating.clear();
   }
 
   beforeEachCreated(fn: (Clzz: any, constructorArgs: [], context: IApplicationContext) => void) {
@@ -545,5 +560,34 @@ export class ManagedResolverFactory {
   afterEachCreated(fn: (ins: any, context: IApplicationContext, definition?: IObjectDefinition) => void) {
     this.afterCreateHandler.push(fn);
   }
-
+  /**
+   * 判断是否需要等待单例异步初始化
+   * @param definition 单例定义
+   */
+  private async compareAndSetCreating(definition: IObjectDefinition): Promise<any> {
+    if (definition.isSingletonScope() && definition.id) {
+      if (this.creating.has(definition.id)) {
+        const e = await awaitFirst(this, `${definition.id}${SINGLETON_CREATED}`);
+        // 初始化成功
+        if (e.args[0]) {
+          return this.singletonCache.get(definition.id);
+        }
+        return null;
+      }
+      this.creating.set(definition.id, true);
+    }
+    return null;
+  }
+  /**
+   * 触发单例初始化结束事件
+   * @param definition 单例定义
+   * @param success 成功 or 失败
+   */
+  private removeCreating(definition: IObjectDefinition, success: boolean): boolean {
+    if (definition.isSingletonScope() && this.creating.has(definition.id)) {
+      this.creating.delete(definition.id);
+      this.emit(`${definition.id}${SINGLETON_CREATED}`, success);
+    }
+    return true;
+  }
 }
