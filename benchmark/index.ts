@@ -1,9 +1,9 @@
-import { Container, RequestContainer } from '../src';
+import { Container, RequestContainer } from '../dist';
 import { UserService } from './singleton-scope/userService';
 import { UserController } from './singleton-scope/userController';
 
 const Benchmark = require('benchmark');
-const suite = new Benchmark.Suite;
+const suite = new Benchmark.Suite();
 
 const applicationContext = new Container();
 applicationContext.bind(UserService);
@@ -27,4 +27,4 @@ suite
     console.log('Fastest is ' + (<any> this).filter('fastest').map('name'));
   })
   // run async
-  .run({ 'async': true });
+  .run({ async: true });

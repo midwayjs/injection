@@ -1,5 +1,5 @@
 import {UserService} from './userService';
-import {scope, inject, provide, ScopeEnum} from '../../src/';
+import {scope, inject, provide, ScopeEnum} from '../../dist';
 
 @provide()
 @scope(ScopeEnum.Singleton)

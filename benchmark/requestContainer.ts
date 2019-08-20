@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {Container, IContainer} from '../src';
+import {Container, IContainer} from '../dist';
 
 export class RequestContainer extends Container {
 
