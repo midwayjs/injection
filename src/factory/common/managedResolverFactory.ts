@@ -293,9 +293,9 @@ class ObjectResolver extends BaseManagedResolver {
  * 解析工厂
  */
 export class ManagedResolverFactory extends EventEmitter {
-  private resolvers = new Map<string, IManagedResolver>();
+  private resolvers = {};
   private _props = null;
-  private creating = new Map<string, boolean>();
+  private creating = {};
   singletonCache = new Map<ObjectIdentifier, any>();
   context: IApplicationContext;
   afterCreateHandler = [];
@@ -307,15 +307,17 @@ export class ManagedResolverFactory extends EventEmitter {
     this.context = context;
 
     // 初始化解析器
-    this.registerResolver(new JSONResolver(this));
-    this.registerResolver(new ValueResolver(this));
-    this.registerResolver(new ListResolver(this));
-    this.registerResolver(new SetResolver(this));
-    this.registerResolver(new MapResolver(this));
-    this.registerResolver(new PropertiesResolver(this));
-    this.registerResolver(new PropertyResolver(this));
-    this.registerResolver(new ObjectResolver(this));
-    this.registerResolver(new RefResolver(this));
+    this.resolvers = {
+      json: new JSONResolver(this),
+      value: new ValueResolver(this),
+      list: new ListResolver(this),
+      set: new SetResolver(this),
+      map: new MapResolver(this),
+      props: new PropertiesResolver(this),
+      property: new PropertyResolver(this),
+      object: new ObjectResolver(this),
+      ref: new RefResolver(this)
+    };
   }
 
   get props() {
@@ -341,21 +343,23 @@ export class ManagedResolverFactory extends EventEmitter {
   }
 
   registerResolver(resolver: IManagedResolver) {
-    this.resolvers.set(resolver.type, resolver);
+    this.resolvers[resolver.type] = resolver;
   }
 
   resolveManaged(managed: IManagedInstance): any {
-    if (!this.resolvers.has(managed.type)) {
+    const resolver = this.resolvers[managed.type];
+    if (!resolver) {
       throw new Error(`${managed.type} resolver is not exists!`);
     }
-    return this.resolvers.get(managed.type).resolve(managed);
+    return resolver.resolve(managed);
   }
 
   async resolveManagedAsync(managed: IManagedInstance): Promise<any> {
-    if (!this.resolvers.has(managed.type)) {
+    const resolver = this.resolvers[managed.type];
+    if (!resolver) {
       throw new Error(`${managed.type} resolver is not exists!`);
     }
-    return this.resolvers.get(managed.type).resolveAsync(managed);
+    return resolver.resolveAsync(managed);
   }
 
   /**
@@ -550,7 +554,7 @@ export class ManagedResolverFactory extends EventEmitter {
       }
     }
     this.singletonCache.clear();
-    this.creating.clear();
+    this.creating = {};
   }
 
   beforeEachCreated(fn: (Clzz: any, constructorArgs: [], context: IApplicationContext) => void) {
@@ -566,7 +570,7 @@ export class ManagedResolverFactory extends EventEmitter {
    */
   private async compareAndSetCreating(definition: IObjectDefinition): Promise<any> {
     if (definition.isSingletonScope() && definition.id) {
-      if (this.creating.has(definition.id)) {
+      if (this.creating[definition.id]) {
         const e = await awaitFirst(this, `${definition.id}${SINGLETON_CREATED}`);
         // 初始化成功
         if (e.args[0]) {
@@ -574,7 +578,7 @@ export class ManagedResolverFactory extends EventEmitter {
         }
         return null;
       }
-      this.creating.set(definition.id, true);
+      this.creating[definition.id] = true;
     }
     return null;
   }
@@ -584,8 +588,8 @@ export class ManagedResolverFactory extends EventEmitter {
    * @param success 成功 or 失败
    */
   private removeCreating(definition: IObjectDefinition, success: boolean): boolean {
-    if (definition.isSingletonScope() && this.creating.has(definition.id)) {
-      this.creating.delete(definition.id);
+    if (definition.isSingletonScope() && this.creating[definition.id]) {
+      this.creating[definition.id] = false;
       this.emit(`${definition.id}${SINGLETON_CREATED}`, success);
     }
     return true;
