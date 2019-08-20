@@ -5,6 +5,7 @@
   "main": "dist/index",
   "typings": "dist/index.d.ts",
   "scripts": {
+    "build_benchmark": "cd benchmark && midway-bin build -c",
     "build": "npm run lint && midway-bin build -c",
     "lint": "tslint --format prose -c ./tslint.json src/**/*.ts test/**/*.ts",
     "test": "midway-bin test --ts",

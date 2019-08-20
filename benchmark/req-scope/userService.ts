@@ -1,4 +1,4 @@
-import {provide, scope, ScopeEnum} from '../../src/';
+import {provide, scope, ScopeEnum} from '../../dist';
 
 @provide()
 @scope(ScopeEnum.Request)

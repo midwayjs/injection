@@ -12,7 +12,7 @@ const camelcase = require('camelcase');
 const debug = require('debug')(`injection:Container:${process.pid}`);
 
 export class Container extends XmlApplicationContext implements IContainer {
-  id: string = Math.random().toString(36).substr(2).slice(0, 10);
+  id = '';
 
   init(): void {
     super.init();
