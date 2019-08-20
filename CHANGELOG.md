@@ -1,4 +1,10 @@
 
+1.7.0 / 2019-08-20
+==================
+
+  * Merge pull request #27 from midwayjs/singleton_lock
+  * add getAsync singleton lock
+
 1.6.1 / 2019-08-02
 ==================
 

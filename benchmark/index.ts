@@ -23,7 +23,8 @@ suite
     console.log(String(event.target));
   })
   .on('complete', function () {
-    console.log('Fastest is ' + (<any>this).filter('fastest').map('name'));
+    // @ts-ignore
+    console.log('Fastest is ' + (<any> this).filter('fastest').map('name'));
   })
   // run async
   .run({ 'async': true });
