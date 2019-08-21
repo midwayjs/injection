@@ -1,4 +1,12 @@
 
+1.7.1 / 2019-08-21
+==================
+
+  * Merge pull request #28 from midwayjs/performace_improve
+  * add benchmark build
+  * modified benchmark
+  * 优化性能
+
 1.7.0 / 2019-08-20
 ==================
 
