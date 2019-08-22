@@ -63,10 +63,8 @@ container.bind(Ninja);
 container.bind(Katana);
 container.bind(Shuriken);
 
-const reqContainer = new RequestContainer({}, container);
-
 export default async () => {
-  reqContainer.updateContext({});
+  const reqContainer = new RequestContainer({}, container);
   await reqContainer.getAsync<Ninja>('ninja');
 };
 

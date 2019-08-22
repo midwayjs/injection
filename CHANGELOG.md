@@ -1,4 +1,12 @@
 
+1.7.2 / 2019-08-22
+==================
+
+  * Merge pull request #29 from midwayjs/performance
+  * remove co
+  * 优化性能
+  * modified
+
 1.7.1 / 2019-08-21
 ==================
 

@@ -22,12 +22,15 @@ suite
     await applicationContext.getAsync(UserController);
   })
   .add('Container#new', () => {
+    // @ts-ignore
     const a = new Container();
   })
   .add('RequestContainer#new', () => {
+    // @ts-ignore
     const a = new RequestContainer({}, applicationContext);
   })
   .add('InversifyContainer#new', () => {
+    // @ts-ignore
     const a = new InversifyContainer();
   })
   .add('injection instance create', async () => {
