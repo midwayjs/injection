@@ -1,6 +1,9 @@
+import { Container as InversifyContainer } from 'inversify';
 import { Container, RequestContainer } from '../dist';
 import { UserService } from './singleton-scope/userService';
 import { UserController } from './singleton-scope/userController';
+import injectionFn from './fixtures/injection';
+import inversifyFn from './fixtures/inversify';
 
 const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite();
@@ -17,6 +20,21 @@ suite
   })
   .add('Container#get', async () => {
     await applicationContext.getAsync(UserController);
+  })
+  .add('Container#new', () => {
+    const a = new Container();
+  })
+  .add('RequestContainer#new', () => {
+    const a = new RequestContainer({}, applicationContext);
+  })
+  .add('InversifyContainer#new', () => {
+    const a = new InversifyContainer();
+  })
+  .add('injection instance create', async () => {
+    await injectionFn();
+  }).
+  add('inversify instance create', () => {
+    inversifyFn();
   })
   // add listeners
   .on('cycle', function (event) {

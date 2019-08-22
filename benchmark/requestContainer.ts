@@ -4,12 +4,22 @@ import {Container, IContainer} from '../dist';
 export class RequestContainer extends Container {
 
   applicationContext: IContainer;
+  ctx;
 
   constructor(ctx, applicationContext) {
     super();
     this.registerObject('ctx', ctx);
     this.parent = applicationContext;
     this.applicationContext = applicationContext;
+  }
+
+  updateContext(ctx) {
+    this.registry.clearAll();
+    this.ctx = ctx;
+    // register ctx
+    this.registerObject('ctx', ctx);
+    // register contextLogger
+    // this.registerObject('logger', ctx.logger);
   }
 
   get<T>(identifier: any, args?: any) {

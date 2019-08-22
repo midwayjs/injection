@@ -295,7 +295,7 @@ class ObjectResolver extends BaseManagedResolver {
 export class ManagedResolverFactory extends EventEmitter {
   private resolvers = {};
   private _props = null;
-  private creating = {};
+  private creating = new Map<string, boolean>();
   singletonCache = new Map<ObjectIdentifier, any>();
   context: IApplicationContext;
   afterCreateHandler = [];
@@ -477,8 +477,8 @@ export class ManagedResolverFactory extends EventEmitter {
     if (args && _.isArray(args) && args.length > 0) {
       constructorArgs = args;
     } else {
-      constructorArgs = [];
       if (definition.constructorArgs) {
+        constructorArgs = [];
         for (const arg of definition.constructorArgs) {
           constructorArgs.push(await this.resolveManagedAsync(arg));
         }
@@ -554,7 +554,7 @@ export class ManagedResolverFactory extends EventEmitter {
       }
     }
     this.singletonCache.clear();
-    this.creating = {};
+    this.creating.clear();
   }
 
   beforeEachCreated(fn: (Clzz: any, constructorArgs: [], context: IApplicationContext) => void) {
@@ -570,7 +570,7 @@ export class ManagedResolverFactory extends EventEmitter {
    */
   private async compareAndSetCreating(definition: IObjectDefinition): Promise<any> {
     if (definition.isSingletonScope() && definition.id) {
-      if (this.creating[definition.id]) {
+      if (this.creating.has(definition.id)) {
         const e = await awaitFirst(this, `${definition.id}${SINGLETON_CREATED}`);
         // 初始化成功
         if (e.args[0]) {
@@ -578,7 +578,7 @@ export class ManagedResolverFactory extends EventEmitter {
         }
         return null;
       }
-      this.creating[definition.id] = true;
+      this.creating.set(definition.id, true);
     }
     return null;
   }
@@ -588,8 +588,8 @@ export class ManagedResolverFactory extends EventEmitter {
    * @param success 成功 or 失败
    */
   private removeCreating(definition: IObjectDefinition, success: boolean): boolean {
-    if (definition.isSingletonScope() && this.creating[definition.id]) {
-      this.creating[definition.id] = false;
+    if (definition.isSingletonScope() && this.creating.has(definition.id)) {
+      this.creating.set(definition.id, false);
       this.emit(`${definition.id}${SINGLETON_CREATED}`, success);
     }
     return true;
