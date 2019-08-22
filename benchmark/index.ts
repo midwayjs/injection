@@ -1,5 +1,5 @@
 import { Container as InversifyContainer } from 'inversify';
-import { Container, RequestContainer, async } from '../dist';
+import { Container, RequestContainer } from '../dist';
 import { UserService } from './singleton-scope/userService';
 import { UserController } from './singleton-scope/userController';
 import injectionFn from './fixtures/injection';

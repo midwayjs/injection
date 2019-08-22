@@ -137,7 +137,7 @@ export class ObjectConfiguration extends BaseConfiguration {
   }
 
   keys(): ObjectIdentifier[] {
-    return _.keys(this.innerConfig);
+    return Object.keys(this.innerConfig);
   }
 
   get(key: ObjectIdentifier, ...args: any[]): any {
@@ -156,7 +156,7 @@ export class ObjectConfiguration extends BaseConfiguration {
   }
 
   has(key: ObjectIdentifier): boolean {
-    return _.has(this.innerConfig, key);
+    return this.innerConfig[key] !== undefined;
   }
 
   set(key: ObjectIdentifier, value: any): any {
