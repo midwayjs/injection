@@ -1,7 +1,6 @@
 /**
  * 基础的ObjectFactory和ApplicationContext实现
  */
-import { EventEmitter } from 'events';
 import {
   IApplicationContext,
   ILifeCycle,
@@ -97,31 +96,52 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
   }
 }
 
-export class BaseApplicationContext extends EventEmitter implements IApplicationContext, IObjectFactory {
+export class BaseApplicationContext implements IApplicationContext, IObjectFactory {
   protected refreshing = false;
   protected readied = false;
-  protected lifeCycles: ILifeCycle[] = [];
-  protected resolverFactory: ManagedResolverFactory;
-  baseDir: string;
-  registry: IObjectDefinitionRegistry;
-  parent: IApplicationContext;
-  props: ObjectConfiguration = new ObjectConfiguration();
+  protected lifeCycle: ILifeCycle = null;
+  private _resolverFactory: ManagedResolverFactory = null;
+  private _registry: IObjectDefinitionRegistry = null;
+  private _props: ObjectConfiguration = null;
+  private _dependencyMap: Map<string, ObjectDependencyTree> = null;
+  baseDir: string = null;
+  parent: IApplicationContext = null;
   configLocations: string[] = [];
-  messageSource: IMessageSource;
-  dependencyMap: Map<string, ObjectDependencyTree> = new Map();
+  messageSource: IMessageSource = null;
 
   constructor(baseDir = '', parent?: IApplicationContext) {
-    super();
     this.parent = parent;
     this.baseDir = baseDir;
-    this.registry = new ObjectDefinitionRegistry();
-    this.resolverFactory = this.getManagedResolverFactory();
 
     this.init();
   }
 
+  get dependencyMap(): Map<string, ObjectDependencyTree> {
+    if (!this._dependencyMap) {
+      this._dependencyMap = new Map();
+    }
+    return this._dependencyMap;
+  }
+
+  get props(): ObjectConfiguration {
+    if (!this._props) {
+      this._props = new ObjectConfiguration();
+    }
+    return this._props;
+  }
+
+  get registry(): IObjectDefinitionRegistry {
+    if (!this._registry) {
+      this._registry = new ObjectDefinitionRegistry();
+    }
+    return this._registry;
+  }
+
   protected getManagedResolverFactory() {
-    return new ManagedResolverFactory(this);
+    if (!this._resolverFactory) {
+      this._resolverFactory = new ManagedResolverFactory(this);
+    }
+    return this._resolverFactory;
   }
 
   /**
@@ -131,13 +151,18 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
   }
 
   async stop(): Promise<void> {
-    await this.resolverFactory.destroyCache();
+    await this.getManagedResolverFactory().destroyCache();
     this.registry.clearAll();
     this.readied = false;
-    this.emit(ContextEvent.STOP);
+    if (this.lifeCycle && this.lifeCycle.onStop) {
+      await this.lifeCycle.onStop();
+    }
   }
 
   async ready(): Promise<void> {
+    if (this.lifeCycle && this.lifeCycle.onStart) {
+      await this.lifeCycle.onStart();
+    }
     return this.refreshAsync();
   }
 
@@ -146,11 +171,15 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
       return;
     }
     this.refreshing = true;
-    this.emit(ContextEvent.ONREFRESH);
+    if (this.lifeCycle && this.lifeCycle.onRefresh) {
+      await this.lifeCycle.onRefresh();
+    }
     await this.loadDefinitions(this.configLocations);
     this.refreshing = false;
     this.readied = true;
-    this.emit(ContextEvent.READY);
+    if (this.lifeCycle && this.lifeCycle.onReady) {
+      await this.lifeCycle.onReady();
+    }
   }
 
   protected loadDefinitions(configLocations?: string[]): void {
@@ -186,7 +215,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
     if (!definition) {
       throw new NotFoundError(identifier);
     }
-    return this.resolverFactory.create(definition, args);
+    return this.getManagedResolverFactory().create(definition, args);
   }
 
   async getAsync<T>(identifier: ObjectIdentifier, args?: any): Promise<T> {
@@ -204,38 +233,15 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
     if (!definition) {
       throw new NotFoundError(identifier);
     }
-    return this.resolverFactory.createAsync(definition, args);
+    return this.getManagedResolverFactory().createAsync(definition, args);
   }
 
   addLifeCycle(lifeCycle: ILifeCycle): void {
-    this.lifeCycles.push(lifeCycle);
-
-    this.on(ContextEvent.START, lifeCycle.onStart);
-    this.on(ContextEvent.STOP, lifeCycle.onStop);
-    this.on(ContextEvent.READY, lifeCycle.onReady);
-    this.on(ContextEvent.ONREFRESH, lifeCycle.onRefresh);
+    this.lifeCycle = lifeCycle;
   }
 
-  removeLifeCycle(lifeCycle: ILifeCycle): void {
-    let index = this.lifeCycles.indexOf(lifeCycle);
-    if (index === -1) {
-      for (let i = 0; i < this.lifeCycles.length; i++) {
-        if (this.lifeCycles[ i ].key === lifeCycle.key) {
-          index = i;
-          break;
-        }
-      }
-    }
-
-    if (index > -1) {
-      const aa = this.lifeCycles.splice(index, 1);
-      for (const tmp of aa) {
-        this.removeListener(ContextEvent.START, tmp.onStart);
-        this.removeListener(ContextEvent.STOP, tmp.onStop);
-        this.removeListener(ContextEvent.READY, tmp.onReady);
-        this.removeListener(ContextEvent.ONREFRESH, tmp.onRefresh);
-      }
-    }
+  removeLifeCycle(): void {
+    this.lifeCycle = null;
   }
 
   get isReady(): boolean {
@@ -266,7 +272,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
    * @param fn
    */
   afterEachCreated(fn: (ins: any, context: IApplicationContext, definition?: IObjectDefinition) => void) {
-    this.resolverFactory.afterEachCreated(fn);
+    this.getManagedResolverFactory().afterEachCreated(fn);
   }
 
   /**
@@ -274,7 +280,7 @@ export class BaseApplicationContext extends EventEmitter implements IApplication
    * @param fn
    */
   beforeEachCreated(fn: (Clzz: any, constructorArgs: any[], context: IApplicationContext) => void) {
-    this.resolverFactory.beforeEachCreated(fn);
+    this.getManagedResolverFactory().beforeEachCreated(fn);
   }
 
   protected createObjectDependencyTree(identifier, definition) {

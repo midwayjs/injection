@@ -6,10 +6,10 @@ export type Scope = 'Singleton' | 'Request' | 'Prototype';
  */
 export interface ILifeCycle {
   key: string;
-  onStart(): void;
-  onReady(): void;
-  onRefresh(): void;
-  onStop(): void;
+  onStart(): Promise<void>;
+  onReady(): Promise<void>;
+  onRefresh(): Promise<void>;
+  onStop(): Promise<void>;
 }
 
 export type Locale = string;

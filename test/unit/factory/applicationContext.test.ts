@@ -1,5 +1,5 @@
 import { ObjectDefinition } from '../../../src/base/objectDefinition';
-import { ObjectDefinitionRegistry, BaseApplicationContext, ContextEvent } from '../../../src/factory/applicationContext';
+import { ObjectDefinitionRegistry, BaseApplicationContext } from '../../../src/factory/applicationContext';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
 
@@ -48,36 +48,30 @@ describe('/test/unit/factory/ApplicationContext', () => {
     });
   });
   describe('BaseApplicationContext', () => {
-    it('context event should be ok', () => {
+    it('context event should be ok', async () => {
       const callback = sinon.spy();
       const app = new BaseApplicationContext(__dirname);
 
       const listen = {
         key: 'hello world',
-        onStart() {
+        async onStart() {
           callback('onStart');
         },
-        onReady() {
+        async onReady() {
           callback('onReady');
         },
-        onRefresh() {
+        async onRefresh() {
           callback('onRefresh');
         },
-        onStop() {
+        async onStop() {
           callback('onStop');
         }
       };
       app.addLifeCycle(listen);
-      app.emit(ContextEvent.START);
-      app.emit(ContextEvent.READY);
-      app.emit(ContextEvent.ONREFRESH);
-      app.emit(ContextEvent.STOP);
+      await app.ready();
+      await app.stop();
+      app.removeLifeCycle();
 
-      app.removeLifeCycle(listen);
-      app.emit(ContextEvent.START);
-      app.emit(ContextEvent.READY);
-      app.emit(ContextEvent.ONREFRESH);
-      app.emit(ContextEvent.STOP);
 
       expect(callback.callCount).eq(4);
       expect(callback.withArgs('onStart').calledOnce).true;
