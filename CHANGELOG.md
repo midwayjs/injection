@@ -1,4 +1,10 @@
 
+1.7.3 / 2019-08-22
+==================
+
+  * Merge pull request #30 from midwayjs/refactor_for_performance
+  * 性能优化
+
 1.7.2 / 2019-08-22
 ==================
 
