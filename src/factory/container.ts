@@ -3,14 +3,14 @@ import { IContainer, ObjectDefinitionOptions, ObjectIdentifier } from '../interf
 import { OBJ_DEF_CLS, ObjectDefinition, TAGGED, TAGGED_CLS, TAGGED_PROP } from '..';
 import { ManagedReference, ManagedValue } from './common/managed';
 import { FunctionDefinition } from '../base/functionDefinition';
-import { BaseApplicationContext } from './applicationContext';
+import { XmlApplicationContext } from './xml/xmlApplicationContext';
 import { recursiveGetMetadata } from '../utils/reflectTool';
 
 const is = require('is-type-of');
 const camelcase = require('camelcase');
 const debug = require('debug')(`injection:Container:${process.pid}`);
 
-export class Container extends BaseApplicationContext implements IContainer {
+export class Container extends XmlApplicationContext implements IContainer {
   id = '';
 
   bind<T>(target: T, options?: ObjectDefinitionOptions): void;
