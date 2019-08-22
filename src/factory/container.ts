@@ -3,21 +3,15 @@ import { IContainer, ObjectDefinitionOptions, ObjectIdentifier } from '../interf
 import { OBJ_DEF_CLS, ObjectDefinition, TAGGED, TAGGED_CLS, TAGGED_PROP } from '..';
 import { ManagedReference, ManagedValue } from './common/managed';
 import { FunctionDefinition } from '../base/functionDefinition';
-import { XmlApplicationContext } from './xml/xmlApplicationContext';
+import { BaseApplicationContext } from './applicationContext';
 import { recursiveGetMetadata } from '../utils/reflectTool';
-import { Autowire } from './common/autowire';
 
 const is = require('is-type-of');
 const camelcase = require('camelcase');
 const debug = require('debug')(`injection:Container:${process.pid}`);
 
-export class Container extends XmlApplicationContext implements IContainer {
+export class Container extends BaseApplicationContext implements IContainer {
   id = '';
-
-  init(): void {
-    super.init();
-    this.registerObjectPropertyParser();
-  }
 
   bind<T>(target: T, options?: ObjectDefinitionOptions): void;
   bind<T>(identifier: ObjectIdentifier, target: T, options?: ObjectDefinitionOptions): void;
@@ -131,14 +125,6 @@ export class Container extends XmlApplicationContext implements IContainer {
 
   createChild(baseDir?: string): IContainer {
     return new Container(baseDir || this.baseDir, this);
-  }
-
-  protected registerObjectPropertyParser() {
-    this.afterEachCreated((instance, context, definition) => {
-      if (definition.isAutowire()) {
-        Autowire.patchNoDollar(instance, context);
-      }
-    });
   }
 
   resolve<T>(target: T): T {
