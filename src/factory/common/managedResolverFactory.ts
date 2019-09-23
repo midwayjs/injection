@@ -459,11 +459,18 @@ export class ManagedResolverFactory extends EventEmitter {
       return this.singletonCache.get(definition.id);
     }
 
-    let inst = await this.compareAndSetCreating(definition);
+    let inst = await this.compareAndSetSingleton(definition);
     // 如果非 null 表示已经创建成功
     if (inst) {
       return inst;
     }
+    // 如果非 null 表示已经创建 proxy
+    inst = this.createProxyReference(definition);
+    if (inst) {
+      return inst;
+    }
+
+    this.compareAndSetCreateStatus(definition);
 
     // 预先初始化依赖
     if (definition.hasDependsOn()) {
@@ -491,7 +498,7 @@ export class ManagedResolverFactory extends EventEmitter {
 
     inst = await definition.creator.doConstructAsync(Clzz, constructorArgs);
     if (!inst) {
-      this.removeCreating(definition, false);
+      this.removeCreateStatus(definition, false);
       throw new Error(`${definition.id} config no valid path`);
     }
 
@@ -515,7 +522,7 @@ export class ManagedResolverFactory extends EventEmitter {
             const className = definition.path.name;
             error.updateErrorMsg(className);
           }
-          this.removeCreating(definition, false);
+          this.removeCreateStatus(definition, false);
           throw error;
         }
       }
@@ -535,13 +542,13 @@ export class ManagedResolverFactory extends EventEmitter {
 
     if (definition.isSingletonScope() && definition.id) {
       this.singletonCache.set(definition.id, inst);
-      this.removeCreating(definition, true);
     }
 
     // for request scope
     if (definition.isRequestScope() && definition.id) {
       this.context.registry.registerObject(definition.id, inst);
     }
+    this.removeCreateStatus(definition, true);
 
     return inst;
   }
@@ -568,9 +575,9 @@ export class ManagedResolverFactory extends EventEmitter {
    * 判断是否需要等待单例异步初始化
    * @param definition 单例定义
    */
-  private async compareAndSetCreating(definition: IObjectDefinition): Promise<any> {
+  private async compareAndSetSingleton(definition: IObjectDefinition): Promise<any> {
     if (definition.isSingletonScope() && definition.id) {
-      if (this.creating.has(definition.id)) {
+      if (!this.creating.has(definition.id) || this.creating.get(definition.id)) {
         const e = await awaitFirst(this, `${definition.id}${SINGLETON_CREATED}`);
         // 初始化成功
         if (e.args[0]) {
@@ -587,11 +594,53 @@ export class ManagedResolverFactory extends EventEmitter {
    * @param definition 单例定义
    * @param success 成功 or 失败
    */
-  private removeCreating(definition: IObjectDefinition, success: boolean): boolean {
-    if (definition.isSingletonScope() && this.creating.has(definition.id)) {
+  private removeCreateStatus(definition: IObjectDefinition, success: boolean): boolean {
+    const needEmit = this.creating.has(definition.id);
+    // 如果map中存在表示需要设置状态
+    if (needEmit) {
       this.creating.set(definition.id, false);
+    }
+    // 如果是单例切map中存在，则需要事件触发一下
+    if (definition.isSingletonScope() && needEmit) {
       this.emit(`${definition.id}${SINGLETON_CREATED}`, success);
     }
     return true;
+  }
+
+  private isCreating(definition: IObjectDefinition) {
+    return this.creating.has(definition.id) && this.creating.get(definition.id);
+  }
+
+  private compareAndSetCreateStatus(definition: IObjectDefinition) {
+    if (definition.isSingletonScope()) {
+      return;
+    }
+    if (!this.creating.has(definition.id) || !this.creating.get(definition.id)) {
+      this.creating.set(definition.id, true);
+    }
+  }
+  /**
+   * 创建对象定义的代理访问逻辑
+   * @param definition 对象定义
+   */
+  private createProxyReference(definition: IObjectDefinition): any {
+    if (!definition.isSingletonScope() && this.isCreating(definition)) {
+      // 创建代理对象
+      return new Proxy({}, {
+        get: (obj, prop) => {
+          let target;
+          if (definition.isRequestScope()) {
+            target = this.context.registry.getObject(definition.id);
+          } else {
+            target = this.context.get(definition.id);
+          }
+          if (typeof target[prop] === 'function') {
+            return target[prop].bind(target);
+          }
+          return target[prop];
+        }
+      });
+    }
+    return null;
   }
 }

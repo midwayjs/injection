@@ -14,7 +14,7 @@ export class HelloSingleton {
       setTimeout(() => {
         this.end = Date.now();
         resolve();
-      }, 1000);
+      }, 500);
     });
   }
 }
@@ -29,7 +29,7 @@ export class HelloErrorSingleton {
   @init()
   async doinit(): Promise<true> {
     return new Promise(resolve => {
-      setTimeout(resolve, 1000);
+      setTimeout(resolve, 600);
     });
   }
 }
@@ -42,7 +42,7 @@ export class HelloErrorInitSingleton {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         reject('this is error');
-      }, 1000);
+      }, 800);
     });
   }
 }

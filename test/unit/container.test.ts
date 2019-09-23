@@ -269,10 +269,20 @@ describe('/test/unit/container.test.ts', () => {
       container.bind(HelloErrorSingleton);
       container.bind(HelloErrorInitSingleton);
 
+      const later = async () => {
+        return new Promise(resolve => {
+          setTimeout(async () => {
+            resolve(await Promise.all([
+              container.getAsync(HelloSingleton), container.getAsync(HelloSingleton)
+            ]));
+          }, 90);
+        });
+      };
+
       const arr = await Promise.all([container.getAsync(HelloSingleton),
-        container.getAsync(HelloSingleton), container.getAsync(HelloSingleton)]);
+        container.getAsync(HelloSingleton), container.getAsync(HelloSingleton), later()]);
       const inst0 = <HelloSingleton>arr[0];
-      const inst1 = <HelloSingleton>arr[1];
+      const inst1 = <HelloSingleton>arr[3][0];
       expect(inst0.ts).eq(inst1.ts);
       expect(inst0.end).eq(inst1.end);
 
