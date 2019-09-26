@@ -329,7 +329,7 @@ describe('/test/unit/container.test.ts', () => {
       expect(circularTwo.ts).eq((<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).ts);
       expect(circularTwo.ttest2('try ttest2')).eq('try ttest2twoone');
       expect(await circularTwo.ctest2('try ttest2')).eq('try ttest2twoone');
-
+      expect(await (<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).ctest2('try ttest2')).eq('try ttest2twoone');
 
       const circularTwoSync: CircularTwo = container.get(CircularTwo);
       const circularOneSync: CircularOne = container.get(CircularOne);
