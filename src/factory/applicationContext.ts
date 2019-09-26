@@ -28,7 +28,7 @@ const PREFIX = '_id_default_';
 // const CWD = process.cwd();
 
 export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRegistry {
-  private _singletonIds = [];
+  private singletonIds = [];
 
   get identifiers() {
     const ids = [];
@@ -45,7 +45,7 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
   }
 
   getSingletonDefinitionIds(): ObjectIdentifier[] {
-    return this._singletonIds;
+    return this.singletonIds;
   }
 
   getDefinitionByName(name: string): IObjectDefinition[] {
@@ -61,7 +61,7 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
 
   registerDefinition(identifier: ObjectIdentifier, definition: IObjectDefinition) {
     if (definition.isSingletonScope()) {
-      this._singletonIds.push(identifier);
+      this.singletonIds.push(identifier);
     }
     this.set(identifier, definition);
   }
