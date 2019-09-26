@@ -52,8 +52,10 @@ describe('/test/unit/base/objectCreator', () => {
 
     try {
       creator.doInit({
-        async say(a) {
-          return a;
+        say(a) {
+          return new Promise(resolve => {
+            resolve(a);
+          });
         }
       });
     } catch (e) {
