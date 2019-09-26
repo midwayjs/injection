@@ -372,7 +372,13 @@ export class ManagedResolverFactory extends EventEmitter {
       this.singletonCache.has(definition.id)) {
       return this.singletonCache.get(definition.id);
     }
+    // 如果非 null 表示已经创建 proxy
+    let inst = this.createProxyReference(definition);
+    if (inst) {
+      return inst;
+    }
 
+    this.compareAndSetCreateStatus(definition);
     // 预先初始化依赖
     if (definition.hasDependsOn()) {
       for (const dep of definition.dependsOn) {
@@ -397,7 +403,7 @@ export class ManagedResolverFactory extends EventEmitter {
       handler.call(this, Clzz, constructorArgs, this.context);
     }
 
-    const inst = definition.creator.doConstruct(Clzz, constructorArgs);
+    inst = definition.creator.doConstruct(Clzz, constructorArgs);
 
     // binding ctx object
     if (definition.isRequestScope() && definition.constructor.name === 'ObjectDefinition') {
@@ -419,6 +425,7 @@ export class ManagedResolverFactory extends EventEmitter {
             const className = definition.path.name;
             error.updateErrorMsg(className);
           }
+          this.removeCreateStatus(definition, true);
           throw error;
         }
       }
@@ -444,6 +451,7 @@ export class ManagedResolverFactory extends EventEmitter {
     if (definition.isRequestScope() && definition.id) {
       this.context.registry.registerObject(definition.id, inst);
     }
+    this.removeCreateStatus(definition, true);
 
     return inst;
   }
@@ -577,7 +585,7 @@ export class ManagedResolverFactory extends EventEmitter {
    */
   private async compareAndSetSingleton(definition: IObjectDefinition): Promise<any> {
     if (definition.isSingletonScope() && definition.id) {
-      if (!this.creating.has(definition.id) || this.creating.get(definition.id)) {
+      if (this.creating.has(definition.id) && this.creating.get(definition.id)) {
         const e = await awaitFirst(this, `${definition.id}${SINGLETON_CREATED}`);
         // 初始化成功
         if (e.args[0]) {
@@ -634,10 +642,15 @@ export class ManagedResolverFactory extends EventEmitter {
           } else {
             target = this.context.get(definition.id);
           }
-          if (typeof target[prop] === 'function') {
-            return target[prop].bind(target);
+
+          if (target) {
+            if (typeof target[prop] === 'function') {
+              return target[prop].bind(target);
+            }
+            return target[prop];
           }
-          return target[prop];
+
+          return undefined;
         }
       });
     }

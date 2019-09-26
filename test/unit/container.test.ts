@@ -23,6 +23,7 @@ import { BMWX1, Car, Electricity, Gas, Tesla, Turbo } from '../fixtures/class_sa
 import { childAsyncFunction, childFunction, testInjectAsyncFunction, testInjectFunction } from '../fixtures/fun_sample';
 import { DieselCar, DieselEngine, engineFactory, PetrolEngine } from '../fixtures/mix_sample';
 import { HelloSingleton, HelloErrorInitSingleton, HelloErrorSingleton } from '../fixtures/singleton_sample';
+import { CircularOne, CircularTwo, CircularThree } from '../fixtures/circular_dependency';
 import * as path from 'path';
 
 describe('/test/unit/container.test.ts', () => {
@@ -308,4 +309,35 @@ describe('/test/unit/container.test.ts', () => {
     });
   });
 
+  describe('circular dependency', () => {
+    const container = new Container();
+
+    it('circular should be ok', async () => {
+      container.registerObject('ctx', {});
+
+      container.bind(CircularOne);
+      container.bind(CircularTwo);
+      container.bind(CircularThree);
+
+      const circularTwo: CircularTwo = await container.getAsync(CircularTwo);
+      const circularThree: CircularThree = await container.getAsync(CircularThree);
+
+      expect(circularTwo.test2).eq('this is two');
+      expect((<CircularOne>circularTwo.circularOne).test1).eq('this is one');
+      expect((<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).test2).eq('this is two');
+      expect(circularThree.circularTwo.test2).eq('this is two');
+      expect(circularTwo.ts).eq((<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).ts);
+      expect(circularTwo.ttest2('try ttest2')).eq('try ttest2twoone');
+      expect(await circularTwo.ctest2('try ttest2')).eq('try ttest2twoone');
+
+
+      const circularTwoSync: CircularTwo = container.get(CircularTwo);
+      const circularOneSync: CircularOne = container.get(CircularOne);
+
+      expect(circularTwoSync.test2).eq('this is two');
+      expect(circularOneSync.test1).eq('this is one');
+      expect(circularTwoSync.ttest2('try ttest2')).eq('try ttest2twoone');
+      expect(await circularTwoSync.ctest2('try ttest2')).eq('try ttest2twoone');
+    });
+  });
 });
