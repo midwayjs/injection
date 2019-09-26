@@ -150,5 +150,19 @@ describe('/test/unit/factory/common/ManagedResolverFactory', () => {
     const map = new Map();
     map.set('hello', 1111);
     expect(res.firstMap).deep.eq(map);
+
+
+    const res1 = resolver.resolveManaged(obj);
+    expect(res1).is.a('object');
+    expect(res1.first).eq(123);
+    expect(res1.firstList).is.a('array');
+    expect(res1.firstList).deep.eq([1234]);
+    expect(res1.firstSet).is.a('set');
+    const set1 = new Set();
+    set1.add(123451);
+    expect(res1.firstSet).deep.eq(set1);
+    const map1 = new Map();
+    map1.set('hello', 1111);
+    expect(res1.firstMap).deep.eq(map1);
   });
 });
