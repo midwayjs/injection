@@ -73,6 +73,7 @@ export interface IObjectDefinitionRegistry {
   readonly identifiers: ObjectIdentifier[];
   readonly count: number;
   registerDefinition(identifier: ObjectIdentifier, definition: IObjectDefinition);
+  getSingletonDefinitionIds(): ObjectIdentifier[];
   getDefinition(identifier: ObjectIdentifier): IObjectDefinition;
   getDefinitionByPath(path: string): IObjectDefinition;
   getDefinitionByName(name: string): IObjectDefinition[];

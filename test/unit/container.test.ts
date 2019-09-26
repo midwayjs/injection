@@ -1,6 +1,5 @@
 import { Container } from '../../src/index';
 import { expect } from 'chai';
-import * as sinon from 'sinon';
 import {
   Grandson,
   Child,
@@ -265,10 +264,11 @@ describe('/test/unit/container.test.ts', () => {
     const container = new Container();
 
     it('singleton lock should be ok', async () => {
-      const callback = sinon.spy();
       container.bind(HelloSingleton);
       container.bind(HelloErrorSingleton);
       container.bind(HelloErrorInitSingleton);
+      
+      await container.ready();
 
       const later = async () => {
         return new Promise(resolve => {
@@ -288,24 +288,15 @@ describe('/test/unit/container.test.ts', () => {
       expect(inst0.end).eq(inst1.end);
 
 
-      let inst;
-      try {
-        inst = await container.getAsync(HelloErrorSingleton);
-      } catch (e) {
-        callback(e.message);
-      }
-      expect(inst).is.undefined;
-      expect(callback.callCount).eq(1);
-      expect(callback.withArgs('hello singleton error').calledOnce).true;
+      const inst: HelloErrorSingleton = await container.getAsync(HelloErrorSingleton);
+      const inst2: HelloErrorInitSingleton = await container.getAsync(HelloErrorInitSingleton);
 
-      try { 
-        inst = await container.getAsync(HelloErrorInitSingleton);
-      } catch (e) {
-        callback(e);
-      }
-      expect(inst).is.undefined;
-      expect(callback.callCount).eq(2);
-      expect(callback.withArgs('this is error').calledOnce).true;
+      expect(inst).is.a('object');
+      expect(inst2).is.a('object');
+      expect(inst.ts).eq(inst2.helloErrorSingleton.ts);
+      expect(inst.end).eq(inst2.helloErrorSingleton.end);
+      expect(inst2.ts).eq(inst.helloErrorInitSingleton.ts);
+      expect(inst2.end).eq(inst.helloErrorInitSingleton.end);
     });
   });
 

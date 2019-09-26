@@ -50,7 +50,6 @@
     "xmldom": "^0.1.27"
   },
   "dependencies": {
-    "await-first": "^1.0.0",
     "camelcase": "^5.0.0",
     "debug": "^4.1.1",
     "is-type-of": "^1.2.1",
