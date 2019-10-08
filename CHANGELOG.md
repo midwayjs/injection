@@ -1,4 +1,12 @@
 
+1.7.7 / 2019-10-08
+==================
+
+  * fix: revert co module (#34)
+  * fix: revert co module
+  * docs: fix returnType of contextHandler (#32)
+  * docs: fix returnType of contextHandler
+
 1.7.6 / 2019-08-30
 ==================
 
