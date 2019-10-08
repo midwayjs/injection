@@ -445,7 +445,7 @@ providerWrapper([
 export class BaseService {
 
   @inject()
-  contextHandler: () => boolean;
+  contextHandler: () => Promise<boolean>;
 
 }
 ```
