@@ -1,4 +1,21 @@
 
+1.8.0 / 2019-12-16
+==================
+
+  * 解决循环引用问题以及提升测试覆盖率 (#33)
+  * remove 8
+  * add 12 and remove 9
+  * cnpm -> npm
+  * fix test case
+  * add co dep
+  * modified
+  * modified test case
+  * add test case
+  * refactor singleton init mode
+  * add test case
+  * add circular dependency support
+  * 循环依赖性处理
+
 1.7.7 / 2019-10-08
 ==================
 
