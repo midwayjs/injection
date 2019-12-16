@@ -1,7 +1,8 @@
 import { BaseManagedResolver, ManagedResolverFactory } from '../../../../src/factory/common/managedResolverFactory';
 import { BaseApplicationContext } from '../../../../src/factory/applicationContext';
+import { ObjectDefinition } from '../../../../src/base/objectDefinition';
 import {expect} from 'chai';
-import { ManagedProperties, ManagedValue, ManagedJSON } from '../../../../src/factory/common/managed';
+import { ManagedProperties, ManagedValue, ManagedJSON, ManagedObject, ManagedProperty, ManagedList, ManagedSet, ManagedMap } from '../../../../src/factory/common/managed';
 import { VALUE_TYPE } from '../../../../src/factory/common/constants';
 import { ObjectConfiguration } from '../../../../src/base/configuration';
 
@@ -88,5 +89,80 @@ describe('/test/unit/factory/common/ManagedResolverFactory', () => {
     expect(v2).eq(1234);
 
     expect(b).false;
+  });
+
+  it('resolve object should be ok', async () => {
+    const obj = new ManagedObject();
+    obj.definition = new ObjectDefinition();
+    const prop1 = new ManagedProperty();
+    prop1.valueType = VALUE_TYPE.MANAGED;
+    prop1.name = 'first';
+    const mpv1 = new ManagedValue();
+    mpv1.value = '123';
+    mpv1.valueType = VALUE_TYPE.NUMBER;
+    prop1.value = mpv1;
+    obj.definition.properties.addProperty(prop1.name, prop1);
+
+    const prop2 = new ManagedProperty();
+    prop2.valueType = VALUE_TYPE.MANAGED;
+    prop2.name = 'firstList';
+    const mpv2 = new ManagedList();
+    const lv1 = new ManagedValue();
+    lv1.value = '1234';
+    lv1.valueType = VALUE_TYPE.NUMBER;
+    mpv2.push(lv1)
+    prop2.value = mpv2;
+    obj.definition.properties.addProperty(prop2.name, prop2);
+
+    const prop3 = new ManagedProperty();
+    prop3.valueType = VALUE_TYPE.MANAGED;
+    prop3.name = 'firstSet';
+    const mpv3 = new ManagedSet();
+    const lv2 = new ManagedValue();
+    lv2.value = '123451';
+    lv2.valueType = VALUE_TYPE.NUMBER;
+    mpv3.add(lv2)
+    prop3.value = mpv3;
+    obj.definition.properties.addProperty(prop3.name, prop3);
+
+    const prop4 = new ManagedProperty();
+    prop4.valueType = VALUE_TYPE.MANAGED;
+    prop4.name = 'firstMap';
+    const mpv4 = new ManagedMap();
+    const lv3 = new ManagedValue();
+    lv3.value = '1111';
+    lv3.valueType = VALUE_TYPE.NUMBER;
+    mpv4.set('hello', lv3);
+    prop4.value = mpv4;
+    obj.definition.properties.addProperty(prop4.name, prop4);
+
+    const context = new BaseApplicationContext();
+    const resolver = new ManagedResolverFactory(context);
+    const res = await resolver.resolveManagedAsync(obj);
+    expect(res).is.a('object');
+    expect(res.first).eq(123);
+    expect(res.firstList).is.a('array');
+    expect(res.firstList).deep.eq([1234]);
+    expect(res.firstSet).is.a('set');
+    const set = new Set();
+    set.add(123451);
+    expect(res.firstSet).deep.eq(set);
+    const map = new Map();
+    map.set('hello', 1111);
+    expect(res.firstMap).deep.eq(map);
+
+
+    const res1 = resolver.resolveManaged(obj);
+    expect(res1).is.a('object');
+    expect(res1.first).eq(123);
+    expect(res1.firstList).is.a('array');
+    expect(res1.firstList).deep.eq([1234]);
+    expect(res1.firstSet).is.a('set');
+    const set1 = new Set();
+    set1.add(123451);
+    expect(res1.firstSet).deep.eq(set1);
+    const map1 = new Map();
+    map1.set('hello', 1111);
+    expect(res1.firstMap).deep.eq(map1);
   });
 });

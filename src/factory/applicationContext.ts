@@ -28,6 +28,8 @@ const PREFIX = '_id_default_';
 // const CWD = process.cwd();
 
 export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRegistry {
+  private singletonIds = [];
+
   get identifiers() {
     const ids = [];
     for (const key of this.keys()) {
@@ -42,6 +44,10 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
     return this.size;
   }
 
+  getSingletonDefinitionIds(): ObjectIdentifier[] {
+    return this.singletonIds;
+  }
+
   getDefinitionByName(name: string): IObjectDefinition[] {
     const definitions = [];
     for (const v of this.values()) {
@@ -54,6 +60,9 @@ export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRe
   }
 
   registerDefinition(identifier: ObjectIdentifier, definition: IObjectDefinition) {
+    if (definition.isSingletonScope()) {
+      this.singletonIds.push(identifier);
+    }
     this.set(identifier, definition);
   }
 
@@ -163,7 +172,11 @@ export class BaseApplicationContext implements IApplicationContext, IObjectFacto
     if (this.lifeCycle && this.lifeCycle.onStart) {
       await this.lifeCycle.onStart();
     }
-    return this.refreshAsync();
+    await this.refreshAsync();
+    const ids = this.registry.getSingletonDefinitionIds();
+    for (const id of ids) {
+      await this.getAsync(id);
+    }
   }
 
   async refreshAsync(): Promise<void> {

@@ -1,6 +1,5 @@
 import { Container } from '../../src/index';
 import { expect } from 'chai';
-import * as sinon from 'sinon';
 import {
   Grandson,
   Child,
@@ -23,6 +22,7 @@ import { BMWX1, Car, Electricity, Gas, Tesla, Turbo } from '../fixtures/class_sa
 import { childAsyncFunction, childFunction, testInjectAsyncFunction, testInjectFunction } from '../fixtures/fun_sample';
 import { DieselCar, DieselEngine, engineFactory, PetrolEngine } from '../fixtures/mix_sample';
 import { HelloSingleton, HelloErrorInitSingleton, HelloErrorSingleton } from '../fixtures/singleton_sample';
+import { CircularOne, CircularTwo, CircularThree } from '../fixtures/circular_dependency';
 import * as path from 'path';
 
 describe('/test/unit/container.test.ts', () => {
@@ -38,8 +38,14 @@ describe('/test/unit/container.test.ts', () => {
   it('Should have an unique identifier', () => {
     const container1 = new Container();
     container1.id = Math.random().toString(36).substr(2).slice(0, 10);
+    if (container1.id.length < 10) {
+      container1.id += '1';
+    }
     const container2 = new Container();
     container2.id = Math.random().toString(36).substr(2).slice(0, 10);
+    if (container2.id.length < 10) {
+      container2.id += '1';
+    }
     expect(container1.id.length).eql(10);
     expect(container2.id.length).eql(10);
     expect(container1.id).not.eql(container2.id);
@@ -264,38 +270,71 @@ describe('/test/unit/container.test.ts', () => {
     const container = new Container();
 
     it('singleton lock should be ok', async () => {
-      const callback = sinon.spy();
       container.bind(HelloSingleton);
       container.bind(HelloErrorSingleton);
       container.bind(HelloErrorInitSingleton);
+      
+      await container.ready();
+
+      const later = async () => {
+        return new Promise(resolve => {
+          setTimeout(async () => {
+            resolve(await Promise.all([
+              container.getAsync(HelloSingleton), container.getAsync(HelloSingleton)
+            ]));
+          }, 90);
+        });
+      };
 
       const arr = await Promise.all([container.getAsync(HelloSingleton),
-        container.getAsync(HelloSingleton), container.getAsync(HelloSingleton)]);
+        container.getAsync(HelloSingleton), container.getAsync(HelloSingleton), later()]);
       const inst0 = <HelloSingleton>arr[0];
-      const inst1 = <HelloSingleton>arr[1];
+      const inst1 = <HelloSingleton>arr[3][0];
       expect(inst0.ts).eq(inst1.ts);
       expect(inst0.end).eq(inst1.end);
 
 
-      let inst;
-      try {
-        inst = await container.getAsync(HelloErrorSingleton);
-      } catch (e) {
-        callback(e.message);
-      }
-      expect(inst).is.undefined;
-      expect(callback.callCount).eq(1);
-      expect(callback.withArgs('hello singleton error').calledOnce).true;
+      const inst: HelloErrorSingleton = await container.getAsync(HelloErrorSingleton);
+      const inst2: HelloErrorInitSingleton = await container.getAsync(HelloErrorInitSingleton);
 
-      try { 
-        inst = await container.getAsync(HelloErrorInitSingleton);
-      } catch (e) {
-        callback(e);
-      }
-      expect(inst).is.undefined;
-      expect(callback.callCount).eq(2);
-      expect(callback.withArgs('this is error').calledOnce).true;
+      expect(inst).is.a('object');
+      expect(inst2).is.a('object');
+      expect(inst.ts).eq(inst2.helloErrorSingleton.ts);
+      expect(inst.end).eq(inst2.helloErrorSingleton.end);
+      expect(inst2.ts).eq(inst.helloErrorInitSingleton.ts);
+      expect(inst2.end).eq(inst.helloErrorInitSingleton.end);
     });
   });
 
+  describe('circular dependency', () => {
+    const container = new Container();
+
+    it('circular should be ok', async () => {
+      container.registerObject('ctx', {});
+
+      container.bind(CircularOne);
+      container.bind(CircularTwo);
+      container.bind(CircularThree);
+
+      const circularTwo: CircularTwo = await container.getAsync(CircularTwo);
+      const circularThree: CircularThree = await container.getAsync(CircularThree);
+
+      expect(circularTwo.test2).eq('this is two');
+      expect((<CircularOne>circularTwo.circularOne).test1).eq('this is one');
+      expect((<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).test2).eq('this is two');
+      expect(circularThree.circularTwo.test2).eq('this is two');
+      expect(circularTwo.ts).eq((<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).ts);
+      expect(circularTwo.ttest2('try ttest2')).eq('try ttest2twoone');
+      expect(await circularTwo.ctest2('try ttest2')).eq('try ttest2twoone');
+      expect(await (<CircularTwo>(<CircularOne>circularTwo.circularOne).circularTwo).ctest2('try ttest2')).eq('try ttest2twoone');
+
+      const circularTwoSync: CircularTwo = container.get(CircularTwo);
+      const circularOneSync: CircularOne = container.get(CircularOne);
+
+      expect(circularTwoSync.test2).eq('this is two');
+      expect(circularOneSync.test1).eq('this is one');
+      expect(circularTwoSync.ttest2('try ttest2')).eq('try ttest2twoone');
+      expect(await circularTwoSync.ctest2('try ttest2')).eq('try ttest2twoone');
+    });
+  });
 });

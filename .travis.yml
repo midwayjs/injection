@@ -1,19 +1,18 @@
 language: node_js
 node_js:
-  - "8"
-  - "9"
   - "10"
+  - "12"
+  - "13"
 install:
-  - npm i cnpm -g
-  - cnpm i
-  - cnpm i codecov
+  - npm i
+  - npm i codecov
 before_script:
   - npm run build
 script:
   - npm run cov
 after_script:
   - codecov
-  - test $TRAVIS_NODE_VERSION = 8 && travis_wait scripts/deploy.sh
+  - test $TRAVIS_NODE_VERSION = 10 && travis_wait scripts/deploy.sh
 env:
   global:
   - ENCRYPTION_LABEL: c041da81e3e9
