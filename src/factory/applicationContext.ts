@@ -15,7 +15,7 @@ import { ObjectConfiguration } from '../base/configuration';
 import { ManagedResolverFactory } from './common/managedResolverFactory';
 import { NotFoundError } from '../utils/errorFactory';
 
-import * as assert from 'assert';
+import assert = require('assert');
 
 export const ContextEvent = {
   START: 'start',
@@ -25,7 +25,6 @@ export const ContextEvent = {
 };
 
 const PREFIX = '_id_default_';
-// const CWD = process.cwd();
 
 export class ObjectDefinitionRegistry extends Map implements IObjectDefinitionRegistry {
   private singletonIds = [];
@@ -173,10 +172,6 @@ export class BaseApplicationContext implements IApplicationContext, IObjectFacto
       await this.lifeCycle.onStart();
     }
     await this.refreshAsync();
-    const ids = this.registry.getSingletonDefinitionIds();
-    for (const id of ids) {
-      await this.getAsync(id);
-    }
   }
 
   async refreshAsync(): Promise<void> {
@@ -246,6 +241,7 @@ export class BaseApplicationContext implements IApplicationContext, IObjectFacto
     if (!definition) {
       throw new NotFoundError(identifier);
     }
+
     return this.getManagedResolverFactory().createAsync(definition, args);
   }
 

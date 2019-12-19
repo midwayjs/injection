@@ -294,8 +294,12 @@ describe('/test/unit/container.test.ts', () => {
       expect(inst0.end).eq(inst1.end);
 
 
-      const inst: HelloErrorSingleton = await container.getAsync(HelloErrorSingleton);
-      const inst2: HelloErrorInitSingleton = await container.getAsync(HelloErrorInitSingleton);
+      const arr1 = await Promise.all([
+        container.getAsync(HelloErrorSingleton),
+        container.getAsync(HelloErrorInitSingleton)
+      ]);
+      const inst: HelloErrorSingleton = <HelloErrorSingleton>arr1[0];
+      const inst2: HelloErrorInitSingleton = <HelloErrorInitSingleton>arr1[1];
 
       expect(inst).is.a('object');
       expect(inst2).is.a('object');
