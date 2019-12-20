@@ -1,4 +1,10 @@
 
+1.8.1 / 2019-12-20
+==================
+
+  * remove singleton ready init (#36)
+  * remove singleton ready init
+
 1.8.0 / 2019-12-16
 ==================
 
