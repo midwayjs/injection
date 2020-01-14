@@ -242,18 +242,7 @@ export class BaseApplicationContext implements IApplicationContext, IObjectFacto
       throw new NotFoundError(identifier);
     }
 
-    const inst = await this.getManagedResolverFactory().createAsync(definition, args);
-
-    if (this.getManagedResolverFactory().isCreating(definition)) {
-      // TODO
-      if (inst.__is_proxy__) {
-        return new Promise(resolve => {
-          resolve(inst);
-        });
-      }
-    }
-
-    return inst;
+    return this.getManagedResolverFactory().createAsync(definition, args);
   }
 
   addLifeCycle(lifeCycle: ILifeCycle): void {
