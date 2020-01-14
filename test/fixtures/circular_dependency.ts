@@ -4,8 +4,10 @@ import { ScopeEnum } from '../../src';
 @provide()
 @scope(ScopeEnum.Request)
 export class CircularTwo {
-  constructor() {
+  public ooo;
+  constructor(@inject() circularOne: any) {
     this.ts = Date.now();
+    this.ooo = circularOne;
   }
   @inject()
   public circularOne: any;

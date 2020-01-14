@@ -582,7 +582,7 @@ export class ManagedResolverFactory {
     return true;
   }
 
-  private isCreating(definition: IObjectDefinition) {
+  public isCreating(definition: IObjectDefinition) {
     return this.creating.has(definition.id) && this.creating.get(definition.id);
   }
 
@@ -597,8 +597,12 @@ export class ManagedResolverFactory {
    */
   private createProxyReference(definition: IObjectDefinition): any {
     if (this.isCreating(definition)) {
+      // 非循环依赖的允许重新创建对象
+      if (!this.depthFirstSearch(definition.id, definition)) {
+        return null;
+      }
       // 创建代理对象
-      return new Proxy({}, {
+      return new Proxy({ __is_proxy__: true }, {
         get: (obj, prop) => {
           let target;
           if (definition.isRequestScope()) {
@@ -621,5 +625,27 @@ export class ManagedResolverFactory {
       });
     }
     return null;
+  }
+  /**
+   * 遍历依赖树判断是否循环依赖
+   * @param identifier 目标id
+   * @param definition 定义描述
+   */
+  public depthFirstSearch(identifier: string, definition: IObjectDefinition): boolean {
+    const args = definition.constructorArgs.map(val => (val as ManagedReference).name);
+    if (args.indexOf(identifier) > -1) {
+      return true;
+    }
+    const keys = definition.properties.keys();
+    if (keys.indexOf(identifier) > -1) {
+      return true;
+    }
+    for (const key of keys) {
+      const subDefinition = this.context.registry.getDefinition(key);
+      if (this.depthFirstSearch(identifier, subDefinition)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
