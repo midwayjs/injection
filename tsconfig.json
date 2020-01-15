@@ -13,7 +13,7 @@
     "pretty": true,
     "declaration": true,
     "outDir": "dist",
-    "lib": ["es2017", "dom"]
+    "lib": ["ES2018", "dom"]
   },
   "exclude": [
     "dist",

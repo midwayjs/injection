@@ -34,7 +34,7 @@ Node.js >= 10.0.0 required.
     "pretty": true,
     "declaration": true,
     "outDir": "dist",
-    "lib": ["es2017", "dom"]
+    "lib": ["ES2018", "dom"]
   }
 }
 ```
