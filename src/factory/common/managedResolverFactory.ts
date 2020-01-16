@@ -632,18 +632,24 @@ export class ManagedResolverFactory {
    * @param definition 定义描述
    */
   public depthFirstSearch(identifier: string, definition: IObjectDefinition): boolean {
-    const args = definition.constructorArgs.map(val => (val as ManagedReference).name);
-    if (args.indexOf(identifier) > -1) {
-      return true;
-    }
-    const keys = definition.properties.keys();
-    if (keys.indexOf(identifier) > -1) {
-      return true;
-    }
-    for (const key of keys) {
-      const subDefinition = this.context.registry.getDefinition(key);
-      if (this.depthFirstSearch(identifier, subDefinition)) {
-        return true;
+    if (definition) {
+      if (definition.constructorArgs) {
+        const args = definition.constructorArgs.map(val => (val as ManagedReference).name);
+        if (args.indexOf(identifier) > -1) {
+          return true;
+        }
+      }
+      if (definition.properties) {
+        const keys = definition.properties.keys();
+        if (keys.indexOf(identifier) > -1) {
+          return true;
+        }
+        for (const key of keys) {
+          const subDefinition = this.context.registry.getDefinition(key);
+          if (this.depthFirstSearch(identifier, subDefinition)) {
+            return true;
+          }
+        }
       }
     }
     return false;
