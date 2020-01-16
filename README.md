@@ -15,20 +15,26 @@ Injection is a powerful inversion of control container that is widely used in th
 $ npm install injection reflect-metadata --save
 ```
 
-Node.js >= 8.0.0 required.
+Node.js >= 10.0.0 required.
 
 > Injection requires TypeScript >= 2.0 and the experimentalDecorators, emitDecoratorMetadata, types and lib compilation options in your tsconfig.json file.
 
 ```json
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["es2017", "dom"],
-    "types": ["reflect-metadata"],
+    "target": "ES2018",
     "module": "commonjs",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "inlineSourceMap":true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "stripInternal": true,
+    "pretty": true,
+    "declaration": true,
+    "outDir": "dist",
+    "lib": ["ES2018", "dom"]
   }
 }
 ```

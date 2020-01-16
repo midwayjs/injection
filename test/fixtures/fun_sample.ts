@@ -1,4 +1,4 @@
-import {IApplicationContext} from '../../src';
+import { IApplicationContext, provide, scope, ScopeEnum, init } from '../../src';
 
 export function testInjectFunction(context: IApplicationContext) {
   const child: any = context.get('child');
@@ -11,17 +11,6 @@ export function childFunction() {
     b: 2
   };
 }
-
-// providerWrapper([
-//   {
-//     id: 'parentAsync',
-//     provider: testInjectAsyncFunction
-//   },
-//   {
-//     id: 'childAsync',
-//     provider: childAsyncFunction
-//   }
-// ]);
 
 export async function testInjectAsyncFunction(context: IApplicationContext) {
   const child: any = await context.getAsync('childAsync');
@@ -39,22 +28,29 @@ export async function childAsyncFunction(context: IApplicationContext) {
   });
 }
 
-// class AdapterFactory {
-//
-//   @inject()
-//   factory: (context) => adapter;
-//
-//   async get(name) {
-//     if(name === 'aone') {
-//       return context.get('aoneAdapter');
-//     } else if(name === 'labs') {
-//       return context.get('labsAdapter');
-//     }
-//   }
-// }
-//
-// export function(seq) {
-//   return seq.define({
-//
-//   });
-// }
+@provide()
+@scope(ScopeEnum.Singleton)
+export class AliSingleton {
+  getInstance() {
+    return 'alisingleton';
+  }
+
+  @init()
+  async test() {
+    return new Promise(resolve => {
+      setTimeout(resolve, 100);
+    });
+  }
+}
+
+export async function singletonFactory(context: IApplicationContext) {
+  const inst = await context.getAsync('aliSingleton');
+  return (inst as AliSingleton).getInstance();
+}
+
+export async function singletonFactory2(context: IApplicationContext) {
+  return async () => {
+    const inst = await context.getAsync('aliSingleton');
+    return (inst as AliSingleton).getInstance();
+  }
+}
