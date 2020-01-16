@@ -1,4 +1,14 @@
 
+1.8.2 / 2020-01-16
+==================
+
+  * fix circular bug and fun bug (#37)
+  * modified
+  * modified readme
+  * modified tsconfig.json
+  * remove code
+  * fix circular bug and fun bug
+
 1.8.1 / 2019-12-20
 ==================
 
