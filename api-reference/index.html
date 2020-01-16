@@ -72,19 +72,25 @@
 				<p>Injection is a powerful inversion of control container that is widely used in the midway framework and brings good user experience. </p>
 				<h2 id="installation">Installation</h2>
 				<pre><code class="language-bash">$ npm install injection reflect-metadata --save</code></pre>
-				<p>Node.js &gt;= 8.0.0 required.</p>
+				<p>Node.js &gt;= 10.0.0 required.</p>
 				<blockquote>
 					<p>Injection requires TypeScript &gt;= 2.0 and the experimentalDecorators, emitDecoratorMetadata, types and lib compilation options in your tsconfig.json file.</p>
 				</blockquote>
 				<pre><code class="language-json">{
   <span class="hljs-attr">"compilerOptions"</span>: {
-    <span class="hljs-attr">"target"</span>: <span class="hljs-string">"ES2017"</span>,
-    <span class="hljs-attr">"lib"</span>: [<span class="hljs-string">"es2017"</span>, <span class="hljs-string">"dom"</span>],
-    <span class="hljs-attr">"types"</span>: [<span class="hljs-string">"reflect-metadata"</span>],
+    <span class="hljs-attr">"target"</span>: <span class="hljs-string">"ES2018"</span>,
     <span class="hljs-attr">"module"</span>: <span class="hljs-string">"commonjs"</span>,
     <span class="hljs-attr">"moduleResolution"</span>: <span class="hljs-string">"node"</span>,
     <span class="hljs-attr">"experimentalDecorators"</span>: <span class="hljs-literal">true</span>,
-    <span class="hljs-attr">"emitDecoratorMetadata"</span>: <span class="hljs-literal">true</span>
+    <span class="hljs-attr">"emitDecoratorMetadata"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"inlineSourceMap"</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"noImplicitThis"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"noUnusedLocals"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"stripInternal"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"pretty"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"declaration"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"outDir"</span>: <span class="hljs-string">"dist"</span>,
+    <span class="hljs-attr">"lib"</span>: [<span class="hljs-string">"ES2018"</span>, <span class="hljs-string">"dom"</span>]
   }
 }</code></pre>
 				<h2 id="getting-started">Getting Started</h2>
