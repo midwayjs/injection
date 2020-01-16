@@ -641,7 +641,10 @@ export class ManagedResolverFactory {
       return true;
     }
     for (const key of keys) {
-      const subDefinition = this.context.registry.getDefinition(key);
+      let subDefinition = this.context.registry.getDefinition(key);
+      if (!subDefinition && this.context.parent) {
+        subDefinition = this.context.parent.registry.getDefinition(key);
+      }
       if (this.depthFirstSearch(identifier, subDefinition)) {
         return true;
       }
