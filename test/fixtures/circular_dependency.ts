@@ -1,5 +1,27 @@
 import {provide, inject, scope} from '../../src/annotation';
 import { ScopeEnum } from '../../src';
+@provide()
+export class TestOne {
+  name = 'one';
+
+  @inject('testTwo')
+  two: any;
+}
+@provide()
+export class TestTwo {
+  name = 'two';
+
+  @inject('testOne')
+  testOne: any;
+}
+@provide()
+export class TestThree {
+  name = 'three';
+
+
+  @inject('testTwo')
+  two: any;
+}
 
 @provide()
 @scope(ScopeEnum.Request)
