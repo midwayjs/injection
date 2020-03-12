@@ -7,8 +7,8 @@
     <meta name="description" content="轻量的 Node.js 应用依赖注入容器">
     
     
-    <link rel="preload" href="/injection/assets/css/0.styles.777fc7db.css" as="style"><link rel="preload" href="/injection/assets/js/app.52701f4c.js" as="script"><link rel="preload" href="/injection/assets/js/6.30566e3a.js" as="script"><link rel="prefetch" href="/injection/assets/js/2.843a87a6.js"><link rel="prefetch" href="/injection/assets/js/3.2a8e224f.js"><link rel="prefetch" href="/injection/assets/js/4.cb026cc2.js"><link rel="prefetch" href="/injection/assets/js/5.3d8605a9.js"><link rel="prefetch" href="/injection/assets/js/7.2ca1a980.js">
-    <link rel="stylesheet" href="/injection/assets/css/0.styles.777fc7db.css">
+    <link rel="preload" href="/injection/assets/css/0.styles.9fa346e0.css" as="style"><link rel="preload" href="/injection/assets/js/app.55c5cb59.js" as="script"><link rel="preload" href="/injection/assets/js/6.43ed8440.js" as="script"><link rel="prefetch" href="/injection/assets/js/2.cdb88627.js"><link rel="prefetch" href="/injection/assets/js/3.035be225.js"><link rel="prefetch" href="/injection/assets/js/4.9294442e.js"><link rel="prefetch" href="/injection/assets/js/5.1b9a1291.js"><link rel="prefetch" href="/injection/assets/js/7.7d46cb57.js">
+    <link rel="stylesheet" href="/injection/assets/css/0.styles.9fa346e0.css">
   </head>
   <body>
     <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/injection/" class="home-link router-link-active"><!----> <span class="site-name">Injection</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/injection/" class="nav-link">首页</a></div><div class="nav-item"><a href="/injection/guide.html" class="nav-link router-link-exact-active router-link-active">依赖注入手册</a></div><div class="nav-item"><a href="http://midwayjs.org/injection/api-reference/globals.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
@@ -111,7 +111,7 @@ import {Container} from 'injection' 和 import {Container} from 'midway' 是一�
   katana3<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></div><p><code>Grandson</code> 的实例 <code>gradson</code> 拥有 <code>@inject()</code> 装饰器注入的
-<code>grandson.katana3</code>, <code>grandson.katana2</code>, <code>grandson.katana1</code> 属性。</p> <p>实现时，会查找 <code>Gradson</code> 的原型链，遍历原型链上所有用 <code>@inject()</code> 装饰的属性，运行装饰器，注入相应的属性。</p> <p>查找类的原型使用 <a href="https://github.com/rbuckton/reflect-metadata" target="_blank" rel="noopener noreferrer">reflect-metadata<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 仓库的 <a href="https://github.com/rbuckton/reflect-metadata/blob/c2dbe1d02ceb9987f9002eedf0cdb21d74de0019/Reflect.ts#L1553-L1583" target="_blank" rel="noopener noreferrer">OrdinaryGetPrototypeOf<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 方法，使用 <code>recursiveGetPrototypeOf</code> 方法以数组形式返回该类的所有原型。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">function</span> <span class="token function">recursiveGetPrototypeOf</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">:</span> <span class="token builtin">any</span></span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+<code>grandson.katana3</code>, <code>grandson.katana2</code>, <code>grandson.katana1</code> 属性。</p> <p>实现时，会查找 <code>Gradson</code> 的原型链，遍历原型链上所有用 <code>@inject()</code> 装饰的属性，运行装饰器，注入相应的属性。</p> <p>查找类的原型使用 <a href="https://github.com/rbuckton/reflect-metadata" target="_blank" rel="noopener noreferrer">reflect-metadata<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 仓库的 <a href="https://github.com/rbuckton/reflect-metadata/blob/c2dbe1d02ceb9987f9002eedf0cdb21d74de0019/Reflect.ts#L1553-L1583" target="_blank" rel="noopener noreferrer">OrdinaryGetPrototypeOf<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 方法，使用 <code>recursiveGetPrototypeOf</code> 方法以数组形式返回该类的所有原型。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">function</span> <span class="token function">recursiveGetPrototypeOf</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token operator">:</span> <span class="token builtin">any</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> properties <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token keyword">let</span> parent <span class="token operator">=</span> <span class="token function">ordinaryGetPrototypeOf</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">while</span> <span class="token punctuation">(</span>parent <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -142,7 +142,7 @@ container<span class="token punctuation">.</span><span class="token function">ge
 </code></pre></div><p>同理，在使用 <code>@inject</code> 的时候也可以使用不同的 id。</p> <h2 id="构造器注入"><a href="#构造器注入" class="header-anchor">#</a> 构造器注入</h2> <p>除了标准的属性注入方法之外，midway 在一定程度上支持了构造器注入的方式，来让一些应用或者三方包平稳过度。</p> <p>同样还是使用 <code>@inject</code> 装饰器。</p> <div class="language-ts extra-class"><pre class="language-ts"><code>@<span class="token function">provide</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
   config <span class="token operator">=</span> <span class="token punctuation">{</span>
-    c<span class="token punctuation">:</span> <span class="token number">20</span>
+    c<span class="token operator">:</span> <span class="token number">20</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
@@ -150,7 +150,7 @@ container<span class="token punctuation">.</span><span class="token function">ge
 @<span class="token function">provide</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">B</span> <span class="token punctuation">{</span>
   config <span class="token operator">=</span> <span class="token punctuation">{</span>
-    c<span class="token punctuation">:</span> <span class="token number">40</span>
+    c<span class="token operator">:</span> <span class="token number">40</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
@@ -167,7 +167,7 @@ container<span class="token punctuation">.</span><span class="token function">ge
     @<span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">'plugin2'</span><span class="token punctuation">)</span> plugin2
   <span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>config <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>config<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-      c<span class="token punctuation">:</span> a<span class="token punctuation">.</span>config<span class="token punctuation">.</span>c <span class="token operator">+</span> b<span class="token punctuation">.</span>config<span class="token punctuation">.</span>c <span class="token operator">+</span> config<span class="token punctuation">.</span>c
+      c<span class="token operator">:</span> a<span class="token punctuation">.</span>config<span class="token punctuation">.</span>c <span class="token operator">+</span> b<span class="token punctuation">.</span>config<span class="token punctuation">.</span>c <span class="token operator">+</span> config<span class="token punctuation">.</span>c
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>plugin2 <span class="token operator">=</span> plugin2<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -221,19 +221,19 @@ container<span class="token punctuation">.</span><span class="token function">ge
 
 <span class="token function">providerWrapper</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
   <span class="token punctuation">{</span>
-    id<span class="token punctuation">:</span> <span class="token string">'contextHandler'</span><span class="token punctuation">,</span>
-    provider<span class="token punctuation">:</span> contextHandler<span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token string">'contextHandler'</span><span class="token punctuation">,</span>
+    provider<span class="token operator">:</span> contextHandler<span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><p>使用端。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code>@<span class="token function">provide</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">BaseService</span> <span class="token punctuation">{</span>
 
   @<span class="token function">inject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token function-variable function">contextHandler</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token builtin">boolean</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token function-variable function">contextHandler</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token builtin">boolean</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 
 <span class="token punctuation">}</span>
-</code></pre></div><p>midway 通过 <code>providerWrapper</code> 函数来包裹一个函数，并且指定提供的 key，供其他 IoC 对象使用。由于函数直接传递了一个 context 对象，可以轻松的通过此对象拿到所需的其他对象，而不需要管理依赖。</p> <p>函数注入大多数为了创建一个简单的工厂。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">adapterFactory</span><span class="token punctuation">(</span><span class="token parameter">context<span class="token punctuation">:</span> IApplicationContext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">adapterName<span class="token punctuation">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+</code></pre></div><p>midway 通过 <code>providerWrapper</code> 函数来包裹一个函数，并且指定提供的 key，供其他 IoC 对象使用。由于函数直接传递了一个 context 对象，可以轻松的通过此对象拿到所需的其他对象，而不需要管理依赖。</p> <p>函数注入大多数为了创建一个简单的工厂。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">adapterFactory</span><span class="token punctuation">(</span><span class="token parameter">context<span class="token operator">:</span> IApplicationContext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">adapterName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>adapterName <span class="token operator">===</span> <span class="token string">'google'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> <span class="token keyword">await</span> context<span class="token punctuation">.</span><span class="token function">getAsync</span><span class="token punctuation">(</span><span class="token string">'googleAdapter'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -248,8 +248,8 @@ container<span class="token punctuation">.</span><span class="token function">ge
 
 <span class="token function">providerWrapper</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
   <span class="token punctuation">{</span>
-    id<span class="token punctuation">:</span> <span class="token string">'adapterFactory'</span><span class="token punctuation">,</span>
-    provider<span class="token punctuation">:</span> adapterFactory<span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token string">'adapterFactory'</span><span class="token punctuation">,</span>
+    provider<span class="token operator">:</span> adapterFactory<span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><p>这样在业务中，可以直接来使用了。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code>
@@ -262,7 +262,7 @@ container<span class="token punctuation">.</span><span class="token function">ge
   @<span class="token function">inject</span><span class="token punctuation">(</span><span class="token string">'adapterFactory'</span><span class="token punctuation">)</span>
   factory<span class="token punctuation">;</span>
 
-  adapter<span class="token punctuation">:</span> Adapter<span class="token punctuation">;</span>
+  adapter<span class="token operator">:</span> Adapter<span class="token punctuation">;</span>
 
   @<span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token keyword">async</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -276,27 +276,27 @@ container<span class="token punctuation">.</span><span class="token function">ge
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Sequelize <span class="token keyword">as</span> SequelizeInstance <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'sequelize'</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 可以直接写 async 方法</span>
-<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">factory</span><span class="token punctuation">(</span><span class="token parameter">context<span class="token punctuation">:</span> IApplicationContext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">factory</span><span class="token punctuation">(</span><span class="token parameter">context<span class="token operator">:</span> IApplicationContext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
   <span class="token keyword">const</span> instance <span class="token operator">=</span> <span class="token keyword">await</span> context<span class="token punctuation">.</span>getAsync<span class="token operator">&lt;</span>SequelizeInstance<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token string">'coreDB'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token keyword">const</span> UiKeyTraceModel <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    gmtCreate<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      <span class="token keyword">type</span><span class="token punctuation">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">DATE</span><span class="token punctuation">,</span>
-      allowNull<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-      field<span class="token punctuation">:</span> <span class="token string">'gmt_create'</span><span class="token punctuation">,</span>
+    gmtCreate<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">type</span><span class="token operator">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">DATE</span><span class="token punctuation">,</span>
+      allowNull<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      field<span class="token operator">:</span> <span class="token string">'gmt_create'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    gmtModified<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      <span class="token keyword">type</span><span class="token punctuation">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">DATE</span><span class="token punctuation">,</span>
-      allowNull<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-      field<span class="token punctuation">:</span> <span class="token string">'gmt_modified'</span><span class="token punctuation">,</span>
+    gmtModified<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">type</span><span class="token operator">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">DATE</span><span class="token punctuation">,</span>
+      allowNull<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      field<span class="token operator">:</span> <span class="token string">'gmt_modified'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    timestamps<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    createdAt<span class="token punctuation">:</span> <span class="token string">'gmt_create'</span><span class="token punctuation">,</span>
-    updatedAt<span class="token punctuation">:</span> <span class="token string">'gmt_modified'</span><span class="token punctuation">,</span>
-    freezeTableName<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    tableName<span class="token punctuation">:</span> <span class="token string">'xxxx'</span>
+    timestamps<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    createdAt<span class="token operator">:</span> <span class="token string">'gmt_create'</span><span class="token punctuation">,</span>
+    updatedAt<span class="token operator">:</span> <span class="token string">'gmt_modified'</span><span class="token punctuation">,</span>
+    freezeTableName<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    tableName<span class="token operator">:</span> <span class="token string">'xxxx'</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token keyword">return</span> UiKeyTraceModel<span class="token punctuation">;</span>
@@ -304,8 +304,8 @@ container<span class="token punctuation">.</span><span class="token function">ge
 
 <span class="token function">providerWrapper</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
   <span class="token punctuation">{</span>
-    id<span class="token punctuation">:</span> <span class="token string">'keyTraceModel'</span><span class="token punctuation">,</span>
-    provider<span class="token punctuation">:</span> factory
+    id<span class="token operator">:</span> <span class="token string">'keyTraceModel'</span><span class="token punctuation">,</span>
+    provider<span class="token operator">:</span> factory
   <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><p>通过 <code>providerWrapper</code> 我们将一个原本的函数写法进行了包裹，和现有的依赖注入体系可以融合到一起，让容器能够统一管理。</p> <h2 id="注入已有对象"><a href="#注入已有对象" class="header-anchor">#</a> 注入已有对象</h2> <p>有时候，应用已经有现有的实例，而不是类，比如引入了一个第三库，这个时候如果希望对象能够被其他 IoC 容器中的实例引用，也可以通过增加对象的方式进行处理。</p> <p>我们拿常见的 http 请求库 <a href="https://www.npmjs.com/package/urllib" target="_blank" rel="noopener noreferrer">urllib<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 来举例。</p> <p>假如我们希望在不同的类中来使用，并且不通过 require 的方式，你需要在容器的入口通过 <a href="https://midwayjs.org/injection/api-reference/classes/container.html#registerobject" target="_blank" rel="noopener noreferrer">registerobject<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 方法添加这个对象。</p> <p>在添加的时候需要给出一个 key，方便其他类中注入。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">// in global file</span>
@@ -329,6 +329,6 @@ container<span class="token punctuation">.</span><span class="token function">re
 
 <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newTree<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><p>通过 <code>dumpDependency</code> 方法生成的文本，可以直接在 <a href="http://viz-js.com/" target="_blank" rel="noopener noreferrer">viz-js<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 渲染为图案，方便排查问题。</p> <p>也可以通过安装 <code>graphviz</code> 等工具将文本树转化为图片形式。</p> <div class="tip custom-block"><p class="custom-block-title">TIP</p> <p>midway 在启动时会将依赖树生成到 /run 目录下，方便排错。</p></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
-    <script src="/injection/assets/js/app.52701f4c.js" defer></script><script src="/injection/assets/js/6.30566e3a.js" defer></script>
+    <script src="/injection/assets/js/app.55c5cb59.js" defer></script><script src="/injection/assets/js/6.43ed8440.js" defer></script>
   </body>
 </html>
