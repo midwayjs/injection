@@ -1,4 +1,10 @@
 
+1.8.5 / 2020-03-12
+==================
+
+  * fix: Merge pull request #40 from midwayjs/fix_circular_bug
+  * fix curcular problem bug
+
 1.8.4 / 2020-01-16
 ==================
 

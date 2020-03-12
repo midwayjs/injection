@@ -1,6 +1,6 @@
 {
   "name": "injection",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "description": "A New IoC Container For All Node.js Application",
   "main": "dist/index",
   "typings": "dist/index.d.ts",
