@@ -11,7 +11,7 @@ $ npm install injection reflect-metadata --save
 ```
 
 
-Injection 依赖了 TypeScript >= 2.0 的一些实验性特性，需要手动在 `tsconfig.josn` 开启.
+Injection 依赖了 TypeScript >= 2.0 的一些实验性特性，需要手动在 `tsconfig.json` 开启.
 
 ```json
 {
