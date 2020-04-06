@@ -631,7 +631,7 @@ export class ManagedResolverFactory {
    * @param identifier 目标id
    * @param definition 定义描述
    */
-  public depthFirstSearch(identifier: string, definition: IObjectDefinition): boolean {
+  public depthFirstSearch(identifier: string, definition: IObjectDefinition, depth?: string[]): boolean {
     if (definition) {
       if (definition.constructorArgs) {
         const args = definition.constructorArgs.map(val => (val as ManagedReference).name);
@@ -645,6 +645,9 @@ export class ManagedResolverFactory {
           return true;
         }
         for (const key of keys) {
+          if (!Array.isArray(depth)) {
+            depth = [identifier];
+          }
           let iden = key;
           const ref: ManagedReference = definition.properties.get(key);
           if (ref && ref.name) {
@@ -657,7 +660,12 @@ export class ManagedResolverFactory {
           if (!subDefinition && this.context.parent) {
             subDefinition = this.context.parent.registry.getDefinition(iden);
           }
-          if (this.depthFirstSearch(identifier, subDefinition)) {
+          if (depth.indexOf(iden) > -1) {
+            continue;
+          } else {
+            depth.push(iden);
+          }
+          if (this.depthFirstSearch(identifier, subDefinition, depth)) {
             return true;
           }
         }

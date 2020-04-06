@@ -1,6 +1,21 @@
 import { expect } from 'chai';
 import { Container, inject, provide, REQUEST_OBJ_CTX_KEY, RequestContainer, scope, ScopeEnum } from '../../src';
-// const path = require('path');
+import { CircularOne,
+  CircularTwo,
+  CircularThree,
+  TestOne,
+  TestTwo,
+  TestThree,
+  GatewayManager,
+  GatewayService,
+  GroupService,
+  FunService,
+  AppService,
+  TenService,
+  ScaleManager,
+  AutoScaleService,
+  CCController
+} from '../fixtures/circular_dependency';
 
 // function sleep(t) {
 //   return new Promise((resolve) => {
@@ -135,4 +150,44 @@ describe('/test/unit/requestContainer.test.ts', () => {
     expect(tracer2[ REQUEST_OBJ_CTX_KEY ]).to.equal(ctx2);
   });
 
+  it('circular should be ok in requestContainer', async () => {
+    const appCtx = new Container();
+
+    appCtx.bind(TestOne);
+    appCtx.bind(TestTwo);
+    appCtx.bind(TestThree);
+    appCtx.bind(CircularOne);
+    appCtx.bind(CircularTwo);
+    appCtx.bind(CircularThree);
+
+    const ctx1 = { a: 1 };
+    const container = new RequestContainer(ctx1, appCtx);
+    const circularTwo: CircularTwo = await container.getAsync(CircularTwo);
+    expect(circularTwo.test2).eq('this is two');
+    expect((circularTwo.circularOne as CircularOne).test1).eq('this is one');
+    expect(((circularTwo.circularOne as CircularOne).circularTwo as CircularTwo).test2).eq('this is two');
+  });
+
+  it('circular depth should be ok in requestContainer', async () => {
+    const appCtx = new Container();
+    appCtx.bind(GatewayManager);
+    appCtx.bind(GatewayService);
+    appCtx.bind(GroupService);
+    appCtx.bind(FunService);
+    appCtx.bind(AppService);
+    appCtx.bind(TenService);
+    appCtx.bind(ScaleManager);
+    appCtx.bind(AutoScaleService);
+    appCtx.bind(CCController);
+
+    const ctx1 = { a: 1 };
+    const container = new RequestContainer(ctx1, appCtx);
+    const one = await container.getAsync<CCController>(CCController);
+    expect(one).not.null;
+    expect(one).not.undefined;
+    expect(one.ts).eq('controller');
+
+    expect(one.autoScaleService.ts).eq('ascale');
+    expect(one.autoScaleService.scaleManager.ts).eq('scale');
+  });
 });
