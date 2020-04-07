@@ -1,4 +1,11 @@
 
+1.8.6 / 2020-04-07
+==================
+
+  * fix: dfs circular bug
+  * fix dfs circular bug
+  * docs: fix wrong word (#41)
+
 1.8.5 / 2020-03-12
 ==================
 
