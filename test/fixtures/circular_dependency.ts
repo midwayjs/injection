@@ -77,3 +77,88 @@ export class CircularThree {
   public circularTwo: any;
   public ts: number;
 }
+
+@provide()
+export class FunService {
+
+}
+@provide()
+export class AppService {
+
+}
+@provide()
+export class TenService {
+
+}
+@provide()
+export class GroupService {
+  ts = 'group';
+  @inject()
+  gatewayService: any;
+  @inject()
+  tenService: TenService;
+  @inject()
+  appService: AppService;
+}
+@provide()
+export class GatewayManager {
+  ts = 'gtmanager';
+  @inject()
+  groupService: GroupService;
+  @inject()
+  funService: FunService;
+  @inject()
+  appService: AppService;
+}
+
+@provide()
+export class GatewayService {
+  ts = 'gateway';
+  @inject()
+  appService: AppService;
+  @inject()
+  funService: FunService;
+  @inject()
+  gatewayManager: GatewayManager;
+  @inject()
+  groupService: GroupService;
+}
+@provide()
+export class ScaleManager {
+  ts = 'scale';
+  @inject()
+  tenService: TenService;
+  @inject()
+  appService: AppService;
+  @inject()
+  funService: FunService;
+  @inject()
+  gatewayManager: GatewayManager;
+  @inject()
+  gatewayService: GatewayService;
+  @inject()
+  groupService: GroupService;
+
+  @inject()
+  autoScaleService: any;
+}
+
+@provide()
+export class AutoScaleService {
+  ts = 'ascale';
+  @inject()
+  gatewayManager: GatewayManager;
+  @inject()
+  gatewayService: GatewayService;
+  @inject()
+  groupService: GroupService;
+  @inject()
+  scaleManager: ScaleManager;
+}
+
+@provide()
+export class CCController {
+  ts = 'controller';
+  @inject()
+  autoScaleService: AutoScaleService;
+}
