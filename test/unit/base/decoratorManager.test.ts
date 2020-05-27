@@ -22,6 +22,7 @@ describe('/test/unit/base/decoratorManager.test.ts', () => {
   });
 
   it('should save data to class and list it', () => {
+    
     const dataRes = listMethodDataFromClass('custom', module);
     assert(dataRes.length === 1);
 
