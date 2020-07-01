@@ -8,9 +8,9 @@ Midway 中使用了非常多的依赖注入的特性，通过装饰器的轻量�
 
 ## 背景
 
-midway 默认使用 [injection](http://web.npm.alibaba-inc.com/package/injection) 这个包来做依赖注入，这个包也是 MidwayJs 团队根据业界已有的实现而产出的自研产品，它除了常见的依赖了注入之外，还满足了 Midway 自身的一些特殊需求。
+midway 默认使用 [injection](https://www.npmjs.com/package/injection) 这个包来做依赖注入，这个包也是 MidwayJs 团队根据业界已有的实现而产出的自研产品，它除了常见的依赖了注入之外，还满足了 Midway 自身的一些特殊需求。
 
-这篇文章不仅仅是 IoC 体系的介绍，也是属于 [injection](http://web.npm.alibaba-inc.com/package/injection) 这个包的一份使用文档。
+这篇文章不仅仅是 IoC 体系的介绍，也是属于 [injection](https://www.npmjs.com/package/injection) 这个包的一份使用文档。
 
 你不仅可以在 Midway 的开发过程中用到它，如果你希望，它也可以在你的模块开发中帮助到你，它可以单独使用，也可以和现有框架集成，比如 `koa`, `thinkjs` 等。
 
