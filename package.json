@@ -46,7 +46,7 @@
     "tslint-midway-contrib": "^1.2.0",
     "typescript": "^3.2.0",
     "vuepress": "^0.14.8",
-    "webpack": "4.28.4",
+    "webpack": "5.94.0",
     "xmldom": "^0.1.27"
   },
   "dependencies": {
